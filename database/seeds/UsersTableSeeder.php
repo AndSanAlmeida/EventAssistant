@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::truncate();
+        DB::table('role_user')->truncate();
 
         $adminRole = Role::where('name', 'admin')->first();
         $userRole = Role::where('name', 'user')->first();
@@ -32,5 +33,7 @@ class UsersTableSeeder extends Seeder
 
         $admin->roles()->attach($adminRole);
         $user->roles()->attach($userRole);
+
+        factory(App\User::class, 50)->create();
     }
 }
