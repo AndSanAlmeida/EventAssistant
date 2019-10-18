@@ -14,7 +14,7 @@
 
 	<!-- Nav Item - Dashboard -->
 	<li class="nav-item active">
-		<a class="nav-link" href="#">
+		<a class="nav-link" href="{{ url('/admin') }}">
 			<i class="fas fa-fw fa-tachometer-alt"></i>
 			<span>Dashboard</span>
 		</a>
@@ -44,9 +44,9 @@
 	</div>
 
 	<li class="nav-item">
-		<a class="nav-link" href="#">
+		<a class="nav-link" href="{{ route('admin.users.index') }}">
 		  <i class="fas fa-fw fa-table"></i>
-		  <span>Example</span>
+		  <span>Users Permitions</span>
 		</a>
 	</li>
 

@@ -15,6 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function() {
-	return view('layouts.admin.pages.dashboard');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// Dashboard
+Route::get('/admin', function (){
+	return view('admin.pages.dashboard');
+})->middleware(['auth', 'auth.admin']);
+
+// Namespace: Admin
+// Prefix: admin
+// Middleware: auth e auth.admin
+// Name: admin.
+Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function() {
+	
+	
+
+	// Dashboard - UserController
+	Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
 });
