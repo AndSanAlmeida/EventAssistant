@@ -17,7 +17,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.pages.users.index')->with('users', User::all());
+        $users = User::all();
+
+        return view('admin.pages.users.index', compact('users'));
     }
 
     /**
@@ -33,7 +35,10 @@ class UserController extends Controller
             return redirect()->route('admin.users.index')->with('warning', 'You cannot manage your own permissions.');
         }
 
-        return view('admin.pages.users.edit')->with(['user' => User::find($id), 'roles' => Role::all()]);
+        $user = User::find($id);
+        $roles = Role::all();
+
+        return view('admin.pages.users.edit', compact('user', 'roles'));
     }
 
     /**
@@ -47,7 +52,7 @@ class UserController extends Controller
     {   
         // Não edita a própria conta
         if (Auth::user()->id == $id) {
-            return redirect()->route('admin.users.index')->with('warning', 'You cannot manage your own permissions.');
+            return redirect()->route('admin.users.index')->with('warning', 'You can not manage your own permissions.');
         }
 
         $user = User::find($id);
@@ -66,10 +71,18 @@ class UserController extends Controller
     {
         // Não edita a própria conta
         if (Auth::user()->id == $id) {
-            return redirect()->route('admin.users.index')->with('warning', 'You cannot delete your own account.');
+            return redirect()->route('admin.users.index')->with('warning', 'You can not delete your own account.');
         }
 
-        User::destroy($id);
-        return redirect()->route('admin.users.index')->with('success', 'User has been deleted.');
+        $user = User::find($id);
+
+        // Fax o Detach da relação na tabela role_user quando apagamos um utilizador
+        if ($user) {
+            $user->roles()->detach();
+            $user->delete();
+            return redirect()->route('admin.users.index')->with('success', 'User has been deleted.');
+        }
+
+        return redirect()->route('admin.users.index')->with('warning', 'This user can not be deleted.');
     }
 }

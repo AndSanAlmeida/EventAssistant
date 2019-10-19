@@ -8,7 +8,6 @@
 		<h1 class="h3 mb-0 text-gray-800">Users Permitions</h1>
 	</div>
 
-	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
 		<div class="card-header py-3">
 			<h6 class="m-0 font-weight-bold text-primary">Users Permitions Table</h6>
@@ -32,18 +31,58 @@
 								<td>{{ implode(' | ', $user->roles()->pluck('name')->toArray()) }}</td>
 								<td class="d-flex">									
 									<a href="{{ route('admin.users.edit', $user->id) }}">
-										<button type="button" class="btn btn-warning btn-circle" title="Edit">
-											<i class="fas fa-edit"></i>
+										<button type="button" class="btn btn-warning btn-icon-split btn-sm">
+											<span class="icon text-white-50">
+												<i class="fas fa-edit"></i>
+											</span>											
+											<span class="text">Edit Roles</span>
 										</button>
 									</a>
-									<form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
-										
+									<a href="javascript:;" data-toggle="modal" data-target="#deleteModal" onclick="deleteData({{$user->id}})">
+										<button type="button" class="btn btn-danger btn-icon-split btn-sm ml-2 deleteUser">
+											<span class="icon text-white-50">
+												<i class="fas fa-trash"></i>
+											</span>
+											<span class="text">Delete</span>
+										</button>
+									</a>
+
+									<!-- Modal Delete User -->
+									<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="deleteModalLabel">Delete!</h5>
+													<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">×</span>
+													</button>
+												</div>
+												<div class="modal-body">You really want do delete this user?</div>
+												<div class="modal-footer">
+													<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+													<form id="deleteForm" action="" method="POST">
+														@csrf 
+														{{ method_field('DELETE') }}
+														<button type="submit" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">
+															<span class="text">Delete</span>
+														</button>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<!-- Delete User without Modal -->
+									{{-- <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
 										@csrf 
 										{{ method_field('DELETE') }}
-										<button type="submit" class="btn btn-danger btn-circle ml-2" title="Delete">
-											<i class="fas fa-trash"></i>
+										<button type="submit" class="btn btn-danger btn-icon-split btn-sm ml-2" title="Delete">
+											<span class="icon text-white-50">
+												<i class="fas fa-trash"></i>
+											</span>
+											<span class="text">Delete</span>
 										</button>
-									</form>
+									</form> --}}
 								</td>
 							</tr>						
 						@endforeach
@@ -52,4 +91,17 @@
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		function deleteData(id) {
+			 var id = id;
+			 var url = '{{ route('admin.users.destroy', ":id") }}';
+			 url = url.replace(':id', id);
+			 $("#deleteForm").attr('action', url);
+		}
+
+		function formSubmit(){
+		 	$("#deleteForm").submit();
+		}
+  	</script>
 @endsection
