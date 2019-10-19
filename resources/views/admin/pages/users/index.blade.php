@@ -14,8 +14,8 @@
 		</div>
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table" id="dataTable" width="100%" cellspacing="0">
-					<thead>
+				<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+					<thead class="thead-dark">
 						<tr>
 							<th>Name</th>
 							<th>Email</th>
@@ -62,7 +62,7 @@
 													<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 													<form id="deleteForm" action="" method="POST">
 														@csrf 
-														{{ method_field('DELETE') }}
+														@method('DELETE')
 														<button type="submit" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">
 															<span class="text">Delete</span>
 														</button>

@@ -35,7 +35,7 @@ class UserController extends Controller
             return redirect()->route('admin.users.index')->with('warning', 'You cannot manage your own permissions.');
         }
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $roles = Role::all();
 
         return view('admin.pages.users.edit', compact('user', 'roles'));
@@ -55,7 +55,7 @@ class UserController extends Controller
             return redirect()->route('admin.users.index')->with('warning', 'You can not manage your own permissions.');
         }
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $user->roles()->sync($request->roles);
 
         return redirect()->route('admin.users.index')->with('success', 'Your permissions has been updated.');
@@ -74,7 +74,7 @@ class UserController extends Controller
             return redirect()->route('admin.users.index')->with('warning', 'You can not delete your own account.');
         }
 
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         // Fax o Detach da relação na tabela role_user quando apagamos um utilizador
         if ($user) {

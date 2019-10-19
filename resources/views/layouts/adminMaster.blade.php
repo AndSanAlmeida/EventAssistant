@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-	@include('admin.partials._head')
+	<head>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>@yield('title') | Dashboard</title>
+
+		{{-- Styles --}}
+		@include('admin.partials._styles')
+		@include('admin.partials._adminStyles')
+
+	</head>	
 	<body id="page-top">
 		<!-- Page Wrapper -->
 		<div id="wrapper">
@@ -22,7 +36,7 @@
 					<!-- /.container-fluid -->
 				</div>
 				<!-- End of Main Content -->
-					@include('admin.includes.footer')
+				@include('admin.includes.footer')
 			</div>
 			<!-- End of Content Wrapper -->
 		</div>
@@ -32,6 +46,9 @@
 		<a class="scroll-to-top rounded" href="#page-top">
 			<i class="fas fa-angle-up"></i>
 		</a>
+
+		{{-- Scripts --}}
 		@include('admin.partials._scripts')
+		@include('admin.partials._adminScripts')
 	</body>
 </html>
