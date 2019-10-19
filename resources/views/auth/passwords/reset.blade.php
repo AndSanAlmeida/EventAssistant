@@ -64,7 +64,6 @@
 </div>
 @endsection --}}
 
-
 @extends('layouts.authMaster')
 
 @section('title', 'Reset Password')
@@ -82,8 +81,7 @@
                     <div class="col-lg-6">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
-                                <p class="mb-4">We get it, stuff happens. Just enter your email address below and we'll send you a link to reset your password!</p>
+                                <h1 class="h4 text-gray-900 mb-4">Reset Your Password</h1>
                             </div>
                             <form class="user" method="POST" action="{{ route('password.update') }}">
                                 @csrf
@@ -116,7 +114,7 @@
 
                                 <div class="form-group">
 
-                                    <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" required placeholder="Repeat Password" autocomplete="new-password">
+                                    <input id="password-confirm" type="password" class="form-control form-control-user" name="password_confirmation" required placeholder="Confirm Password" autocomplete="new-password">
 
                                 </div>
 
@@ -125,24 +123,6 @@
                                 </button>
 
                             </form>
-                            <hr>
-
-                            @if (Route::has('register'))
-                                <div class="text-center">
-                                    <a class="small" href="{{ route('register') }}">
-                                        {{ __('Create an Account?') }}
-                                    </a>
-                                </div>
-                            @endif
-
-                            @if (Route::has('login'))
-                                <div class="text-center">
-                                    <a class="small" href="{{ route('login') }}">
-                                        {{ __('Already have an account? Login!!') }}
-                                    </a>
-                                </div>
-                            @endif
-
                         </div>
                     </div>
                 </div>

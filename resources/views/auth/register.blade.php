@@ -161,7 +161,7 @@
                     @if (Route::has('login'))
                         <div class="text-center">
                             <a class="small" href="{{ route('login') }}">
-                                {{ __('Already have an account? Login!!') }}
+                                {{ __('Already have an account? Login!') }}
                             </a>
                         </div>
                     @endif
