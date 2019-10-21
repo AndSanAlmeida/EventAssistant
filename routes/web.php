@@ -26,8 +26,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function() {
 	
 	// Dashboard
-	Route::get('/', 'DashboardController@index');
+	Route::get('/', 'DashboardController@index')->name('dashboard');
 
 	// Dashboard - UserController
 	Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
+});
+
+// Namespace: Public
+// Prefix: public
+// Middleware: auth e auth.public
+// Name: public.
+Route::namespace('PublicAdmin')->prefix('publicAdmin')->middleware(['auth', 'auth.public'])->name('publicAdmin.')->group(function() {
+	
+	// PublicDashboard
+	// Route::get('/', 'DashboardController@index');
+
+	// PublicDashboard - UserController
+	Route::resource('/user', 'UserController', ['except' => ['index', 'create', 'destroy']]);
+	Route::get('/user/{id}', 'UserController@show')->name('user.show');
 });
