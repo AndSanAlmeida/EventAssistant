@@ -42,6 +42,6 @@ Route::namespace('PublicAdmin')->prefix('publicAdmin')->middleware(['auth', 'aut
 	// Route::get('/', 'DashboardController@index');
 
 	// PublicDashboard - UserController
-	Route::resource('/user', 'UserController', ['except' => ['index', 'create', 'destroy']]);
-	Route::get('/user/{id}', 'UserController@show')->name('user.show');
+	Route::resource('/user', 'UserController', ['except' => ['index', 'show', 'create', 'destroy']]);
+	Route::get('/user/{user}', 'UserController@show')->name('user.show');
 });
