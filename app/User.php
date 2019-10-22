@@ -12,9 +12,12 @@ class User extends Authenticatable
 
     public function profileImage()
     {
-        $imagePath = ($this->image) ? $this->image : 'profile/Ks6tQHNJZvjL964LQiHo2pNoWBaVfw0BroGJRtuf.png';
+         dd($this->avatar);
+        $avatarPath = ($this->avatar) ? $this->avatar : 'profile/default-avatar.png';
 
-        return '/storage/' . $imagePath;
+        // dd($avatarPath);
+
+        return '/storage/' . $avatarPath;
     }
 
     /**

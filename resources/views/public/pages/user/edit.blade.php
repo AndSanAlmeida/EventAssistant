@@ -49,12 +49,12 @@
                 </div>
 
                 <div class="row">
-                    <label for="image" class="col-md-4 col-form-label">Profile Image</label>
+                    <label for="avatar" class="col-md-4 col-form-label">Profile Image</label>
 
-                    <input type="file" class="form-control-file" id="image" name="image">
+                    <input type="file" class="form-control-file" id="avatar" name="avatar">
 
-                    @if ($errors->has('image'))
-                        <strong>{{ $errors->first('image') }}</strong>
+                    @if ($errors->has('avatar'))
+                        <strong>{{ $errors->first('avatar') }}</strong>
                     @endif
                 </div>
 

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\PublicAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
-use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
+use Auth;
+use Image;
 
 class UserController extends Controller
 {
@@ -84,27 +84,29 @@ class UserController extends Controller
         $data = request()->validate([
             'name' => 'required',
             'email' => 'email | required',
-            'image' => 'image',
+            'avatar' => 'image',
         ]);
 
-        if (request('image')) {
-            $imagePath = request('image')->store('profile', 'public');
+        if (request('avatar')) {
+            $avatarPath = request('avatar')->store('profile', 'public');
 
-            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
-            $image->save();
+            $avatar = Image::make(public_path("storage/{$avatarPath}"))->fit(1000, 1000);
+            $avatar->save();
 
-            $imageArray = ['image' => $imagePath];
+            $avatarArray = ['avatar' => $avatarPath];
         }
 
         // dd(array_merge(
         //     $data,
-        //     $imageArray ?? []
+        //     $avatarArray ?? []
         // ));
 
         $user->update(array_merge(
             $data,
-            $imageArray ?? []
-        ));        
+            $avatarArray ?? []
+        ));
+
+        // dd($user);
 
         return redirect()->route('publicAdmin.user.show', $user->id);
     }
