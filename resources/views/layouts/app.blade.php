@@ -57,7 +57,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     @hasRole('user')
-                                        <a class="dropdown-item" href="{{ route('publicAdmin.user.show', Auth::user()->id) }}">Profile</a>
+                                        <a class="dropdown-item" href="{{ route('publicAdmin.user.show', $user->id) }}">Profile</a>
                                     @endhasRole
 
                                     @hasRole('admin')

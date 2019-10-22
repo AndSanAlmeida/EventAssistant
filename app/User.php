@@ -10,6 +10,13 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function profileImage()
+    {
+        $imagePath = ($this->image) ? $this->image : 'profile/Ks6tQHNJZvjL964LQiHo2pNoWBaVfw0BroGJRtuf.png';
+
+        return '/storage/' . $imagePath;
+    }
+
     /**
      * The attributes that are mass assignable.
      *

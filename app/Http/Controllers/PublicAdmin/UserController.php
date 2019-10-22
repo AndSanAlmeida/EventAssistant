@@ -5,6 +5,8 @@ namespace App\Http\Controllers\PublicAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -46,9 +48,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $user = User::findOrFail($id);
+    public function show(User $user)
+    {   
+        if (Auth::user()->id != $user->id) {
+            return redirect()->route('home');
+        }
 
         return view('public.pages.user.show', compact('user'));
     }
@@ -59,9 +63,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        return view('public.pages.user.edit');
+        if (Auth::user()->id != $user->id) {
+            return redirect()->route('home');
+        }
+
+        return view('public.pages.user.edit', compact('user'));
     }
 
     /**
@@ -71,9 +79,34 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(User $user)
     {
-        //
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => 'email | required',
+            'image' => 'image',
+        ]);
+
+        if (request('image')) {
+            $imagePath = request('image')->store('profile', 'public');
+
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
+            $image->save();
+
+            $imageArray = ['image' => $imagePath];
+        }
+
+        // dd(array_merge(
+        //     $data,
+        //     $imageArray ?? []
+        // ));
+
+        $user->update(array_merge(
+            $data,
+            $imageArray ?? []
+        ));        
+
+        return redirect()->route('publicAdmin.user.show', $user->id);
     }
 
     /**
