@@ -19,19 +19,22 @@ class UsersTableSeeder extends Seeder
         $adminRole = Role::where('name', 'admin')->first();
         $userRole = Role::where('name', 'user')->first();
 
-        $admin = USer::create([
+        $admin = User::create([
         	'name' => 'Admin',
         	'email' => 'admin@admin.com',
         	'password' => bcrypt('admin')
         ]);
 
-        $user = USer::create([
+        $user = User::create([
         	'name' => 'User',
         	'email' => 'user@user.com',
         	'password' => bcrypt('user')
         ]);
 
+        // O Admin deve de possuir as duas Roles
         $admin->roles()->attach($adminRole);
+        $admin->roles()->attach($userRole);
+
         $user->roles()->attach($userRole);
 
         factory(App\User::class, 15)->create();

@@ -43,6 +43,12 @@ Route::namespace('PublicAdmin')->prefix('publicAdmin')->middleware(['auth', 'aut
 
 	// PublicDashboard - UserController
 	Route::get('/user/{user}', 'UserController@show')->name('user.show');
+
+	// Route::get('/edit/user', 'UserController@edit')->name('user.edit');
+	// Route::patch('/edit/user', 'UserController@update')->name('user.update');
 	Route::get('/user/{user}/edit', 'UserController@edit')->name('user.edit');
 	Route::patch('/user/{user}', 'UserController@update')->name('user.update');
+
+	Route::get('/edit/password/user', 'UserController@editPassword')->name('user.editPassword');
+	Route::get('/edit/password/user', 'UserController@updatePassword')->name('user.updatePassword');
 });

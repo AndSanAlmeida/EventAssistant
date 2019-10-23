@@ -12,8 +12,9 @@
 	        <div class="col-9 pt-5">
 				<p>Name: {{ $user->name }}</p>
 				<p>Email: {{ $user->email }}</p>
+				<a href="{{ route('publicAdmin.user.edit', $user->id) }}">Edit Profile</a>
+				<a href="{{ route('publicAdmin.user.editPassword', $user->id) }}">Change Password</a>
 			</div>
-		</div>	
-		<a href="{{ route('publicAdmin.user.edit', $user->id) }}">Edit Profile</a>	
+		</div>		
 	</div>	
 @endsection

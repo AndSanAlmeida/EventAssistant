@@ -82,9 +82,9 @@ class UserController extends Controller
     public function update(User $user)
     {
         $data = request()->validate([
-            'name' => 'required | max:30',
-            'email' => 'required | email',
-            'avatar' => 'file | image | max:1000',
+            'name' => 'required|min:2|max:30',
+            'email' => 'required|email|unique:users,email,'.$user->id, //Verifica se o email inserido já esiste
+            'avatar' => 'file|image| max:1000',
         ]);
 
         if (request('avatar')) {
@@ -113,5 +113,19 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function editPassword(User $user)
+    {
+        if (Auth::user()->id != $user->id) {
+            return redirect()->route('home');
+        }
+
+        return view('public.pages.user.editPassword', compact('user'));
+    }
+
+    public function updatePassword(User $user)
+    {
+        return 'Update Password';
     }
 }
