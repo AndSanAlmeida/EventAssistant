@@ -82,26 +82,21 @@ class UserController extends Controller
     public function update(User $user)
     {
         $data = request()->validate([
-            'name' => 'required',
-            'email' => 'email | required',
-            'avatar' => '',
+            'name' => 'required | max:30',
+            'email' => 'required | email',
+            'avatar' => 'file | image | max:1000',
         ]);
 
         if (request('avatar')) {
             $avatarPath = request('avatar')->store('profile', 'public');
 
-            $avatar = Image::make(public_path("storage/{$avatarPath}"))->fit(1000, 1000);
+            $avatar = Image::make(public_path("storage/{$avatarPath}"))->fit(300, 300);
             $avatar->save();
 
             $avatarArray = ['avatar' => $avatarPath];
         }
 
-        // dd(array_merge(
-        //     $data,
-        //     $avatarArray ?? []
-        // ));
-
-        $user->update(array_merge(
+        auth()->user()->update(array_merge(
             $data,
             $avatarArray ?? []
         ));

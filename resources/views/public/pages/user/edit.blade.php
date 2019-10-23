@@ -3,7 +3,7 @@
 @section('title', 'Edit Profile')
 
 @section('content')
-	<div class="container">
+<div class="container">
     <form action="{{ route('publicAdmin.user.update', $user->id) }}" enctype="multipart/form-data" method="post">
         @csrf
         @method('PATCH')
@@ -36,7 +36,7 @@
 
                     <input id="email"
                            type="email"
-                           class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
+                           class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                            name="email"
                            value="{{ old('email') ?? $user->email }}"
                            autocomplete="Email" autofocus>
