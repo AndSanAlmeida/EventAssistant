@@ -11,13 +11,9 @@ class User extends Authenticatable
     use Notifiable;
 
     public function profileImage()
-    {
-         dd($this->avatar);
-        $avatarPath = ($this->avatar) ? $this->avatar : 'profile/default-avatar.png';
-
-        // dd($avatarPath);
-
-        return '/storage/' . $avatarPath;
+    {   
+        $avatarPath = ($this->avatar) ? '/storage/'.$this->avatar : '/img/avatar/default-avatar.png';
+        return $avatarPath;
     }
 
     /**

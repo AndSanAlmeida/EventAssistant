@@ -84,7 +84,7 @@ class UserController extends Controller
         $data = request()->validate([
             'name' => 'required',
             'email' => 'email | required',
-            'avatar' => 'image',
+            'avatar' => '',
         ]);
 
         if (request('avatar')) {
@@ -105,8 +105,6 @@ class UserController extends Controller
             $data,
             $avatarArray ?? []
         ));
-
-        // dd($user);
 
         return redirect()->route('publicAdmin.user.show', $user->id);
     }
