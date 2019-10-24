@@ -4,16 +4,20 @@
 
 @section('content')
 <div class="container">
-    <form action="{{ route('publicAdmin.user.update', $user->id) }}" enctype="multipart/form-data" method="post">
+    <form action="{{ route('public.user.update') }}" enctype="multipart/form-data" method="post">
         @csrf
         @method('PATCH')
 
+        <div class="row mb-4">
+          <div class="col-12">
+            <h1>Update Profile</h1>
+          </div>
+        </div>
         <div class="row">
-            <div class="col-8 offset-2">
-
-                <div class="row">
-                    <h1>Edit Profile</h1>
-                </div>
+            <div class="col-3">
+              <img src="{{ $user->profileImage() }}" class="rounded-circle w-100" width="200px" height="200px">
+            </div>
+            <div class="col-9">
                 <div class="form-group row">
                     <label for="name" class="col-md-4 col-form-label">Name</label>
 
@@ -60,6 +64,7 @@
 
                 <div class="row pt-4">
                     <button class="btn btn-primary">Save Profile</button>
+                    <a href="{{ route('public.user.show', $user->id) }}" class="btn btn-secondary">Back</a>
                 </div>
 
             </div>

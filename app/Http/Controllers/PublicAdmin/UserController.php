@@ -7,125 +7,91 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Image;
+use Hash;
 
 class UserController extends Controller
-{
+{   
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user)
     {   
         if (Auth::user()->id != $user->id) {
-            return redirect()->route('home');
+            return redirect()->back();
         }
 
         return view('public.pages.user.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
+    public function edit()
+    {   
+        if (Auth::user()) {
+            $user = User::find(Auth::user()->id);
+            return view('public.pages.user.edit', compact('user'));
+        }        
+    }
+
+    public function update(Request $request)
+    {   
+        $user = User::find(Auth::user()->id);
+
+        if ($user) {
+
+            $data = request()->validate([
+                'name' => 'required|min:2|max:30',
+                'email' => 'required|email|unique:users,email,'.$user->id, //Verifica se o email inserido já esiste
+                'avatar' => 'file|image| max:1000',
+            ]);
+
+            if (request('avatar')) {
+                $avatarPath = request('avatar')->store('profile', 'public');
+
+                $avatar = Image::make(public_path("storage/{$avatarPath}"))->fit(300, 300);
+                $avatar->save();
+
+                $avatarArray = ['avatar' => $avatarPath];
+            }
+
+            auth()->user()->update(array_merge(
+                $data,
+                $avatarArray ?? []
+            ));
+
+            return redirect()->route('public.user.show', $user)->with('success', 'Your profile has been updated!');;
+
+        } else {
+            return redirect()->back()->with('error', 'An error has occurred. Its not possible to update this user.');
+        }        
+    }
+
+    public function passwordEdit()
     {
-        if (Auth::user()->id != $user->id) {
-            return redirect()->route('home');
+        if (Auth::user()) {
+            return view('public.pages.user.editPassword');
+        } else {
+            return redirect()->back();
+        }        
+    }
+
+    public function passwordUpdate(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+
+        if ($user) {
+
+            $validate = $request->validate([
+                'oldPassword' => 'required',
+                'password' => 'required|min:7|required_with:password_confirmation'
+            ]);            
+
+            if (Hash::check($request['oldPassword'], $user->password) && $validate) {
+                
+                $user->password = Hash::make($request['password']);
+                $user->save();
+
+                return redirect()->back()->with('success', 'Your password has been updated!');
+
+            } else {
+                return redirect()->route('password.edit')->with('error', 'The entered password does not match your current password!');
+            }
         }
-
-        return view('public.pages.user.edit', compact('user'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(User $user)
-    {
-        $data = request()->validate([
-            'name' => 'required|min:2|max:30',
-            'email' => 'required|email|unique:users,email,'.$user->id, //Verifica se o email inserido já esiste
-            'avatar' => 'file|image| max:1000',
-        ]);
-
-        if (request('avatar')) {
-            $avatarPath = request('avatar')->store('profile', 'public');
-
-            $avatar = Image::make(public_path("storage/{$avatarPath}"))->fit(300, 300);
-            $avatar->save();
-
-            $avatarArray = ['avatar' => $avatarPath];
-        }
-
-        auth()->user()->update(array_merge(
-            $data,
-            $avatarArray ?? []
-        ));
-
-        return redirect()->route('publicAdmin.user.show', $user->id);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-    public function editPassword(User $user)
-    {
-        if (Auth::user()->id != $user->id) {
-            return redirect()->route('home');
-        }
-
-        return view('public.pages.user.editPassword', compact('user'));
-    }
-
-    public function updatePassword(User $user)
-    {
-        return 'Update Password';
     }
 }

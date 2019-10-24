@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -57,7 +57,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     @hasRole('user')
-                                        <a class="dropdown-item" href="{{ route('publicAdmin.user.show', Auth::user()) }}">Profile</a>
+                                        <a class="dropdown-item" href="{{ route('public.user.show', Auth::user()) }}">View Profile</a>
                                     @endhasRole
 
                                     @hasRole('admin')
@@ -82,6 +82,8 @@
         </nav>
 
         <main class="py-4">
+            {{-- Alert Messages --}}
+            @include('public.partials._alerts')
             @yield('content')
         </main>
     </div>

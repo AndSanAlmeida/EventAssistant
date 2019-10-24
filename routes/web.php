@@ -36,19 +36,14 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 // Prefix: public
 // Middleware: auth e auth.public
 // Name: public.
-Route::namespace('PublicAdmin')->prefix('publicAdmin')->middleware(['auth', 'auth.public'])->name('publicAdmin.')->group(function() {
+Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.public'])->name('public.')->group(function() {
 	
-	// PublicDashboard
-	// Route::get('/', 'DashboardController@index');
-
 	// PublicDashboard - UserController
 	Route::get('/user/{user}', 'UserController@show')->name('user.show');
 
-	// Route::get('/edit/user', 'UserController@edit')->name('user.edit');
-	// Route::patch('/edit/user', 'UserController@update')->name('user.update');
-	Route::get('/user/{user}/edit', 'UserController@edit')->name('user.edit');
-	Route::patch('/user/{user}', 'UserController@update')->name('user.update');
+	Route::get('/edit/user', 'UserController@edit')->name('user.edit');
+	Route::patch('/edit/user', 'UserController@update')->name('user.update');
 
-	Route::get('/edit/password/user', 'UserController@editPassword')->name('user.editPassword');
-	Route::get('/edit/password/user', 'UserController@updatePassword')->name('user.updatePassword');
+	Route::get('/edit/password/user', 'UserController@passwordEdit')->name('password.edit');
+	Route::post('/edit/password/user', 'UserController@passwordUpdate')->name('password.update');
 });
