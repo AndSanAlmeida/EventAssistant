@@ -36,9 +36,10 @@ class UserController extends Controller
         if ($user) {
 
             $data = request()->validate([
-                'name' => 'required|min:2|max:30',
-                'email' => 'required|email|unique:users,email,'.$user->id, //Verifica se o email inserido já esiste
-                'avatar' => 'file|image| max:1000',
+                'name' => ['required', 'string', 'max:30'],
+                //Verifica se o email inserido já esiste
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'->$user->id], 
+                'avatar' => ['file', 'image', 'max:1000'],
             ]);
 
             if (request('avatar')) {
@@ -79,7 +80,7 @@ class UserController extends Controller
 
             $validate = $request->validate([
                 'oldPassword' => 'required',
-                'password' => 'required|min:7|required_with:password_confirmation'
+                'password' => 'required|min:8|required_with:password_confirmation'
             ]);            
 
             if (Hash::check($request['oldPassword'], $user->password) && $validate) {
@@ -92,6 +93,21 @@ class UserController extends Controller
             } else {
                 return redirect()->route('password.edit')->with('error', 'The entered password does not match your current password!');
             }
+        }
+    }
+
+    // Ajax Email Validation
+    public function checkEmail($email) {
+        $user = User::where('email', $email)->first();
+        if (!$user) {
+            return response()->json([
+                'containsError' => false
+            ]);
+        } else {
+            return response()->json([
+                'containsError' => true,
+                'error' => 'The email has already been taken.'
+            ]);
         }
     }
 }
