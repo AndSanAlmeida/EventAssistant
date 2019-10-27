@@ -1,5 +1,5 @@
 <footer id="footer">
-    <p class="copyright">© Untitled. Al rights reserved.</p>
+    <p class="copyright">© {{ config('app.name') }}. Al rights reserved.</p>
     <ul class="icons">
         <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
         <li><a href="#" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>

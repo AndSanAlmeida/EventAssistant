@@ -17,11 +17,6 @@ class UserController extends Controller
         return view('admin.pages.dashboard', compact('usersCount'));
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $users = User::all();
@@ -29,12 +24,6 @@ class UserController extends Controller
         return view('admin.pages.users.index', compact('users'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         // Não edita a própria conta
@@ -48,13 +37,6 @@ class UserController extends Controller
         return view('admin.pages.users.edit', compact('user', 'roles'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {   
         // Não edita a própria conta
@@ -68,12 +50,6 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'Your permissions has been updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         // Não edita a própria conta

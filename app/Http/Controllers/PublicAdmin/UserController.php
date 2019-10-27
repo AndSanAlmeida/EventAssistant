@@ -50,7 +50,7 @@ class UserController extends Controller
             if (request('avatar')) {
                 $avatarPath = request('avatar')->store('profile', 'public');
 
-                $avatar = Image::make(public_path("storage/{$avatarPath}"))->fit(300, 300);
+                $avatar = Image::make(public_path("storage/{$avatarPath}"))->fit(600, 600);
                 $avatar->save();
 
                 $avatarArray = ['avatar' => $avatarPath];

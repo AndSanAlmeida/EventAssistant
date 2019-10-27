@@ -1,6 +1,31 @@
 <header id="header"><a href="{{ url('/') }}" class="logo"><strong>{{ config('app.name') }}</strong></a>
-	@if (Route::has('login'))
-        <div class="top-right links">
+    @if (Route::has('login'))
+        <nav>
+            <ul class="links">   
+                @auth         
+                    <li class="submenu">
+                        <a href="#" title="">                            
+                            Welcome, {{ Auth::user()->name}}
+                            <i class="fas fa-angle-down" style="vertical-align: middle;"></i>
+                        </a>
+                        <ul class="dropdown">
+                            <li><a href="#" title="">Running</a></li>
+                         </ul>
+                    </li>
+                @else
+                    <li><a href="#" title="">Login</a></li>
+
+                    @if (Route::has('register'))
+                        <li><a href="#" title="">Sign Up</a></li>
+                    @endif
+                @endif                
+            </ul>
+        </nav>
+    @endif
+
+
+	{{-- @if (Route::has('login'))
+        <div class="links">
             @auth
                 Welcome, {{ Auth::user()->name}}
             @else
@@ -11,7 +36,7 @@
                 @endif
             @endauth
         </div>
-    @endif
+    @endif --}}
     <!-- <nav><a href="#menu">Menu</a></nav> -->
 </header>
 
