@@ -12,12 +12,12 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('public.pages.home');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 // Namespace: Admin
 // Prefix: admin
@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function() {
 	
 	// Dashboard
-	Route::get('/', 'DashboardController@index')->name('dashboard');
+	Route::get('/', 'UserController@dashboard')->name('dashboard');
 
 	// Dashboard - UserController
 	Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
@@ -38,6 +38,9 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 // Name: public.
 Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.public'])->name('public.')->group(function() {
 	
+	// Dashboard
+	Route::get('/', 'UserController@dashboard')->name('dashboard');
+
 	// PublicDashboard - UserController
 	Route::get('/user/{user}', 'UserController@show')->name('user.show');
 

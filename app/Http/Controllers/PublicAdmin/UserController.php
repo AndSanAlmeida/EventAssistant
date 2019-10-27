@@ -12,6 +12,11 @@ use Hash;
 class UserController extends Controller
 {   
 
+    public function dashboard()
+    {   
+        return view('public.pages.dashboard');
+    }
+
     public function show(User $user)
     {   
         if (Auth::user()->id != $user->id) {

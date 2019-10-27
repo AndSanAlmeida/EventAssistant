@@ -9,7 +9,14 @@ use App\Role;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
-{
+{   
+    public function dashboard() {
+
+        $usersCount = User::count();
+
+        return view('admin.pages.dashboard', compact('usersCount'));
+    }
+
     /**
      * Display a listing of the resource.
      *
