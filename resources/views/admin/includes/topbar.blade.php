@@ -12,7 +12,7 @@
 		<!-- Nav Item - User Information -->
 		<li class="nav-item dropdown">
 			<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">				
-				<img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+				<img class="img-profile rounded-circle" src="{{ Auth::user()->profileImage() }}">
 				<span class="ml-2 d-none d-lg-inline text-gray-600">{{ Auth::user()->name }}</span>
 			</a>
 			<!-- Dropdown - User Information -->
