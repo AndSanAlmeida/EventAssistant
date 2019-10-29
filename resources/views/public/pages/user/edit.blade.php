@@ -25,6 +25,9 @@
             <span class="image fit">
               <img src="{{ $user->profileImage() }}" alt="Profile Image">
             </span>
+
+            
+
           </div>
 
           <div class="col-9 col-12-small">  
@@ -68,15 +71,15 @@
                 @endif
               </div>
 
-              <div class="col-12">
-                {{-- Profile Image --}}
-                <label for="avatar">Profile Image</label>
-                <input type="file" id="avatar" name="avatar">
+              <div class="col-12 form-field-file">
+              {{-- Profile Image --}}
+              <label for="avatar"><i class="fas fa-upload"></i>Change Profile Image</label>
+              <input type="file" id="avatar" name="avatar" class="button">
 
-                @if ($errors->has('avatar'))
-                    <strong>{{ $errors->first('avatar') }}</strong>
-                @endif
-              </div>
+              @if ($errors->has('avatar'))
+                  <strong>{{ $errors->first('avatar') }}</strong>
+              @endif
+            </div>
 
               <div class="col-12">
                 <ul class="actions">

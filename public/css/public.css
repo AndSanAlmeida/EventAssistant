@@ -3380,6 +3380,41 @@ body {
   padding: 6rem 0;
 }
 
+.form-field-file label {
+  position: relative;
+  display: inline-block;
+  width: auto;
+  line-height: 45px;
+  padding: 0 1em;
+  background: #336699;
+  border-radius: 5px;
+  color: #fff;
+  text-transform: uppercase;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+  transition: background 0.25s ease-in-out;
+}
+
+.form-field-file label i {
+  margin-right: 1em;
+}
+
+.form-field-file label:hover,
+.form-field-file label:active {
+  background: shade(#336699, 34%);
+}
+
+.form-field-file input[type=file] {
+  position: absolute;
+  z-index: -1;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+}
+
 #wrapper {
   width: 55rem;
   max-width: calc(100% - 6rem);
@@ -3991,9 +4026,9 @@ body {
 #header nav .submenu .dropdown {
   position: absolute;
   background-color: #FFF;
-  width: 230px;
-  left: -20px;
-  top: 90%;
+  width: 220px;
+  left: 40px;
+  top: 95%;
   padding: 10px;
   line-height: 1.5em;
   box-shadow: 0 0 1.125em 2px rgba(0, 0, 0, 0.35);
@@ -4044,7 +4079,7 @@ body {
 @media screen and (max-width: 1280px) {
   #header nav .submenu .dropdown {
     width: 170px;
-    left: -45px;
+    left: 5px;
   }
 }
 
@@ -4061,6 +4096,12 @@ body {
 
   #header nav .submenu .dropdown li {
     margin: 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #header nav .submenu .dropdown {
+    left: 0;
   }
 }
 
