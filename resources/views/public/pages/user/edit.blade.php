@@ -1,74 +1,94 @@
-@extends('layouts.app')
+@extends('layouts.publicMaster')
 
 @section('title', 'Edit Profile')
 
 @section('content')
-<div class="container">
-    <form action="{{ route('public.user.update') }}" enctype="multipart/form-data" method="post">
-        @csrf
-        @method('PATCH')
 
-        <div class="row mb-4">
-          <div class="col-12">
-            <h1>Update Profile</h1>
+<section class="main">
+
+  {{-- Alerts --}}
+  @include('public.partials._alerts')
+  
+  <div class="row gtr-200">
+    <div class="col-12">
+      <h2>Update Profile</h2>
+    </div>
+  </div>
+
+  <form action="{{ route('public.user.update') }}" enctype="multipart/form-data" method="POST">
+      @csrf
+      @method('PATCH')
+
+      <div class="row gtr-200">
+
+          <div class="col-3 col-12-small">
+            <span class="image fit">
+              <img src="{{ $user->profileImage() }}" alt="Profile Image">
+            </span>
           </div>
-        </div>
-        <div class="row">
-            <div class="col-3">
-              <img src="{{ $user->profileImage() }}" class="rounded-circle w-100" width="200px" height="200px">
-            </div>
-            <div class="col-9">
-                <div class="form-group row">
-                    <label for="name" class="col-md-4 col-form-label">Name</label>
 
-                    <input id="name"
-                           type="text"
-                           class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                           name="name"
-                           value="{{ old('name') ?? $user->name }}"
-                           autocomplete="Name" autofocus>
+          <div class="col-9 col-12-small">  
+            <div class="row gtr-uniform">
 
-                    @if ($errors->has('name'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                    @endif
-                </div>
+              {{-- Name --}}
+              <div class="col-2 alg-self-center">
+                <label for="name">Name</label>
+              </div>
+              <div class="col-10">              
+                <input id="name"
+                       type="text"
+                       class="{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                       name="name"
+                       value="{{ old('name') ?? $user->name }}"
+                       autocomplete="Name" autofocus>
 
-                <div class="form-group row">
-                    <label for="email" class="col-md-4 col-form-label">Email</label>
+                  @if ($errors->has('name'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('name') }}</strong>
+                    </span>
+                  @endif
+              </div>
 
-                    <input id="email"
-                           type="email"
-                           class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                           name="email"
-                           value="{{ old('email') ?? $user->email }}"
-                           autocomplete="Email" autofocus>
+              {{-- Email --}}
+              <div class="col-2 alg-self-center">
+                <label for="email">Email</label>
+              </div>
+              <div class="col-10">
+                <input id="email"
+                       type="email"
+                       class="{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                       name="email"
+                       value="{{ old('email') ?? $user->email }}"
+                       autocomplete="Email" autofocus>
 
-                    @if ($errors->has('email'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                @if ($errors->has('email'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                @endif
+              </div>
 
-                <div class="row">
-                    <label for="avatar" class="col-md-4 col-form-label">Profile Image</label>
+              <div class="col-12">
+                {{-- Profile Image --}}
+                <label for="avatar">Profile Image</label>
+                <input type="file" id="avatar" name="avatar">
 
-                    <input type="file" class="form-control-file" id="avatar" name="avatar">
+                @if ($errors->has('avatar'))
+                    <strong>{{ $errors->first('avatar') }}</strong>
+                @endif
+              </div>
 
-                    @if ($errors->has('avatar'))
-                        <strong>{{ $errors->first('avatar') }}</strong>
-                    @endif
-                </div>
+              <div class="col-12">
+                <ul class="actions">
+                  <li><button class="button primary button small" title="Submit">Save Profile</button></li>
+                  <li><a href="{{ route('public.user.show', $user->id) }}" class="button small" title="Back">Back</a></li>
+                </ul>
+              </div>
 
-                <div class="row pt-4">
-                    <button class="btn btn-primary">Save Profile</button>
-                    <a href="{{ route('public.user.show', $user->id) }}" class="btn btn-secondary">Back</a>
-                </div>
+            </div>  
+          </div>
+      </div>
+  </form>
+</section>
 
-            </div>
-        </div>
-    </form>
-</div>
 @endsection

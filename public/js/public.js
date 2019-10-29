@@ -15,9 +15,12 @@
         xxsmall: [null, '360px']
     });
     $window.on('load', function() {
+        // window.setTimeout(function() {
+        //     $body.removeClass('is-preload');
+        // }, 100);
         window.setTimeout(function() {
-            $body.removeClass('is-preload');
-        }, 100);
+            $(".alert").remove(); 
+        }, 6000);
     });
     if (!browser.canUse('object-fit')) {
         $('.image[data-position]').each(function() {
@@ -28,16 +31,7 @@
         });
     }
     if (browser.name == 'ie' || browser.name == 'edge') $body.addClass('is-ie');
-    // $('#menu').append('<a href="#menu" class="close"></a>').appendTo($body).panel({
-    //     delay: 500,
-    //     hideOnClick: true,
-    //     hideOnSwipe: true,
-    //     resetScroll: true,
-    //     resetForms: true,
-    //     side: 'right',
-    //     target: $body,
-    //     visibleClass: 'is-menu-visible'
-    // });
+
     $('.scrolly').scrolly();
     if (browser.name == 'ie' || browser.name == 'edge' || browser.mobile) settings.parallax = false;
     if (settings.parallax) {

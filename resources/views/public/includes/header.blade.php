@@ -13,15 +13,15 @@
 
                             @hasRole('user')
                                 <li>
-                                    <a href="{{ route('public.user.show', Auth::user()) }}" title="View Profile">
-                                        <i class="fas fa-user"></i>
-                                        View Profile
-                                    </a>
-                                </li>
-                                <li>
                                     <a href="{{ route('public.dashboard', Auth::user()) }}" title="Dashboard">
                                         <i class="fas fa-user-cog"></i>
                                         Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('public.user.show', Auth::user()) }}" title="View Profile">
+                                        <i class="fas fa-user"></i>
+                                        View Profile
                                     </a>
                                 </li>
                             @endhasRole

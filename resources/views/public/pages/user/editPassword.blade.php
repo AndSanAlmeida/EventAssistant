@@ -1,79 +1,79 @@
-@extends('layouts.app')
+@extends('layouts.publicMaster')
 
 @section('title', 'Edit Password')
 
 @section('content')
-<div class="container">
-	<div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Edit Password') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('public.password.update') }}">
-                        @csrf
+<section class="main">
 
-                       {{--  @if (session('success'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
+    {{-- Alerts --}}
+    @include('public.partials._alerts')
 
-                        @if (session('error'))
-                            <div class="alert alert-danger" role="alert">
-                                {{ session('error') }}
-                            </div>
-                        @endif --}}
+    <div class="row gtr-200">
+      <div class="col-12">
+        <h2>Update Password</h2>
+      </div>
+    </div>
 
-                        <div class="form-group row">
-                            <label for="oldPassword" class="col-md-4 col-form-label text-md-right">{{ __('Old Password') }}</label>
+    <form method="POST" action="{{ route('public.password.update') }}">
+        @csrf        
 
-                            <div class="col-md-6">
-                                <input id="oldPassword" type="password" class="form-control @error('oldPassword') is-invalid @enderror" name="oldPassword" required autocomplete="oldPassword" autofocus>
+        {{-- Old Password --}}
+        <div class="row gtr-uniform">
+            <div class="col-2 col-12-small alg-self-center">
+                <label for="oldPassword">{{ __('Old Password') }}</label>
+            </div>
+            <div class="col-6 col-12-small">
+                <input id="oldPassword" type="password" class="@error('oldPassword') is-invalid @enderror" name="oldPassword" required autocomplete="oldPassword" autofocus>
 
-                                @error('oldPassword')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Change Password') }}
-                                </button>
-                                <a href="{{ route('public.user.edit') }}" class="btn btn-secondary">Back</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                @error('oldPassword')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
         </div>
-    </div>
-</div>
-	
+
+        <br>
+
+        {{-- New Password --}}
+        <div class="row gtr-uniform">
+            <div class="col-2 col-12-small alg-self-center">
+                <label for="password" >{{ __('New Password') }}</label>
+            </div>
+            <div class="col-6 col-12-small">
+                <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div> 
+        </div>
+
+        <br>
+
+        {{-- Repeat Password --}}
+        <div class="row gtr-uniform">
+            <div class="col-2 col-12-small alg-self-center">
+                <label for="password-confirm">{{ __('Confirm Password') }}</label>
+            </div>
+            
+            <div class="col-6 col-12-small">
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+            </div>
+
+            {{-- Actions --}}
+            <div class="col-12">
+                <ul class="actions">
+                    <li><button type="submit" class="button primary small" title="Submit">{{ __('Change Password') }}</button></li>
+                    <li><a href="{{ route('public.user.show', Auth::user()->id) }}" class="button small" title="Back">Back</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </form>
+</section>
+
 @endsection

@@ -466,6 +466,108 @@ hr {
   border-bottom-color: #d5d5d5;
 }
 
+[role=button] {
+  cursor: pointer;
+}
+
+.invalid-feedback > strong {
+  color: red;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+
+.alert .alert-link {
+  font-weight: bold;
+}
+
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+
+.alert > p + p {
+  margin-top: 5px;
+}
+
+.alert-dismissable,
+.alert-dismissible {
+  padding-right: 35px;
+}
+
+.alert-dismissable .close,
+.alert-dismissible .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit;
+}
+
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-success hr {
+  border-top-color: #c9e2b3;
+}
+
+.alert-success .alert-link {
+  color: #2b542c;
+}
+
+.alert-info {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+
+.alert-info hr {
+  border-top-color: #a6e1ec;
+}
+
+.alert-info .alert-link {
+  color: #245269;
+}
+
+.alert-warning {
+  color: #8a6d3b;
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+}
+
+.alert-warning hr {
+  border-top-color: #f7e1b5;
+}
+
+.alert-warning .alert-link {
+  color: #66512c;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.alert-danger hr {
+  border-top-color: #e4b9c0;
+}
+
+.alert-danger .alert-link {
+  color: #843534;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -2195,6 +2297,10 @@ label {
   margin: 0 0 1rem 0;
 }
 
+.alg-self-center {
+  align-self: center;
+}
+
 input[type=text],
 input[type=password],
 input[type=email] {
@@ -3885,7 +3991,7 @@ body {
 #header nav .submenu .dropdown {
   position: absolute;
   background-color: #FFF;
-  width: 130%;
+  width: 230px;
   left: -20px;
   top: 90%;
   padding: 10px;
@@ -3933,6 +4039,13 @@ body {
   padding: 0 0.5rem;
   border-bottom: 0;
   outline: 0;
+}
+
+@media screen and (max-width: 1280px) {
+  #header nav .submenu .dropdown {
+    width: 170px;
+    left: -45px;
+  }
 }
 
 @media screen and (max-width: 736px) {

@@ -2,7 +2,7 @@
 
 @section('title', 'Home')
 
-@section('content')
+@section('mainContent')
 
 <section id="banner">
     <div class="image filtered" data-position="center"><img src="img/pic01.jpg" alt=""></div>

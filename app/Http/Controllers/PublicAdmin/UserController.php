@@ -37,15 +37,30 @@ class UserController extends Controller
     public function update(Request $request)
     {   
         $user = User::find(Auth::user()->id);
-
+        // dd($request);
         if ($user) {
 
-            $data = request()->validate([
-                'name' => ['required', 'string', 'max:30'],
-                //Verifica se o email inserido já esiste
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'->$user->id], 
-                'avatar' => ['file', 'image', 'max:1000'],
-            ]);
+            // Se o Email for igual ao existente
+            if (Auth::user()->email === $request['email']) {
+
+                // Não verifica se o email é UNIQUE
+                $data = request()->validate([
+                    'name' => ['required', 'string', 'min:2', 'max:30'],
+                    //Verifica se o email inserido já existe
+                    'email' => ['required', 'string', 'email', 'max:40'], 
+                    'avatar' => ['file', 'image', 'max:1000'],
+                ]);
+            } else {
+                // Verifica se o email é UNIQUE
+                $data = request()->validate([
+                    'name' => ['required', 'string', 'min:2', 'max:30'],
+                    //Verifica se o email inserido já existe
+                    'email' => ['required', 'string', 'email', 'max:40', 'unique:users'], 
+                    'avatar' => ['file', 'image', 'max:1000'],
+                ]);
+            }
+
+            
 
             if (request('avatar')) {
                 $avatarPath = request('avatar')->store('profile', 'public');
@@ -93,10 +108,10 @@ class UserController extends Controller
                 $user->password = Hash::make($request['password']);
                 $user->save();
 
-                return redirect()->back()->with('success', 'Your password has been updated!');
+                return redirect()->route('public.user.show', $user)->with('success', 'Your password has been updated!');
 
             } else {
-                return redirect()->route('password.edit')->with('error', 'The entered password does not match your current password!');
+                return redirect()->back()->with('error', 'The entered password does not match your current password!');
             }
         }
     }
