@@ -38,7 +38,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 // Name: public.
 Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.public'])->name('public.')->group(function() {
 	
-	// Dashboard
+	// PublicDashboard
 	Route::get('/', 'UserController@dashboard')->name('dashboard');
 
 	// PublicDashboard - UserController
@@ -49,4 +49,7 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 
 	Route::get('/edit/password/user', 'UserController@passwordEdit')->name('password.edit');
 	Route::post('/edit/password/user', 'UserController@passwordUpdate')->name('password.update');
+
+	// PublicDashboard - EventController
+	Route::get('/event', 'EventController@index')->name('event.index');
 });
