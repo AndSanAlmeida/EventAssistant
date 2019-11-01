@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         //User dão seed depois das Roles por causa do Attach
         $this->call(UsersTableSeeder::class);
+        $this->call(EventsTableSeeder::class);
     }
 }

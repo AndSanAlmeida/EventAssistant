@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PublicAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use App\Event;
 use Auth;
 use Image;
 use Hash;
@@ -14,6 +15,16 @@ class UserController extends Controller
 
     public function dashboard()
     {   
+        //$find = Event::find(1);
+        $users = Auth::user()->pluck('events.user_id');
+         dd($users);
+        // $events = Event::whereIn('user_id', 1)->with('user');
+
+        // if (! $events) {
+        //     return view('public.pages.dashboard')->with('error', 'There is no events yiet! You must first create one.');
+        // } else {
+        //     return view('public.pages.dashboard', compact('events'));
+        // }
         return view('public.pages.dashboard');
     }
 

@@ -19,40 +19,33 @@
 		</div>
 
 		<div class="row gtr-uniform">
-			<div class="col-12">
+			<div class="col-6">
 				<h4>List of Events</h4>
+			</div>
+			<div class="col-6 align-right">
+				<a href="{{ route('public.event.create') }}" class="button icon small"><i class="fas fa-plus"></i>Add New Event</a>
+			</div>
+			<div class="col-12">
 				<div class="table-wrapper">
 			    <table>
 			        <thead>
 			            <tr>
 			                <th>Name</th>
-			                <th>Description</th>
-			                <th>Price</th>
+			                <th>Date</th>
+			                <th>Status</th>
+			                <th>Actions</th>
 			            </tr>
 			        </thead>
 			        <tbody>
-			            <tr>
-			                <td>One</td>
-			                <td>Ante turpis integer aliquet.</td>
-			                <td>29.99</td>
-			            </tr>
-			            <tr>
-			                <td>Two</td>
-			                <td>Vis ac commodo adipiscing arcu.</td>
-			                <td>19.99</td>
-			            </tr>
-			            <tr>
-			                <td>Three</td>
-			                <td> Morbi faucibus arcu accumsan.</td>
-			                <td>29.99</td>
-			            </tr>
+			        	@foreach ($user->$events as $event)
+			            	<tr>
+			                	<td>{{ $event->name }}</td>
+			                	<td>{{ $event->date }}</td>
+			                	<td>{{ $event->active }}</td>
+			                	<td>Actions</td>
+			            	</tr>
+			            @endforeach
 			        </tbody>
-			        <tfoot>
-			            <tr>
-			                <td colspan="2"></td>
-			                <td>100.00</td>
-			            </tr>
-			        </tfoot>
 			    </table>
 			</div>
 			</div>	   		

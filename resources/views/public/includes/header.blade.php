@@ -13,7 +13,7 @@
 
                             @hasRole('user')
                                 <li>
-                                    <a href="{{ route('public.dashboard', Auth::user()) }}" title="Dashboard">
+                                    <a href="{{ route('public.dashboard') }}" title="Dashboard">
                                         <i class="fas fa-user-cog"></i>
                                         Dashboard
                                     </a>
