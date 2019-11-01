@@ -16,8 +16,8 @@ class UserController extends Controller
     public function dashboard()
     {   
         //$find = Event::find(1);
-        $users = Auth::user()->pluck('events.user_id');
-         dd($users);
+        // $users = Auth::user()->pluck('events.user_id');
+        // dd($users);
         // $events = Event::whereIn('user_id', 1)->with('user');
 
         // if (! $events) {

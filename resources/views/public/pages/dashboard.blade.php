@@ -37,14 +37,14 @@
 			            </tr>
 			        </thead>
 			        <tbody>
-			        	@foreach ($user->$events as $event)
+			        	{{-- @foreach ($user->$events as $event)
 			            	<tr>
 			                	<td>{{ $event->name }}</td>
 			                	<td>{{ $event->date }}</td>
 			                	<td>{{ $event->active }}</td>
 			                	<td>Actions</td>
 			            	</tr>
-			            @endforeach
+			            @endforeach --}}
 			        </tbody>
 			    </table>
 			</div>
