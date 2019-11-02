@@ -17,6 +17,8 @@
 		</div>
 	</div>
 
+  <br>
+
 	<form action="{{ route('public.event.store') }}" enctype="form-data" method="POST">
       @csrf
 
@@ -24,7 +26,7 @@
         <div class="row gtr-uniform">
 
           {{-- Name --}}
-          <div class="col-2">
+          <div class="col-2 alg-self-center">
             <label for="name">Name</label>
           </div>
           <div class="col-10">              
@@ -42,10 +44,10 @@
           </div>
 
           {{-- Date --}}
-          <div class="col-1">
+          <div class="col-2 alg-self-center">
             <label for="date">Date</label>
           </div>
-          <div class="col-5">
+          <div class="col-4 col-10-small">
             <input id="date"
                    type="date"
                    class="{{ $errors->has('date') ? ' is-invalid' : '' }}"
@@ -60,10 +62,10 @@
           </div>
 
           {{-- Hour --}}
-          <div class="col-1">
+          <div class="col-2 alg-self-center">
             <label for="hour">Hour</label>
           </div>
-          <div class="col-5">
+          <div class="col-4 col-10-small">
             <input id="hour"
                    type="time"
                    class="{{ $errors->has('hour') ? ' is-invalid' : '' }}"

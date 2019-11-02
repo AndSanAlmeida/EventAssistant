@@ -2034,7 +2034,9 @@ hr {
 
 input[type=submit],
 input[type=reset],
-input[type=button] {
+input[type=button],
+input[type=date],
+input[type=time] {
   -moz-appearance: none;
   -webkit-appearance: none;
   -ms-appearance: none;
@@ -2075,7 +2077,9 @@ button,
 
 input[type=submit].icon:before,
 input[type=reset].icon:before,
-input[type=button].icon:before {
+input[type=button].icon:before,
+input[type=date].icon:before,
+input[type=time].icon:before {
   margin-right: 0.5rem;
   opacity: 0.5;
 }
@@ -2088,7 +2092,9 @@ button.icon:before,
 
 input[type=submit].fit,
 input[type=reset].fit,
-input[type=button].fit {
+input[type=button].fit,
+input[type=date].fit,
+input[type=time].fit {
   width: 100%;
 }
 
@@ -2099,7 +2105,9 @@ button.fit,
 
 input[type=submit].wide,
 input[type=reset].wide,
-input[type=button].wide {
+input[type=button].wide,
+input[type=date].wide,
+input[type=time].wide {
   width: 9rem;
 }
 
@@ -2110,7 +2118,9 @@ button.wide,
 
 input[type=submit].small,
 input[type=reset].small,
-input[type=button].small {
+input[type=button].small,
+input[type=date].small,
+input[type=time].small {
   font-size: 0.8rem;
   height: 2.11875rem;
   line-height: 2.11875rem;
@@ -2127,7 +2137,9 @@ button.small,
 
 input[type=submit].large,
 input[type=reset].large,
-input[type=button].large {
+input[type=button].large,
+input[type=date].large,
+input[type=time].large {
   font-size: 1.325rem;
   height: 3.53125rem;
   line-height: 3.53125rem;
@@ -2160,6 +2172,18 @@ input[type=button]:disabled {
   opacity: 0.25;
 }
 
+input[type=date].disabled,
+input[type=date]:disabled {
+  pointer-events: none;
+  opacity: 0.25;
+}
+
+input[type=time].disabled,
+input[type=time]:disabled {
+  pointer-events: none;
+  opacity: 0.25;
+}
+
 button.disabled,
 button:disabled {
   pointer-events: none;
@@ -2174,7 +2198,9 @@ button:disabled {
 
 input[type=submit],
 input[type=reset],
-input[type=button] {
+input[type=button],
+input[type=date],
+input[type=time] {
   background-color: transparent;
   box-shadow: inset 0 0 0 2px #d5d5d5;
   color: #454545 !important;
@@ -2189,7 +2215,9 @@ button,
 
 input[type=submit]:hover,
 input[type=reset]:hover,
-input[type=button]:hover {
+input[type=button]:hover,
+input[type=date]:hover,
+input[type=time]:hover {
   box-shadow: inset 0 0 0 2px #b12828;
   color: #b12828 !important;
 }
@@ -2202,7 +2230,9 @@ button:hover,
 
 input[type=submit]:hover:active,
 input[type=reset]:hover:active,
-input[type=button]:hover:active {
+input[type=button]:hover:active,
+input[type=date]:hover:active,
+input[type=time]:hover:active {
   background-color: rgba(238, 101, 136, 0.075);
 }
 
@@ -2213,7 +2243,9 @@ button:hover:active,
 
 input[type=submit].primary,
 input[type=reset].primary,
-input[type=button].primary {
+input[type=button].primary,
+input[type=date].primary,
+input[type=time].primary {
   box-shadow: none;
   background-color: #b12828;
   color: #ffffff !important;
@@ -2245,7 +2277,9 @@ form.combined {
 
 form.combined input[type=text],
 form.combined input[type=password],
-form.combined input[type=email] {
+form.combined input[type=email],
+form.combined input[type=date],
+form.combined input[type=time] {
   -moz-flex-grow: 1;
   -ms-flex-grow: 1;
   flex-grow: 1;
@@ -2267,7 +2301,9 @@ form.combined select {
 
 form.combined input[type=submit],
 form.combined input[type=reset],
-form.combined input[type=button] {
+form.combined input[type=button],
+form.combined input[type=date],
+form.combined input[type=time] {
   -moz-flex-grow: 0;
   -ms-flex-grow: 0;
   flex-grow: 0;
@@ -2303,7 +2339,9 @@ label {
 
 input[type=text],
 input[type=password],
-input[type=email] {
+input[type=email],
+input[type=date],
+input[type=time] {
   -moz-appearance: none;
   -webkit-appearance: none;
   -ms-appearance: none;
@@ -2340,7 +2378,9 @@ textarea {
 
 input[type=text]:invalid,
 input[type=password]:invalid,
-input[type=email]:invalid {
+input[type=email]:invalid,
+input[type=date]:invalid,
+input[type=time]:invalid {
   box-shadow: none;
 }
 
@@ -2368,7 +2408,9 @@ select::-ms-expand {
 
 input[type=text],
 input[type=password],
-input[type=email] {
+input[type=email],
+input[type=date],
+input[type=time] {
   height: 2.825rem;
 }
 
@@ -2462,7 +2504,9 @@ label {
 
 input[type=text],
 input[type=password],
-input[type=email] {
+input[type=email],
+input[type=date],
+input[type=time] {
   border-color: #d5d5d5;
 }
 
@@ -2473,7 +2517,9 @@ textarea {
 
 input[type=text]:focus,
 input[type=password]:focus,
-input[type=email]:focus {
+input[type=email]:focus,
+input[type=date]:focus,
+input[type=time]:focus {
   border-color: #b12828;
   box-shadow: inset 0 0 0 1px #b12828;
 }
