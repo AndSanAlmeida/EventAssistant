@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PublicAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -35,7 +36,28 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        $data = request()->validate([
+            'name' => ['required', 'string', 'min:6', 'max:30'],
+            'date' => ['required', 'date'],
+            'hour' => ['required']
+        ]);
+
+        // Cria uma slug do name e gera uma random string no fim
+        $slug = str_slug(request('name'), '-') . '-' . Str::random(48); 
+
+        // dd(array_merge(
+        //     $data,
+        //     ['slug' => $slug]
+        // ));
+
+        // Dá o user autenticado e vai aos eventos e faz create
+        auth()->user()->events()->create(array_merge(
+            $data,
+            ['slug' => $slug]
+        ));
+
+        return redirect()->back();
     }
 
     /**
