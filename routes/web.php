@@ -51,6 +51,11 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::post('/edit/password/user', 'UserController@passwordUpdate')->name('password.update');
 
 	// PublicDashboard - EventController
-	// Route::get('/event', 'EventController@index')->name('event.index');
+	// Route::get('/event/{event}', 'EventController@show')->name('event.show');
+
 	Route::get('/event/create', 'EventController@create')->name('event.create');
+	Route::post('/event', 'EventController@store')->name('event.store');
+
+	Route::get('/edit/event', 'EventController@edit')->name('event.edit');
+	Route::patch('/edit/event', 'EventController@update')->name('event.update');
 });
