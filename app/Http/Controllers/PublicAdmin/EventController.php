@@ -57,7 +57,7 @@ class EventController extends Controller
             ['slug' => $slug]
         ));
 
-        return redirect()->back();
+        return redirect()->route('public.dashboard')->with('success', 'Event was created with success!');
     }
 
     /**

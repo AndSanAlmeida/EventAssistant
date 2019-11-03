@@ -82,6 +82,7 @@
           <div class="col-12">
             <ul class="actions">
               <li><button class="button primary button small" title="Submit">Create Event</button></li>
+              <li><a href="{{ route('public.dashboard') }}" class="button button small" title="Back">Back</a></li>
             </ul>
           </div>
 

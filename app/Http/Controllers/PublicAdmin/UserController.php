@@ -15,17 +15,15 @@ class UserController extends Controller
 
     public function dashboard()
     {   
-        //$find = Event::find(1);
-        // $users = Auth::user()->pluck('events.user_id');
-        // dd($users);
-        // $events = Event::whereIn('user_id', 1)->with('user');
+        $userEvents = auth()->user()->events()->get('events.user_id');
 
-        // if (! $events) {
-        //     return view('public.pages.dashboard')->with('error', 'There is no events yiet! You must first create one.');
-        // } else {
-        //     return view('public.pages.dashboard', compact('events'));
-        // }
-        return view('public.pages.dashboard');
+        if ($userEvents->isEmpty()) {
+            return view('public.pages.dashboard')->with('error', 'There is no events yiet! You must first create one.');
+        } else {
+            $user = auth()->user()->events()->pluck('events.user_id');
+            $events = Event::select('*')->where('user_id', $user)->get();
+            return view('public.pages.dashboard', compact('events'));
+        }
     }
 
     public function show(User $user)
@@ -87,7 +85,7 @@ class UserController extends Controller
                 $avatarArray ?? []
             ));
 
-            return redirect()->route('public.user.show', $user)->with('success', 'Your profile has been updated!');;
+            return redirect()->route('public.user.show', $user)->with('success', 'Your profile has been updated!');
 
         } else {
             return redirect()->back()->with('error', 'An error has occurred. Its not possible to update this user.');

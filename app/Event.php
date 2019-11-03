@@ -18,4 +18,13 @@ class Event extends Model
     public function user() {
     	return $this->belongsTo(User::class);
     }
+
+    public function status() {
+
+    	$active = '<span class="badge badge-success">Active</span>';
+    	$inactive = '<span class="badge badge-danger">Inactive</span>';
+
+    	$status = ($this->active == '1') ? $active : $inactive;
+    	return $status;
+    }
 }

@@ -20,7 +20,7 @@
         // }, 100);
         window.setTimeout(function() {
             $(".alert").remove(); 
-        }, 6000);
+        }, 15000);
     });
     if (!browser.canUse('object-fit')) {
         $('.image[data-position]').each(function() {
