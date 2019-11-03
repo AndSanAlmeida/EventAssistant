@@ -15,15 +15,7 @@ class UserController extends Controller
 
     public function dashboard()
     {   
-        $userEvents = auth()->user()->events()->get('events.user_id');
-
-        if ($userEvents->isEmpty()) {
-            return view('public.pages.dashboard')->with('error', 'There is no events yiet! You must first create one.');
-        } else {
-            $user = auth()->user()->events()->pluck('events.user_id');
-            $events = Event::select('*')->where('user_id', $user)->get();
-            return view('public.pages.dashboard', compact('events'));
-        }
+        return view('public.pages.dashboard');
     }
 
     public function show(User $user)

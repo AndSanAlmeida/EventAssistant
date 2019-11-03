@@ -46,6 +46,9 @@ class EventController extends Controller
         // Cria uma slug do name e gera uma random string no fim
         $slug = str_slug(request('name'), '-') . '-' . Str::random(48); 
 
+        $currentDate = date("d-m-Y");
+        dd($currentDate);
+
         // dd(array_merge(
         //     $data,
         //     ['slug' => $slug]

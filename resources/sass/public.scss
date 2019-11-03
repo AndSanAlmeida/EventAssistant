@@ -351,6 +351,15 @@ hr {
   padding: 0;
 }
 
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+
 button, input, select, textarea {
   color: #454545;
 }
@@ -2085,6 +2094,26 @@ button.wide, .button.wide {
 }
 
 input {
+  &[type="submit"].xsmall, 
+  &[type="reset"].xsmall, 
+  &[type="button"].xsmall,
+  &[type="date"].xsmall,
+  &[type="time"].xsmall {
+    font-size: 0.8rem;
+    height: 1.7rem;
+    line-height: 1.7rem;
+    padding: 0 0.9rem;
+  }
+}
+
+button.xsmall, .button.xsmall {
+  font-size: 0.8rem;
+  height: 1.7rem;
+  line-height: 1.7rem;
+  padding: 0 0.9rem;
+}
+
+input {
   &[type="submit"].small, 
   &[type="reset"].small, 
   &[type="button"].small,
@@ -2103,6 +2132,7 @@ button.small, .button.small {
   line-height: 2.11875rem;
   padding: 0 1.25rem;
 }
+
 
 input {
   &[type="submit"].large, 

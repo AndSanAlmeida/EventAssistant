@@ -62,4 +62,9 @@ class User extends Authenticatable
     public function events() {
         return $this->hasMany(Event::class)->orderBy('created_at', 'DESC');
     }
+
+    public function getUserEvents() {
+        $getUserEvents = Event::select('user_id')->where('user_id', $this->id)->get();
+        return $getUserEvents;
+    }
 }

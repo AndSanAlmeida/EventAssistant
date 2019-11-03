@@ -432,6 +432,14 @@ hr.major {
   padding: 0;
 }
 
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
 button,
 input,
 select,
@@ -2144,6 +2152,25 @@ input[type=time].wide {
 button.wide,
 .button.wide {
   width: 9rem;
+}
+
+input[type=submit].xsmall,
+input[type=reset].xsmall,
+input[type=button].xsmall,
+input[type=date].xsmall,
+input[type=time].xsmall {
+  font-size: 0.8rem;
+  height: 1.7rem;
+  line-height: 1.7rem;
+  padding: 0 0.9rem;
+}
+
+button.xsmall,
+.button.xsmall {
+  font-size: 0.8rem;
+  height: 1.7rem;
+  line-height: 1.7rem;
+  padding: 0 0.9rem;
 }
 
 input[type=submit].small,

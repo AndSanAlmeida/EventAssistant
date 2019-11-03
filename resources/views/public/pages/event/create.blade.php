@@ -34,6 +34,7 @@
                    type="text"
                    class="{{ $errors->has('name') ? ' is-invalid' : '' }}"
                    name="name"
+                   required
                    autocomplete="Name" autofocus>
 
               @if ($errors->has('name'))
@@ -52,6 +53,7 @@
                    type="date"
                    class="{{ $errors->has('date') ? ' is-invalid' : '' }}"
                    name="date"
+                   required
                    autocomplete="Date" autofocus>
 
             @if ($errors->has('date'))
@@ -70,6 +72,7 @@
                    type="time"
                    class="{{ $errors->has('hour') ? ' is-invalid' : '' }}"
                    name="hour"
+                   required
                    autocomplete="Hour" autofocus>
 
             @if ($errors->has('hour'))
@@ -80,9 +83,9 @@
           </div>
 
           <div class="col-12">
-            <ul class="actions">
-              <li><button class="button primary button small" title="Submit">Create Event</button></li>
+            <ul class="actions float-right">
               <li><a href="{{ route('public.dashboard') }}" class="button button small" title="Back">Back</a></li>
+              <li><button class="button primary button small" title="Submit">Create Event</button></li>
             </ul>
           </div>
 
@@ -90,5 +93,16 @@
       </div>
   </form>
 </section>
+
+<script>
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + '-' + dd + '-' + yyyy;
+
+  document.getElementById("date").min = today;
+</script>
 
 @endsection

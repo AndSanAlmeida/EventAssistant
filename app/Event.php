@@ -8,18 +8,18 @@ use App\User;
 class Event extends Model
 {	
 
-	// protected $fillable = [
- //        'name', 'name', 'date', 'hour', 'slug', 'active',
- //    ];
+	protected $fillable = [
+        'name', 'name', 'date', 'hour', 'slug', 'active',
+    ];
 
-	// Disable Fillable
-	protected $guarded = [];
+	// Disable Fillable (Aceita Tudo)
+	// protected $guarded = [];
 
     public function user() {
     	return $this->belongsTo(User::class);
     }
 
-    public function status() {
+    public function isActive() {
 
     	$active = '<span class="badge badge-success">Active</span>';
     	$inactive = '<span class="badge badge-danger">Inactive</span>';
