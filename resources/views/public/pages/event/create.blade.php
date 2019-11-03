@@ -5,6 +5,9 @@
 @section('content')
 
 <section class="main">
+
+  @include('public.partials._alerts')
+
 	<div class="row gtr-200">
 	  <div class="col-12">
 		<h2>Event</h2>
@@ -34,6 +37,7 @@
                    type="text"
                    class="{{ $errors->has('name') ? ' is-invalid' : '' }}"
                    name="name"
+                   value="{{ old('name') }}"
                    required
                    autocomplete="Name" autofocus>
 
@@ -53,6 +57,7 @@
                    type="date"
                    class="{{ $errors->has('date') ? ' is-invalid' : '' }}"
                    name="date"
+                   value="{{ old('date') }}"
                    required
                    autocomplete="Date" autofocus>
 
@@ -72,6 +77,7 @@
                    type="time"
                    class="{{ $errors->has('hour') ? ' is-invalid' : '' }}"
                    name="hour"
+                   value="{{ old('hour') }}"
                    required
                    autocomplete="Hour" autofocus>
 
@@ -85,7 +91,7 @@
           <div class="col-12">
             <ul class="actions float-right">
               <li><a href="{{ route('public.dashboard') }}" class="button button small" title="Back">Back</a></li>
-              <li><button class="button primary button small" title="Submit">Create Event</button></li>
+              <li><button type="submit" class="button primary button small" title="Submit">Create Event</button></li>
             </ul>
           </div>
 
@@ -100,7 +106,7 @@
   var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
   var yyyy = today.getFullYear();
 
-  today = mm + '-' + dd + '-' + yyyy;
+  today = yyyy + '-' + mm + '-' + dd;
 
   document.getElementById("date").min = today;
 </script>

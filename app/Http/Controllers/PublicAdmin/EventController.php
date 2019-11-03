@@ -40,27 +40,30 @@ class EventController extends Controller
         $data = request()->validate([
             'name' => ['required', 'string', 'min:6', 'max:30'],
             'date' => ['required', 'date'],
-            'hour' => ['required']
+            'hour' => ['required', 'date_format:H:i']
         ]);
 
         // Cria uma slug do name e gera uma random string no fim
         $slug = str_slug(request('name'), '-') . '-' . Str::random(48); 
 
+        // Converte a data para Y-m-d
+        $correctedDate = date('d-m-Y', strtotime(request('date')));
+        
+        // Data Actual
         $currentDate = date("d-m-Y");
-        dd($currentDate);
+        
+        if ($correctedDate <= $currentDate) {
+            return redirect()->back()->withInput()->with('error', 'You cannot insert an older date! Try again.');
+        } else {
 
-        // dd(array_merge(
-        //     $data,
-        //     ['slug' => $slug]
-        // ));
+            // Dá o user autenticado e vai aos eventos e faz create
+            auth()->user()->events()->create(array_merge(
+                $data,
+                ['slug' => $slug]
+            ));
 
-        // Dá o user autenticado e vai aos eventos e faz create
-        auth()->user()->events()->create(array_merge(
-            $data,
-            ['slug' => $slug]
-        ));
-
-        return redirect()->route('public.dashboard')->with('success', 'Event was created with success!');
+            return redirect()->route('public.dashboard')->with('success', 'Event was created with success!');
+        }
     }
 
     /**

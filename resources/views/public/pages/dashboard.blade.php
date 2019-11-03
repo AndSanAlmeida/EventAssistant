@@ -51,7 +51,7 @@
 					        	@foreach (auth()->user()->events as $event)
 					            	<tr>
 					                	<td>{{ $event->name }}</td>
-					                	<td>{{ $event->date }}</td>
+					                	<td>{{ $event->date->format('d/m/Y') }}</td>
 					                	<td>{!! $event->isActive() !!}</td>
 					                	<td>
 					                		<ul class="actions no-margin">

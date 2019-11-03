@@ -61,8 +61,6 @@ class UserController extends Controller
                 ]);
             }
 
-            
-
             if (request('avatar')) {
                 $avatarPath = request('avatar')->store('profile', 'public');
 
