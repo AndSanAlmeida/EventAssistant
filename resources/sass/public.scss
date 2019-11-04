@@ -9,8 +9,11 @@
 
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300i,400i");
 
-$primaryColor: #f69560; //Laraja
-$secondaryColor: #b12828; //Vermelho
+$primaryColor: #b12828; //Vermelho
+$accentColor: #f69560; //Laraja
+
+// $primaryColor: #673AB7; //Rosa
+// $accentColor: #E040FB; //Roxo
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
@@ -113,7 +116,8 @@ html {
 body {
   background-color: #4c4777;
   background-attachment: scroll, fixed;
-  background-image: url("../img/overlay.png"), url("../img/bg.jpg");
+  // background-image: url("../images/overlay.png"), url("../images/bg6.jpg");
+  background-image: linear-gradient(180deg, $accentColor 25%, $primaryColor 100%);
   background-position: top left, top center;
   background-repeat: repeat, no-repeat;
   background-size: 256px, cover;
@@ -368,7 +372,7 @@ a {
   color: inherit;
 
   &:hover {
-    color: $secondaryColor !important;
+    color: $primaryColor !important;
   }
 }
 
@@ -377,7 +381,7 @@ strong, b {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $secondaryColor;
+  color: $primaryColor;
 }
 
 blockquote {
@@ -2229,14 +2233,14 @@ input {
   &[type="button"]:hover,
   &[type="date"]:hover, 
   &[type="time"]:hover {
-    box-shadow: inset 0 0 0 2px $secondaryColor;
-    color: $secondaryColor !important;
+    box-shadow: inset 0 0 0 2px $primaryColor;
+    color: $primaryColor !important;
   }
 }
 
 button:hover, .button:hover {
-  box-shadow: inset 0 0 0 2px $secondaryColor;
-  color: $secondaryColor !important;
+  box-shadow: inset 0 0 0 2px $primaryColor;
+  color: $primaryColor !important;
 }
 
 input {
@@ -2260,14 +2264,14 @@ input {
   &[type="date"].primary,
   &[type="time"].primary {
     box-shadow: none;
-    background-color: $secondaryColor;
+    background-color: $primaryColor;
     color: #ffffff !important;
   }
 }
 
 button.primary, .button.primary {
   box-shadow: none;
-  background-color: $secondaryColor;
+  background-color: $primaryColor;
   color: #ffffff !important;
 }
 
@@ -2551,8 +2555,8 @@ input {
   &[type="email"]:focus,
   &[type="date"]:focus,
   &[type="time"]:focus {
-    border-color: $secondaryColor;
-    box-shadow: inset 0 0 0 1px $secondaryColor;
+    border-color: $primaryColor;
+    box-shadow: inset 0 0 0 1px $primaryColor;
   }
 }
 
@@ -2563,8 +2567,8 @@ input[type="time"]::-webkit-inner-spin-button {
 }
 
 select:focus, textarea:focus {
-  border-color: $secondaryColor;
-  box-shadow: inset 0 0 0 1px $secondaryColor;
+  border-color: $primaryColor;
+  box-shadow: inset 0 0 0 1px $primaryColor;
 }
 
 select{
@@ -2586,14 +2590,14 @@ input {
   }
 
   &[type="checkbox"]:checked + label:before, &[type="radio"]:checked + label:before {
-    background-color: $secondaryColor;
-    border-color: $secondaryColor;
+    background-color: $primaryColor;
+    border-color: $primaryColor;
     color: #ffffff;
   }
 
   &[type="checkbox"]:focus + label:before, &[type="radio"]:focus + label:before {
-    border-color: $secondaryColor;
-    box-shadow: inset 0 0 0 1px $secondaryColor;
+    border-color: $primaryColor;
+    box-shadow: inset 0 0 0 1px $primaryColor;
   }
 }
 
@@ -2622,7 +2626,7 @@ input {
     &:before {
       display: block;
       border: solid 1px #d5d5d5;
-      color: $secondaryColor;
+      color: $primaryColor;
       font-size: 2rem;
       width: 5.25rem;
       height: 5.25rem;
@@ -3399,7 +3403,7 @@ table {
     }
 
     &.active:before {
-      background-color: $secondaryColor;
+      background-color: $primaryColor;
     }
   }
 }
@@ -3557,13 +3561,13 @@ body {
       }
 
       &.accent1 {
-        background-color: $secondaryColor;
-        background-image: linear-gradient(90deg, $secondaryColor, $primaryColor);
+        background-color: $primaryColor;
+        background-image: linear-gradient(90deg, $primaryColor, $accentColor);
       }
 
       &.accent2 {
-        background-color: $primaryColor;
-        background-image: linear-gradient(90deg, $primaryColor, $secondaryColor);
+        background-color: $accentColor;
+        background-image: linear-gradient(90deg, $accentColor, $primaryColor);
       }
 
       &.accent3 {
@@ -3625,13 +3629,13 @@ body {
       }
 
       &.accent1 .content {
-        background-color: $secondaryColor;
-        background-image: linear-gradient(90deg, $secondaryColor, $primaryColor);
+        background-color: $primaryColor;
+        background-image: linear-gradient(90deg, $primaryColor, $accentColor);
       }
 
       &.accent2 .content {
-        background-color: $primaryColor;
-        background-image: linear-gradient(90deg, $primaryColor, $secondaryColor);
+        background-color: $accentColor;
+        background-image: linear-gradient(90deg, $accentColor, $primaryColor);
       }
 
       &.accent3 .content {
@@ -3735,24 +3739,24 @@ body {
       &.accent1 {
         input {
           &[type="submit"].primary, &[type="reset"].primary, &[type="button"].primary {
-            color: $secondaryColor !important;
-          }
-        }
-
-        button.primary, .button.primary {
-          color: $secondaryColor !important;
-        }
-      }
-
-      &.accent2 {
-        input {
-          &[type="submit"].primary, &[type="reset"].primary, &[type="button"].primary {
             color: $primaryColor !important;
           }
         }
 
         button.primary, .button.primary {
           color: $primaryColor !important;
+        }
+      }
+
+      &.accent2 {
+        input {
+          &[type="submit"].primary, &[type="reset"].primary, &[type="button"].primary {
+            color: $accentColor !important;
+          }
+        }
+
+        button.primary, .button.primary {
+          color: $accentColor !important;
         }
       }
 
@@ -3898,13 +3902,13 @@ body {
     }
 
     &.accent1 {
-      background-color: $secondaryColor;
-      background-image: linear-gradient(90deg, $secondaryColor, $primaryColor);
+      background-color: $primaryColor;
+      background-image: linear-gradient(90deg, $primaryColor, $accentColor);
     }
 
     &.accent2 {
-      background-color: $primaryColor;
-      background-image: linear-gradient(90deg, $primaryColor, $secondaryColor);
+      background-color: $accentColor;
+      background-image: linear-gradient(90deg, $accentColor, $primaryColor);
     }
 
     &.accent3 {
@@ -4264,24 +4268,24 @@ body {
   &.accent1 {
     input {
       &[type="submit"].primary, &[type="reset"].primary, &[type="button"].primary {
-        color: $secondaryColor !important;
-      }
-    }
-
-    button.primary, .button.primary {
-      color: $secondaryColor !important;
-    }
-  }
-
-  &.accent2 {
-    input {
-      &[type="submit"].primary, &[type="reset"].primary, &[type="button"].primary {
         color: $primaryColor !important;
       }
     }
 
     button.primary, .button.primary {
       color: $primaryColor !important;
+    }
+  }
+
+  &.accent2 {
+    input {
+      &[type="submit"].primary, &[type="reset"].primary, &[type="button"].primary {
+        color: $accentColor !important;
+      }
+    }
+
+    button.primary, .button.primary {
+      color: $accentColor !important;
     }
   }
 

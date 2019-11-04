@@ -27,10 +27,4 @@ class Event extends Model
     	$status = ($this->active == '1') ? $active : $inactive;
     	return $status;
     }
-
-    public function formatDate() {
-
-        $formatDate = date('d-m-Y', strtotime($this->date));
-        return $formatDate;
-    }
 }

@@ -36,7 +36,6 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
         $data = request()->validate([
             'name' => ['required', 'string', 'min:6', 'max:30'],
             'date' => ['required', 'date'],
@@ -45,14 +44,11 @@ class EventController extends Controller
 
         // Cria uma slug do name e gera uma random string no fim
         $slug = str_slug(request('name'), '-') . '-' . Str::random(48); 
-
-        // Converte a data para Y-m-d
-        $correctedDate = date('d-m-Y', strtotime(request('date')));
         
         // Data Actual
-        $currentDate = date("d-m-Y");
+        $currentDate = date("Y-m-d");
         
-        if ($correctedDate <= $currentDate) {
+        if (request('date') <= $currentDate) {
             return redirect()->back()->withInput()->with('error', 'You cannot insert an older date! Try again.');
         } else {
 

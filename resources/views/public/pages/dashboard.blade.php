@@ -51,12 +51,12 @@
 					        	@foreach (auth()->user()->events as $event)
 					            	<tr>
 					                	<td>{{ $event->name }}</td>
-					                	<td>{{ $event->date->format('d/m/Y') }}</td>
+					                	<td>{{ date('d, F, Y', strtotime($event->date)) }}</td>
 					                	<td>{!! $event->isActive() !!}</td>
 					                	<td>
 					                		<ul class="actions no-margin">
-					                			<li><a href="#" class="button primary xsmall" title="Details"><i class="far fa-eye"></i> Details</a></li>
-					                			<li><a href="#" class="button primary xsmall" title="Update"><i class="far fa-edit"></i> Update</a></li>
+					                			<li><a href="#" class="button xsmall" title="Details"><i class="far fa-eye"></i> Details</a></li>
+					                			<li><a href="#" class="button xsmall" title="Update"><i class="far fa-edit"></i> Update</a></li>
 					                			<li><a href="#" class="button primary xsmall" title="Delete"><i class="far fa-trash-alt"></i> Delete</a></li>
 					                		</ul>
 					                	</td>
