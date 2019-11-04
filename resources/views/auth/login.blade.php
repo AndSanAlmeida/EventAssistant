@@ -53,7 +53,7 @@
 									</div>
 								</div>
 
-								<button type="submit" class="btn btn-primary btn-user btn-block">
+								<button type="submit" class="btn btn-danger btn-user btn-block">
 									{{ __('Login') }}
 								</button>
 
@@ -83,6 +83,12 @@
 									</a>
 								</div>
 							@endif
+
+							<div class="text-center">
+								<a class="small" href="{{ url('/') }}">
+									{{ __('Back to Website') }}
+								</a>
+							</div>
 
 						</div>
 					</div>

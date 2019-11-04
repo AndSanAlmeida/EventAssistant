@@ -51,7 +51,7 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::post('/edit/password/user', 'UserController@passwordUpdate')->name('password.update');
 
 	// PublicDashboard - EventController
-	Route::get('/event/{event}', 'EventController@show')->name('event.show');
+	// Route::get('/event/{event}', 'EventController@show')->name('event.show'); // ESTA A GERAR ERRO NO CREATE EVENT
 
 	Route::get('/event/create', 'EventController@create')->name('event.create');
 	Route::post('/event', 'EventController@store')->name('event.store');

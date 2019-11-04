@@ -89,6 +89,10 @@ video {
   vertical-align: baseline;
 }
 
+html {
+  min-height: 100%;
+}
+
 article,
 aside,
 details,
