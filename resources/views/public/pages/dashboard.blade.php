@@ -22,25 +22,25 @@
             </div>
 
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-6">
 					<p class="h1">List of Events</p>
 				</div>
-				<div class="col-md-6">
+				<div class="col-6">
 					<a href="{{ route('public.event.create') }}" class="btn btn-secondary btn-red float-right" ><i class="fas fa-plus"></i>Add New Event</a>
 				</div>
 			</div>
 
 			<div class="row">
-
 				@if (auth()->user()->getUserEvents()->isEmpty())
-
-					<span class="invalid-feedback" role="alert">
-	                    <strong>There is no events yiet! You must first create one.</strong>
-	                </span>
-
+					<div class="col-12 mt-4">
+						<div class="alert alert-danger" role="alert">
+						  	<h4 class="alert-heading">Error!</h4>
+						  	<p>There is no events yiet! You must first create one.</p>						  	
+						</div>		              					
+					</div>
 				@else
 
-					<div class="col">
+					<div class="col-12">
 						<div class="table-responsive">
 						    <table class="table table-borderless table-hover">
 						        <thead>
