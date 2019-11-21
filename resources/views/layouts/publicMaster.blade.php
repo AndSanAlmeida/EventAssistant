@@ -17,7 +17,7 @@
 			@include('public.includes.header')
 
 			{{-- Main Page Content --}}
-			@yield('mainContent')
+			@yield('homeContent')
 
 			{{-- Content --}}
 		    @yield('content')

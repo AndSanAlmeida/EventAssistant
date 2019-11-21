@@ -33,8 +33,6 @@
                     </div>
                 </div>
 
-                <br>
-
                 {{-- New Password --}}
                 <div class="form-group row">
                     <label for="password" class="col-md-2 offset-md-2 col-form-label">{{ __('New Password') }}</label>
@@ -48,8 +46,6 @@
                         @enderror
                     </div> 
                 </div>
-
-                <br>
 
                 {{-- Repeat Password --}}
                 <div class="form-group row">

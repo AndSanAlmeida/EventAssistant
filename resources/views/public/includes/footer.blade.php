@@ -2,7 +2,7 @@
     <div class="inner container">
         <div class="row">
             <div class="col-md-6 d-flex align-items-center justify-content-md-start justify-content-center">
-                <p class="mb-0">&copy; <?php echo date("Y"); ?> {{ config('app.name') }}. All Right Reserved.</p>
+                <p class="mb-0">&copy; <?php echo date("Y"); ?> <a href="{{ url('/') }}" title="Home">{{ config('app.name') }}</a>. All Right Reserved.</p>
             </div>
 
             <div class="col-md-6">

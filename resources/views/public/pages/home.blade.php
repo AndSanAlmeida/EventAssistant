@@ -2,7 +2,7 @@
 
 @section('title', 'Home')
 
-@section('mainContent')
+@section('homeContent')
 
 <div class="jumbotron d-flex align-items-center" style="background-image: url(img/hero-2.jpg)">
     <div class="container text-center">

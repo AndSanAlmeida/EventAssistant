@@ -18,74 +18,92 @@
 			<form action="{{ route('public.event.store') }}" enctype="form-data" method="POST">
 				@csrf
 
-				{{-- Name --}}
-				<div class="form-group row">
-					<label for="name" class="col-md-1 offset-md-2 col-form-label">Name</label>
-					<div class="col-md-7">
-						<input id="name"
-							type="text"
-							class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-							name="name"
-							value="{{ old('name') }}"
-							required
-							placeholder="Ex: Michael and Julia" 
-							autocomplete="Name" autofocus>
-					</div>
-					@if ($errors->has('name'))
-						<span class="invalid-feedback" role="alert">
-							<strong>{{ $errors->first('name') }}</strong>
-						</span>
-					@endif
-				</div>
+				<div class="row">
+					<div class="col-md-8 offset-md-2">
 
-				<div class="form-group row">
+						<h4 class="mb-4">General Information</h4>
 
-					{{-- Date --}}
-					<label for="date" class="col-md-1 offset-md-2 col-form-label">Date</label>
-					<div class="col-md-3">
-						<input id="date"
-							type="date"
-							class="form-control {{ $errors->has('date') ? ' is-invalid' : '' }}"
-							name="date"
-							value="{{ old('date') }}"
-							required
-							autocomplete="Name" autofocus>
-					</div>
-					@if ($errors->has('date'))
-						<span class="invalid-feedback" role="alert">
-							<strong>{{ $errors->first('date') }}</strong>
-						</span>
-					@endif
+						{{-- Name --}}
+						<div class="form-group row">
+							<label for="name" class="col-md-2 col-form-label">Name</label>
+							<div class="col-md-10">
+								<input id="name"
+									type="text"
+									class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+									name="name"
+									value="{{ old('name') }}"
+									required
+									placeholder="Ex: Michael and Julia" 
+									autocomplete="Name" autofocus>
+							</div>
+							@if ($errors->has('name'))
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $errors->first('name') }}</strong>
+								</span>
+							@endif
+						</div>
 
-					{{-- Hour --}}
-					<label for="hour" class="col-md-1 col-form-label">Hour</label>
-					<div class="col-md-3">
-						<input id="hour"
-							type="time"
-							class="form-control {{ $errors->has('hour') ? ' is-invalid' : '' }}"
-							name="hour"
-							value="{{ old('hour') }}"
-							required
-							autocomplete="Name" autofocus>
-					</div>
-					@if ($errors->has('hour'))
-						<span class="invalid-feedback" role="alert">
-							<strong>{{ $errors->first('hour') }}</strong>
-						</span>
-					@endif
-				</div>
+						<div class="form-group row">
 
-				<div class="form-group row">
-					<div class="col-8 offset-md-2">
-						<ul class="list-inline float-right">
-							<li class="list-inline-item"><a href="{{ route('public.dashboard') }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
-							<li class="list-inline-item"><button type="submit" class="btn btn-secondary btn-red" title="Submit">Create Event</button></li>
-						</ul>
+							{{-- Date --}}
+							<label for="date" class="col-md-2 col-form-label">Date</label>
+							<div class="col-md-4">
+								<input id="date"
+									type="date"
+									class="form-control {{ $errors->has('date') ? ' is-invalid' : '' }}"
+									name="date"
+									value="{{ old('date') }}"
+									required
+									autocomplete="Name" autofocus>
+							</div>
+							@if ($errors->has('date'))
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $errors->first('date') }}</strong>
+								</span>
+							@endif
+
+							{{-- Hour --}}
+							<label for="hour" class="col-md-2 col-form-label">Hour</label>
+							<div class="col-md-4">
+								<input id="hour"
+									type="time"
+									class="form-control {{ $errors->has('hour') ? ' is-invalid' : '' }}"
+									name="hour"
+									value="{{ old('hour') }}"
+									required
+									autocomplete="Name" autofocus>
+							</div>
+							@if ($errors->has('hour'))
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $errors->first('hour') }}</strong>
+								</span>
+							@endif
+						</div>	
+
+
+						<h4 class="mb-4">Event Files</h4>
+
+						<div class="form-group files">
+			                <label for="file-upload">Upload Your File</label>
+			                <input id="file-upload" type="file" name="fileUpload" class="form-control" multiple="">
+			              </div>
+
+						{{-- Actions --}}
+						<div class="form-group row">
+							<div class="col-12">
+								<ul class="list-inline float-right">
+									<li class="list-inline-item"><a href="{{ route('public.dashboard') }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
+									<li class="list-inline-item"><button type="submit" class="btn btn-secondary btn-red" title="Submit">Create Event</button></li>
+								</ul>
+							</div>
+						</div>
+
 					</div>
-				</div>
+				</div>				
+
 			</form>
-		</div>
 
+		</div>
 	</div>
 </section>
 

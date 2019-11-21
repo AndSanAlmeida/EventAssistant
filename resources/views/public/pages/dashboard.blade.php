@@ -40,7 +40,7 @@
 					</div>
 				@else
 
-					<div class="col-12">
+					<div class="col-12 mt-4">
 						<div class="table-responsive">
 						    <table class="table table-borderless table-hover">
 						        <thead>
