@@ -4,100 +4,89 @@
 
 @section('content')
 
-<section class="main">
+<section class="bg-white topBox-rounded">
+	<div class="container">
 
-  @include('public.partials._alerts')
+		<div class="section-content-extra">
 
-	<div class="row gtr-200">
-	  <div class="col-12">
-		<h2>Event</h2>
-	  </div>
-	</div>
+			<div class="title-wrap">
+				<h2 class="section-title">Create Event</h2>
+			</div>
 
-	<div class="row gtr-uniform">
-		<div class="col-12">
-			<h4>Add New Event</h4>
+			@include('public.partials._alerts')
+
+			<form action="{{ route('public.event.store') }}" enctype="form-data" method="POST">
+				@csrf
+
+				{{-- Name --}}
+				<div class="form-group row">
+					<label for="name" class="col-md-1 offset-md-2 col-form-label">Name</label>
+					<div class="col-md-7">
+						<input id="name"
+							type="text"
+							class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+							name="name"
+							value="{{ old('name') }}"
+							required
+							placeholder="Ex: Michael and Julia" 
+							autocomplete="Name" autofocus>
+					</div>
+					@if ($errors->has('name'))
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $errors->first('name') }}</strong>
+						</span>
+					@endif
+				</div>
+
+				<div class="form-group row">
+
+					{{-- Date --}}
+					<label for="date" class="col-md-1 offset-md-2 col-form-label">Date</label>
+					<div class="col-md-3">
+						<input id="date"
+							type="date"
+							class="form-control {{ $errors->has('date') ? ' is-invalid' : '' }}"
+							name="date"
+							value="{{ old('date') }}"
+							required
+							autocomplete="Name" autofocus>
+					</div>
+					@if ($errors->has('date'))
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $errors->first('date') }}</strong>
+						</span>
+					@endif
+
+					{{-- Hour --}}
+					<label for="hour" class="col-md-1 col-form-label">Hour</label>
+					<div class="col-md-3">
+						<input id="hour"
+							type="time"
+							class="form-control {{ $errors->has('hour') ? ' is-invalid' : '' }}"
+							name="hour"
+							value="{{ old('hour') }}"
+							required
+							autocomplete="Name" autofocus>
+					</div>
+					@if ($errors->has('hour'))
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $errors->first('hour') }}</strong>
+						</span>
+					@endif
+				</div>
+
+				<div class="form-group row">
+					<div class="col-8 offset-md-2">
+						<ul class="list-inline float-right">
+							<li class="list-inline-item"><a href="{{ route('public.dashboard') }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
+							<li class="list-inline-item"><button type="submit" class="btn btn-secondary btn-red" title="Submit">Create Event</button></li>
+						</ul>
+					</div>
+				</div>
+			</form>
 		</div>
+
 	</div>
-
-  <br>
-
-	<form action="{{ route('public.event.store') }}" enctype="form-data" method="POST">
-      @csrf
-
-      <div class="col-12">  
-        <div class="row gtr-uniform">
-
-          {{-- Name --}}
-          <div class="col-2 alg-self-center">
-            <label for="name">Name</label>
-          </div>
-          <div class="col-10">              
-            <input id="name"
-                   type="text"
-                   class="{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                   name="name"
-                   value="{{ old('name') }}"
-                   required
-                   autocomplete="Name" autofocus>
-
-              @if ($errors->has('name'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('name') }}</strong>
-                </span>
-              @endif
-          </div>
-
-          {{-- Date --}}
-          <div class="col-2 alg-self-center">
-            <label for="date">Date</label>
-          </div>
-          <div class="col-4 col-10-small">
-            <input id="date"
-                   type="date"
-                   class="{{ $errors->has('date') ? ' is-invalid' : '' }}"
-                   name="date"
-                   value="{{ old('date') }}"
-                   required
-                   autocomplete="Date" autofocus>
-
-            @if ($errors->has('date'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('date') }}</strong>
-                </span>
-            @endif
-          </div>
-
-          {{-- Hour --}}
-          <div class="col-2 alg-self-center">
-            <label for="hour">Hour</label>
-          </div>
-          <div class="col-4 col-10-small">
-            <input id="hour"
-                   type="time"
-                   class="{{ $errors->has('hour') ? ' is-invalid' : '' }}"
-                   name="hour"
-                   value="{{ old('hour') }}"
-                   required
-                   autocomplete="Hour" autofocus>
-
-            @if ($errors->has('hour'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('hour') }}</strong>
-                </span>
-            @endif
-          </div>
-
-          <div class="col-12">
-            <ul class="actions float-right">
-              <li><a href="{{ route('public.dashboard') }}" class="button button small" title="Back">Back</a></li>
-              <li><button type="submit" class="button primary button small" title="Submit">Create Event</button></li>
-            </ul>
-          </div>
-
-        </div>  
-      </div>
-  </form>
 </section>
 
 <script>

@@ -1,10 +1,24 @@
-<footer id="footer">
-    <p class="copyright">© {{ config('app.name') }}. Al rights reserved.</p>
-    <ul class="icons">
-        <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-        <li><a href="#" class="icon brands fa-facebook"><span class="label">Facebook</span></a></li>
-        <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-        <li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-        <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-    </ul>
+<footer class="mastfoot mb-3 bg-white py-4 border-top">
+    <div class="inner container">
+        <div class="row">
+            <div class="col-md-6 d-flex align-items-center justify-content-md-start justify-content-center">
+                <p class="mb-0">&copy; <?php echo date("Y"); ?> {{ config('app.name') }}. All Right Reserved.</p>
+            </div>
+
+            <div class="col-md-6">
+                <nav class="nav nav-mastfoot justify-content-md-end justify-content-center">
+                    <a class="nav-link" href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="nav-link" href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="nav-link" href="#">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </nav>
+            </div>
+
+        </div>
+    </div>
 </footer>

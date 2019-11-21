@@ -4,19 +4,15 @@
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<title>@yield('title', 'Home') | {{ config('app.name') }}</title>
-		<meta name="description" content="${2}">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<link rel="manifest" href="site.webmanifest">
-		<link rel="apple-touch-icon" href="icon.png">
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		{{-- Styles --}}
 		@include('public.partials._styles')
 
 	</head> 
-	<body>
-
-		<div id="wrapper">
+	<body data-spy="scroll" data-target="#navbar-nav-header" class="static-layout" style="background-image: url('{{ asset('img/bg.jpg') }}');">
+    	<div class="boxed-page">
 			{{-- Header --}}
 			@include('public.includes.header')
 
@@ -33,10 +29,10 @@
 	    {{-- Scripts --}}
 		@include('public.partials._scripts')
 
-		<script>
+		{{-- <script>
 			window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
 			ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
 		</script>
-		<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+		<script src="https://www.google-analytics.com/analytics.js" async defer></script> --}}
 	</body>
 </html>

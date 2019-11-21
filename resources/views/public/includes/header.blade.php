@@ -1,63 +1,69 @@
-<header id="header"><a href="{{ url('/') }}" class="logo"><strong>{{ config('app.name') }}</strong></a>
-    @if (Route::has('login'))
-        <nav>
-            <ul>   
-                @auth         
-                    <li class="submenu">
-                        <a href="#">
-                            <img class="img-profile" src="{{ Auth::user()->profileImage() }}">
-                            {{ Auth::user()->name}}
-                            <i class="fas fa-angle-down" style="vertical-align: middle;"></i>
-                        </a>
-                        <ul class="dropdown">
+<nav id="gtco-header-navbar" class="navbar navbar-expand-lg py-4">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            {{ config('app.name') }}
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-nav-header" aria-controls="navbar-nav-header" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-nav-header">
+            @if (Route::has('login'))
+                @auth   
+                    <div class="navbar-nav ml-auto">      
+                        <div class="dropdown">
+                            <div class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle mr-2" width="40" height="40" src="{{ Auth::user()->profileImage() }}" alt="Profile Image">
+                                {{ Auth::user()->name}}
+                            </div>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
                             @hasRole('user')
-                                <li>
-                                    <a href="{{ route('public.dashboard') }}" title="Dashboard">
-                                        <i class="fas fa-user-cog"></i>
-                                        Dashboard
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('public.user.show', Auth::user()) }}" title="View Profile">
-                                        <i class="fas fa-user"></i>
-                                        View Profile
-                                    </a>
-                                </li>
+                                <a href="{{ route('public.dashboard') }}" class="dropdown-item" title="Dashboard">
+                                    <i class="fas fa-user-cog"></i>
+                                    Dashboard
+                                </a>
+                                <a href="{{ route('public.user.show', Auth::user()) }}" class="dropdown-item" title="View Profile">
+                                    <i class="fas fa-user"></i>
+                                    View Profile
+                                </a>
                             @endhasRole
 
                             @hasRole('admin')
-                                <li>
-                                    <a href="{{ route('admin.dashboard') }}" title="BackOffice">
-                                        <i class="fas fa-cogs"></i>
-                                        BackOffice
-                                    </a>
-                                </li>
+                                <a href="{{ route('admin.dashboard') }}" class="dropdown-item" title="BackOffice">
+                                    <i class="fas fa-cogs"></i>
+                                    BackOffice
+                                </a>
                             @endhasRole
-                            
-                                <li>
-                                    <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();" title="Logout">
-                                        <i class="fas fa-sign-out-alt"></i>
-                                        {{ __('Logout') }}
-                                    </a>
-                                </li>                                   
+                                <div class="dropdown-divider"></div>
+
+                                <a href="{{ route('logout') }}" class="dropdown-item"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();" title="Logout">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    {{ __('Logout') }}
+                                </a>                                
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-
-                         </ul>
-                    </li>
+                        </div>
+                    </div>
                 @else
-                    <li><a href="{{ route('login') }}" title="Login">{{ __('Login') }}</a></li>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="{{ route('login') }}" class="nav-link" title="Login">{{ __('Login') }}</a>
+                        </li>
 
-                    @if (Route::has('register'))
-                        <li><a href="{{ route('register') }}" title="Sign Up">{{ __('Sign Up') }}</a></li>
-                    @endif
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a href="{{ route('register') }}" class="nav-link" title="Sign Up">{{ __('Sign Up') }}</a>
+                            </li>
+                        @endif
+                    </ul>
                 @endif                
-            </ul>
-        </nav>
-    @endif
-</header>
+            @endif
+        </div>
+    </div>
+
+</nav>

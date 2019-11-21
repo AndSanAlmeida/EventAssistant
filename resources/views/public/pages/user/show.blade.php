@@ -4,32 +4,31 @@
 
 @section('content')
 
-<section class="main">
+<section class="bg-white topBox-rounded">
+    <div class="container">
 
-    {{-- Alerts --}}
-    @include('public.partials._alerts')
+        <div class="section-content-extra">
 
-    <div class="row gtr-200">
-      <div class="col-12">
-        <h2>Profile</h2>
-      </div>
-    </div>
+            {{-- Alerts --}}
+            @include('public.partials._alerts')
 
-    <div class="row gtr-200">
-        <div class="col-3 col-12-small">
-            <span class="image fit">
-                <img src="{{ $user->profileImage() }}" alt="Profile Image">
-            </span>
-        </div>
-        <div class="col-9 col-12-small">
-            <ul class="alt">
-                <li><b>Name: </b>{{ $user->name }}</li>
-                <li><b>Email: </b>{{ $user->email }}</li>
-            </ul>
-            <ul class="actions">
-                <li><a class="button primary small" href="{{ route('public.user.edit') }}" title="Edit Profile">Edit Profile</a></li>
-                <li><a class="button primary small" href="{{ route('public.password.edit') }}" title="Change Password">Change Password</a></li>
-            </ul>       
+            <div class="title-wrap">
+                <h2 class="section-title">Profile</h2>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-3 offset-sm-2">
+                    <img class="rounded" src="{{ $user->profileImage() }}" alt="Profile Image">
+                </div>
+                <div class="col-sm-7">
+                    <p><strong class="pr-1">Name: </strong>{{ $user->name }}</p>
+                    <p><strong class="pr-1">Email: </strong>{{ $user->email }}</p>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a class="btn btn-secondary btn-red" href="{{ route('public.user.edit') }}" title="Edit Profile">Edit Profile</a></li>
+                        <li class="list-inline-item"><a class="btn btn-secondary btn-red" href="{{ route('public.password.edit') }}" title="Change Password">Change Password</a></li>
+                    </ul>       
+                </div>
+            </div>
         </div>
     </div>   
 </section>

@@ -99,7 +99,8 @@ class UserController extends Controller
 
             $validate = $request->validate([
                 'oldPassword' => 'required',
-                'password' => 'required|min:8|required_with:password_confirmation'
+                'password' => 'required|min:8|required_with:password_confirmation|same:password_confirmation',
+                'password_confirmation' => 'min:8'
             ]);            
 
             if (Hash::check($request['oldPassword'], $user->password) && $validate) {
