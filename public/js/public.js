@@ -77,3 +77,6 @@
         o.init(e)
     })
 }(window.jQuery, window, document);
+
+// ToolTip
+$("[data-toggle=\"tooltip\"]").tooltip({placement:'bottom'});

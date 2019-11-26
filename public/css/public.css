@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 html {
-  font-size: 62.5%;
+  font-size: 64.5%;
   overflow-x: hidden;
 }
 
@@ -9,10 +9,9 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  position: relative;
   font-family: "Lato", sans-serif;
   font-weight: 300;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
 
 body:after {
@@ -115,7 +114,8 @@ p {
   line-height: 1.5em;
 }
 
-td {
+#dashboard td {
+  line-height: 4em;
   vertical-align: middle !important;
 }
 
@@ -295,7 +295,7 @@ a {
 }
 
 .dropdown-menu {
-  font-size: 1em;
+  font-size: 0.8em;
 }
 
 .dropdown-item {
@@ -727,5 +727,10 @@ footer {
   padding: 0.5em 1em;
   text-transform: uppercase;
   letter-spacing: 1px;
+  font-size: 65%;
+}
+
+.tooltip {
+  font-size: 1.3rem;
 }
 

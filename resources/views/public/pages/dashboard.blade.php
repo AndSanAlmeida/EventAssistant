@@ -42,12 +42,13 @@
 
 					<div class="col-12 mt-4">
 						<div class="table-responsive">
-						    <table class="table table-borderless table-hover">
+						    <table id="dashboard" class="table table-borderless table-hover">
 						        <thead>
 						            <tr>
 						                <th>Name</th>
 						                <th>Date</th>
 						                <th>Status</th>
+						                <th>Add</th>
 						                <th>Actions</th>
 						                <th>Share</th>
 						            </tr>
@@ -58,6 +59,17 @@
 						                	<td>{{ $event->name }}</td>
 						                	<td>{{ date('F d, Y', strtotime($event->date)) }}</td>
 						                	<td>{!! $event->isActive() !!}</td>
+						                	<td>
+						                		<ul class="list-inline my-0">
+						                			<li class="list-inline-item">
+						                				<a href="#" class="btn btn-secondary" data-toggle="tooltip" title="File / Image"><i class="fas fa-file-import"></i></a>
+
+						                			</li>
+						                			<li class="list-inline-item">
+						                				<a href="#" class="btn btn-secondary" data-toggle="tooltip" title="Localizations"><i class="fas fa-map-marked-alt"></i></a>
+						                			</li>
+						                		</ul>
+						                	</td>
 						                	<td>
 						                		<ul class="list-inline my-0">
 						                			<li class="list-inline-item">
