@@ -49,15 +49,16 @@
 						                <th>Date</th>
 						                <th>Status</th>
 						                <th>Actions</th>
+						                <th>Share</th>
 						            </tr>
 						        </thead>
 						        <tbody>
 						        	@foreach (auth()->user()->events as $event)
 						            	<tr>
-						                	<td class="align-middle">{{ $event->name }}</td>
-						                	<td class="align-middle">{{ date('d, F, Y', strtotime($event->date)) }}</td>
-						                	<td class="align-middle">{!! $event->isActive() !!}</td>
-						                	<td class="align-middle">
+						                	<td>{{ $event->name }}</td>
+						                	<td>{{ date('F d, Y', strtotime($event->date)) }}</td>
+						                	<td>{!! $event->isActive() !!}</td>
+						                	<td>
 						                		<ul class="list-inline my-0">
 						                			<li class="list-inline-item">
 						                				<a href="#" class="btn btn-secondary btn-orange btn-sm" title="Details"><i class="far fa-eye"></i> Details</a>
@@ -66,10 +67,18 @@
 						                				<a href="#" class="btn btn-secondary btn-cyan btn-sm" title="Update"><i class="far fa-edit"></i> Update</a>
 						                			</li>
 						                			<li class="list-inline-item">
-						                				<a href="#" class="btn btn-secondary btn-red btn-sm" title="Delete"><i class="far fa-trash-alt"></i> Delete</a>
+						                				<a href="javascript:;" 
+						                					class="btn btn-secondary btn-red btn-sm" 
+						                					title="Delete"
+						                					data-toggle="modal" 
+						                					data-target="#deleteModal" 
+						                					onclick="deleteData({{$event->id}})">
+						                					<i class="far fa-trash-alt"></i> Delete
+						                				</a>
 						                			</li>
 						                		</ul>
 						                	</td>
+						                	<td><a href="#" title="Link"><i class="fas fa-share-alt"></i> Link</a></td>
 						            	</tr>
 						            @endforeach
 						        </tbody>
@@ -83,5 +92,43 @@
 		</div>
 	</div>
 </section>
+
+<!-- Modal Delete Event -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="deleteModalLabel">Delete!</h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">You really want do delete this event?</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary btn-orange" type="button" data-dismiss="modal">Cancel</button>
+				<form id="deleteForm" action="" method="POST">
+					@csrf 
+					@method('DELETE')
+					<button type="submit" class="btn btn-secondary btn-red" data-dismiss="modal" onclick="formSubmit()">
+						<span class="text">Delete</span>
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function deleteData(id) {
+		 var id = id;
+		 var url = '{{ route('public.event.destroy', ":id") }}';
+		 url = url.replace(':id', id);
+		 $("#deleteForm").attr('action', url);
+	}
+
+	function formSubmit(){
+	 	$("#deleteForm").submit();
+	}
+</script>
 
 @endsection

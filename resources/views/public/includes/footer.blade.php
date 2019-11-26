@@ -7,13 +7,13 @@
 
             <div class="col-md-6">
                 <nav class="nav nav-mastfoot justify-content-md-end justify-content-center">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="#" title="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="#" title="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="#" title="Linked In">
                         <i class="fab fa-linkedin"></i>
                     </a>
                 </nav>

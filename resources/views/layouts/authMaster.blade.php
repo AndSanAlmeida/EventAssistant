@@ -12,8 +12,24 @@
 
 		@include('admin.partials._styles')
 
+		<style type="text/css">
+			body:after {
+			    position: absolute;
+			    content: "";
+			    left: 0;
+			    top: 0;
+			    width: 100%;
+			    height: 100%;
+			    position: fixed;
+			    opacity: 0.8;
+			    z-index: -1;
+			    background: #f12711;
+			    background: linear-gradient(to right, #f5af19, #f12711);
+			}
+		</style>
+
 	</head>	
-	<body class="bg-gradient-primary">
+	<body class="bg-gradient-primary" style="background-image: url('{{ asset('img/bg.jpg') }}');">
 
   			<div class="container">
   				@yield('content')

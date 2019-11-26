@@ -4,12 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+use App\File;
 
 class Event extends Model
 {	
 
 	protected $fillable = [
-        'name', 'name', 'date', 'hour', 'slug', 'active',
+        'name', 'date', 'hour', 'slug', 'active',
     ];
 
 	// Disable Fillable (Aceita Tudo)
@@ -26,5 +27,9 @@ class Event extends Model
 
     	$status = ($this->active == '1') ? $active : $inactive;
     	return $status;
+    }
+
+    public function files() {
+        return $this->hasMany(File::class);
     }
 }

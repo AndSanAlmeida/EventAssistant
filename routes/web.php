@@ -58,4 +58,6 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 
 	Route::get('/edit/event', 'EventController@edit')->name('event.edit');
 	Route::patch('/edit/event', 'EventController@update')->name('event.update');
+
+	Route::delete('/event/{event}', 'EventController@destroy')->name('event.destroy');
 });

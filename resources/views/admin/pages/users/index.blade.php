@@ -46,48 +46,36 @@
 											<span class="text">Delete</span>
 										</button>
 									</a>
-
-									<!-- Modal Delete User -->
-									<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-										<div class="modal-dialog" role="document">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="deleteModalLabel">Delete!</h5>
-													<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-														<span aria-hidden="true">×</span>
-													</button>
-												</div>
-												<div class="modal-body">You really want do delete this user?</div>
-												<div class="modal-footer">
-													<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-													<form id="deleteForm" action="" method="POST">
-														@csrf 
-														@method('DELETE')
-														<button type="submit" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">
-															<span class="text">Delete</span>
-														</button>
-													</form>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<!-- Delete User without Modal -->
-									{{-- <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
-										@csrf 
-										{{ method_field('DELETE') }}
-										<button type="submit" class="btn btn-danger btn-icon-split btn-sm ml-2" title="Delete">
-											<span class="icon text-white-50">
-												<i class="fas fa-trash"></i>
-											</span>
-											<span class="text">Delete</span>
-										</button>
-									</form> --}}
 								</td>
 							</tr>						
 						@endforeach
 					</tbody>
 				</table>				
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal Delete Event -->
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="deleteModalLabel">Delete!</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+				</div>
+				<div class="modal-body">You really want do delete this user?</div>
+				<div class="modal-footer">
+					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+					<form id="deleteForm" action="" method="POST">
+						@csrf 
+						@method('DELETE')
+						<button type="submit" class="btn btn-danger" data-dismiss="modal" onclick="formSubmit()">
+							<span class="text">Delete</span>
+						</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
