@@ -79,15 +79,7 @@
 								</span>
 							@endif
 						</div>	
-
-
-						{{-- <h4 class="mb-4">Event Files</h4>
-
-						<div class="form-group files">
-			                <label for="file-upload">Upload Your File</label>
-			                <input id="file-upload" type="file" name="fileUpload[]" class="form-control" multiple>
-			            </div> --}}
-
+						
 						{{-- Actions --}}
 						<div class="form-group row">
 							<div class="col-12">

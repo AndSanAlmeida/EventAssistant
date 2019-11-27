@@ -79,4 +79,4 @@
 }(window.jQuery, window, document);
 
 // ToolTip
-$("[data-toggle=\"tooltip\"]").tooltip({placement:'bottom'});
+$("[data-toggle=\"tooltip\"]").tooltip({placement:'left'});

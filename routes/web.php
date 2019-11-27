@@ -39,25 +39,29 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.public'])->name('public.')->group(function() {
 	
 	// PublicDashboard
-	Route::get('/', 'UserController@dashboard')->name('dashboard');
+	Route::get('/', 'UsersController@dashboard')->name('dashboard');
 
 	// PublicDashboard - UserController
-	Route::get('/user/{user}', 'UserController@show')->name('user.show');
+	Route::get('/user/{user}', 'UsersController@show')->name('user.show');
 
-	Route::get('/edit/user', 'UserController@edit')->name('user.edit');
-	Route::patch('/edit/user', 'UserController@update')->name('user.update');
+	Route::get('/edit/user', 'UsersController@edit')->name('user.edit');
+	Route::patch('/edit/user', 'UsersController@update')->name('user.update');
 
-	Route::get('/edit/password/user', 'UserController@passwordEdit')->name('password.edit');
-	Route::post('/edit/password/user', 'UserController@passwordUpdate')->name('password.update');
+	Route::get('/edit/password/user', 'UsersController@passwordEdit')->name('password.edit');
+	Route::post('/edit/password/user', 'UsersController@passwordUpdate')->name('password.update');
 
 	// PublicDashboard - EventController
 	// Route::get('/event/{event}', 'EventController@show')->name('event.show'); // ESTA A GERAR ERRO NO CREATE EVENT
 
-	Route::get('/event/create', 'EventController@create')->name('event.create');
-	Route::post('/event', 'EventController@store')->name('event.store');
+	Route::get('/event/create', 'EventsController@create')->name('event.create');
+	Route::post('/event', 'EventsController@store')->name('event.store');
 
-	Route::get('/edit/event', 'EventController@edit')->name('event.edit');
-	Route::patch('/edit/event', 'EventController@update')->name('event.update');
+	Route::get('/edit/event', 'EventsController@edit')->name('event.edit');
+	Route::patch('/edit/event', 'EventsController@update')->name('event.update');
 
-	Route::delete('/event/{event}', 'EventController@destroy')->name('event.destroy');
+	Route::delete('/event/{event}', 'EventsController@destroy')->name('event.destroy');
+
+	// PublicDashboard - FileController
+	Route::get('/file/create', 'FilesController@create')->name('file.create');
+	Route::post('/file', 'FilesController@store')->name('file.store');
 });

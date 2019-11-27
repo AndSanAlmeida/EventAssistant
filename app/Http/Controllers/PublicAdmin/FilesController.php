@@ -4,10 +4,10 @@ namespace App\Http\Controllers\PublicAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use App\File;
 use App\Event;
 
-class EventController extends Controller
+class FilesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('public.pages.event.create');
+        return view('public.pages.file.create');
     }
 
     /**
@@ -38,28 +38,20 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-            'name' => ['required', 'string', 'min:6', 'max:30'],
-            'date' => ['required', 'date'],
-            'hour' => ['required', 'date_format:H:i']
+            'caption' => ['required', 'string', 'min:6', 'max:30'],
+            'fileUpload' => ['required', 'image', 'file', 'max:1024'],
+            'event_id' => '',
         ]);
+        
+        // dd(request()->all());
 
-        // Cria uma slug do name e gera uma random string no fim
-        $slug = str_slug(request('name'), '-') . '-' . Str::random(48); 
-        
-        // Data Actual
-        $currentDate = date("Y-m-d");
-        
-        if (request('date') <= $currentDate) {
-            return redirect()->back()->withInput()->with('error', 'You cannot insert an older date! Try again.');
+        if (request('fileUpload')) {
+
+            File::create($data);
+            return redirect()->route('public.dashboard')->with('success', 'Your file was uploaded with success!');
+
         } else {
-
-            // Dá o user autenticado e vai aos eventos e faz create
-            auth()->user()->events()->create(array_merge(
-                $data,
-                ['slug' => $slug]
-            ));
-
-            return redirect()->route('public.dashboard')->with('success', 'Event was created with success! You can now Add Files and Localizations to it.');
+            return redirect()->back()->withInput()->with('error', 'Something went wrong with your Upload! Try again.');
         }
     }
 
@@ -105,12 +97,6 @@ class EventController extends Controller
      */
     public function destroy($id)
     {
-        $event = Event::findOrFail($id);
-        if ($event) {
-            $event->delete();
-            return redirect()->route('public.dashboard')->with('success', 'Event has been deleted.');
-        }
-
-        return redirect()->route('public.dashboard')->with('warning', 'This event can not be deleted.');
+        //
     }
 }

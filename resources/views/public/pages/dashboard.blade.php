@@ -60,27 +60,27 @@
 						                	<td>{{ date('F d, Y', strtotime($event->date)) }}</td>
 						                	<td>{!! $event->isActive() !!}</td>
 						                	<td>
-						                		<ul class="list-inline my-0">
-						                			<li class="list-inline-item">
-						                				<a href="#" class="btn btn-secondary" data-toggle="tooltip" title="File / Image"><i class="fas fa-file-import"></i></a>
+						                		<ul class="list-unstyled my-0">
+						                			<li>
+						                				<a href="{{ route('public.file.create') }}" class="btn btn-secondary btn-block" data-toggle="tooltip" title="File / Image"><i class="fas fa-file-import"></i></a>
 
 						                			</li>
-						                			<li class="list-inline-item">
-						                				<a href="#" class="btn btn-secondary" data-toggle="tooltip" title="Localizations"><i class="fas fa-map-marked-alt"></i></a>
+						                			<li>
+						                				<a href="#" class="btn btn-secondary btn-block" data-toggle="tooltip" title="Localizations"><i class="fas fa-map-marked-alt"></i></a>
 						                			</li>
 						                		</ul>
 						                	</td>
 						                	<td>
-						                		<ul class="list-inline my-0">
-						                			<li class="list-inline-item">
-						                				<a href="#" class="btn btn-secondary btn-orange btn-sm" title="Details"><i class="far fa-eye"></i> Details</a>
+						                		<ul class="list-unstyled my-0">
+						                			<li>
+						                				<a href="#" class="btn btn-secondary btn-orange btn-sm btn-block" title="Details"><i class="far fa-eye"></i> Details</a>
 						                			</li>
-						                			<li class="list-inline-item">
-						                				<a href="#" class="btn btn-secondary btn-cyan btn-sm" title="Update"><i class="far fa-edit"></i> Update</a>
+						                			<li>
+						                				<a href="#" class="btn btn-secondary btn-cyan btn-sm btn-block" title="Update"><i class="far fa-edit"></i> Update</a>
 						                			</li>
-						                			<li class="list-inline-item">
+						                			<li>
 						                				<a href="javascript:;" 
-						                					class="btn btn-secondary btn-red btn-sm" 
+						                					class="btn btn-secondary btn-red btn-sm btn-block" 
 						                					title="Delete"
 						                					data-toggle="modal" 
 						                					data-target="#deleteModal" 

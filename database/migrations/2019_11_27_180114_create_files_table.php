@@ -19,6 +19,8 @@ class CreateFilesTable extends Migration
             $table->string('caption');
             $table->string('file');
             $table->timestamps();
+
+            $table->index('event_id');
         });
     }
 

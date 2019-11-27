@@ -10,7 +10,7 @@ use Auth;
 use Image;
 use Hash;
 
-class UserController extends Controller
+class UsersController extends Controller
 {   
 
     public function dashboard()

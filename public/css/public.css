@@ -115,8 +115,11 @@ p {
 }
 
 #dashboard td {
-  line-height: 4em;
   vertical-align: middle !important;
+}
+
+#dashboard li {
+  margin: 5px;
 }
 
 .section-title,
@@ -643,7 +646,7 @@ footer {
   outline: 2px dashed #FC665F;
   outline-offset: -10px;
   transition: outline-offset 0.15s ease-in-out, background-color 0.15s linear;
-  padding: 30px 0px 60px 5%;
+  padding: 60px 0px 90px 5%;
   text-align: center !important;
   margin: 0;
   width: 100% !important;
