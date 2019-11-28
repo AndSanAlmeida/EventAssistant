@@ -24,9 +24,11 @@ class FilesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('public.pages.file.create');
+        $event = Event::findOrFail($id);
+
+        return view('public.pages.file.create', compact('event'));
     }
 
     /**
@@ -39,15 +41,16 @@ class FilesController extends Controller
     {
         $data = request()->validate([
             'caption' => ['required', 'string', 'min:6', 'max:30'],
-            'fileUpload' => ['required', 'image', 'file', 'max:1024'],
-            // 'event_id' => '',
+            'file' => ['required', 'image', 'file', 'max:1024'],
+            'event_id' => ['required'],
         ]);
-        
 
-        if (request('fileUpload')) {
-
-            event()->files()->create($data);
-            // dd(request()->all());
+        if (request('file')) {
+            
+            $file = new File();
+            $file->fill($request->all());
+            $file->save();
+            
             return redirect()->route('public.dashboard')->with('success', 'Your file was uploaded with success!');
 
         } else {

@@ -39,9 +39,9 @@
                                     autocomplete="Name" autofocus>
 
                                 @if ($errors->has('name'))
-                                  <span class="invalid-feedback" role="alert">
-                                      <strong>{{ $errors->first('name') }}</strong>
-                                  </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -57,11 +57,11 @@
                                     value="{{ old('email') ?? $user->email }}"
                                     autocomplete="Email" autofocus>
 
-                              @if ($errors->has('email'))
-                                  <span class="invalid-feedback" role="alert">
-                                      <strong>{{ $errors->first('email') }}</strong>
-                                  </span>
-                              @endif
+                                 @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

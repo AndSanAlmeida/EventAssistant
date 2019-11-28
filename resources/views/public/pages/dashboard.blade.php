@@ -62,11 +62,10 @@
 						                	<td>
 						                		<ul class="list-unstyled my-0">
 						                			<li>
-						                				<a href="{{ route('public.file.create') }}" class="btn btn-secondary btn-block" data-toggle="tooltip" title="File / Image"><i class="fas fa-file-import"></i></a>
-
+						                				<a href="{{ route('public.file.create', $event->id) }}" class="btn btn-secondary btn-purple btn-block" title="Add Files"><i class="fas fa-file-import"></i> Files</a>
 						                			</li>
 						                			<li>
-						                				<a href="#" class="btn btn-secondary btn-block" data-toggle="tooltip" title="Localizations"><i class="fas fa-map-marked-alt"></i></a>
+						                				<a href="#" class="btn btn-secondary btn-purple btn-block" title="Add Localizations"><i class="fas fa-map-marked-alt"></i> Localizations</a>
 						                			</li>
 						                		</ul>
 						                	</td>

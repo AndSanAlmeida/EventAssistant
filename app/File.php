@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class File extends Model
 {
     protected $fillable = [
-        'caption', 'file',
+        'caption', 'file', 'event_id'
     ];
     
     public function event() {

@@ -62,6 +62,6 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::delete('/event/{event}', 'EventsController@destroy')->name('event.destroy');
 
 	// PublicDashboard - FileController
-	Route::get('/file/create', 'FilesController@create')->name('file.create');
+	Route::get('/file/{event}/create', 'FilesController@create')->name('file.create');
 	Route::post('/file', 'FilesController@store')->name('file.store');
 });

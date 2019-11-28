@@ -35,12 +35,12 @@
 									required
 									placeholder="Ex: Michael and Julia" 
 									autocomplete="Name" autofocus>
+								@if ($errors->has('name'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('name') }}</strong>
+									</span>
+								@endif
 							</div>
-							@if ($errors->has('name'))
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $errors->first('name') }}</strong>
-								</span>
-							@endif
 						</div>
 
 						<div class="form-group row">
@@ -55,12 +55,12 @@
 									value="{{ old('date') }}"
 									required
 									autocomplete="Name" autofocus>
+								@if ($errors->has('date'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('date') }}</strong>
+									</span>
+								@endif
 							</div>
-							@if ($errors->has('date'))
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $errors->first('date') }}</strong>
-								</span>
-							@endif
 
 							{{-- Hour --}}
 							<label for="hour" class="col-md-2 col-form-label">Hour</label>
@@ -72,12 +72,12 @@
 									value="{{ old('hour') }}"
 									required
 									autocomplete="Name" autofocus>
+								@if ($errors->has('hour'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('hour') }}</strong>
+									</span>
+								@endif
 							</div>
-							@if ($errors->has('hour'))
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $errors->first('hour') }}</strong>
-								</span>
-							@endif
 						</div>	
 						
 						{{-- Actions --}}

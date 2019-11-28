@@ -17,7 +17,7 @@ class CreateFilesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('event_id');
             $table->string('caption');
-            $table->string('file');
+            $table->string('fileUpload');
             $table->timestamps();
 
             $table->index('event_id');

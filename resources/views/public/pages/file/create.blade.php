@@ -18,6 +18,8 @@
 			<form action="{{ route('public.file.store') }}" enctype="multipart/form-data" method="POST">
 				@csrf
 
+				<input name="event_id" value="{{$event->id}}" style="display: none">
+
 				<div class="row">
 					<div class="col-md-8 offset-md-2">
 
@@ -35,29 +37,29 @@
 									required
 									placeholder="Ex: Event Invite" 
 									autocomplete="Caption" autofocus>
-							</div>
-							@if ($errors->has('caption'))
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $errors->first('caption') }}</strong>
-								</span>
-							@endif
+								@if ($errors->has('caption'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('caption') }}</strong>
+									</span>
+								@endif
+							</div>							
 						</div>
 
 						{{-- File --}}
 						<div class="form-group row files">
-			                <label for="fileUpload" class="col-12 col-form-label">Upload Your File</label>
+			                <label for="file" class="col-12 col-form-label">Upload Your File</label>
 			                <div class="col-12">
-				                <input id="fileUpload" 
+				                <input id="file" 
 					                type="file" 
-					                name="fileUpload" 
+					                name="file" 
 					                class="form-control"
 					                value="{{ old('fileUpload') }}">
+				                @if ($errors->has('file'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('file') }}</strong>
+									</span>
+								@endif
 					        </div>
-			                @if ($errors->has('fileUpload'))
-								<span class="invalid-feedback" role="alert">
-									<strong>{{ $errors->first('fileUpload') }}</strong>
-								</span>
-							@endif
 			            </div>
 
 						{{-- Actions --}}
