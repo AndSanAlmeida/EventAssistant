@@ -40,14 +40,14 @@ class FilesController extends Controller
         $data = request()->validate([
             'caption' => ['required', 'string', 'min:6', 'max:30'],
             'fileUpload' => ['required', 'image', 'file', 'max:1024'],
-            'event_id' => '',
+            // 'event_id' => '',
         ]);
         
-        // dd(request()->all());
 
         if (request('fileUpload')) {
 
-            File::create($data);
+            event()->files()->create($data);
+            // dd(request()->all());
             return redirect()->route('public.dashboard')->with('success', 'Your file was uploaded with success!');
 
         } else {
