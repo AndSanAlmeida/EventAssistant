@@ -15,7 +15,7 @@
 
 			@include('public.partials._alerts')
 
-			<form action="{{ route('public.event.store') }}" enctype="form-data" method="POST">
+			<form action="{{ route('public.events.store') }}" enctype="form-data" method="POST">
 				@csrf
 
 				<div class="row">

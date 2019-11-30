@@ -102,10 +102,19 @@ p {
 
 #dashboard {
   td {
+    line-height: 3.5em;
     vertical-align: middle !important;
   }
   li {
-    margin: 5px;
+    padding: 0 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  #dashboard {
+    td {
+      line-height: 2em;
+    }
   }
 }
 
@@ -195,6 +204,14 @@ a:focus, button:focus {
   color: #FC665F;
 }
 
+.text-purple {
+  color: #c863e4;
+}
+
+.text-blue {
+  color: #32a4e6;
+}
+
 a {
   color: #f15e75;
 }
@@ -248,7 +265,13 @@ a {
 }
 
 .btn-purple {
-  background-color: #a03abd !important;
+  background-color: #c863e4 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.btn-blue {
+  background-color: #32a4e6 !important;
   color: #fff !important;
   border: none !important;
 }

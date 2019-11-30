@@ -50,18 +50,22 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::get('/edit/password/user', 'UsersController@passwordEdit')->name('password.edit');
 	Route::post('/edit/password/user', 'UsersController@passwordUpdate')->name('password.update');
 
-	// PublicDashboard - EventController
+	// PublicDashboard - EventsController
 	// Route::get('/event/{event}', 'EventController@show')->name('event.show'); // ESTA A GERAR ERRO NO CREATE EVENT
 
-	Route::get('/event/create', 'EventsController@create')->name('event.create');
-	Route::post('/event', 'EventsController@store')->name('event.store');
+	Route::get('/events/create', 'EventsController@create')->name('events.create');
+	Route::post('/events', 'EventsController@store')->name('events.store');
 
-	Route::get('/edit/event', 'EventsController@edit')->name('event.edit');
-	Route::patch('/edit/event', 'EventsController@update')->name('event.update');
+	Route::get('/edit/events', 'EventsController@edit')->name('events.edit');
+	Route::patch('/edit/events', 'EventsController@update')->name('events.update');
 
-	Route::delete('/event/{event}', 'EventsController@destroy')->name('event.destroy');
+	Route::delete('/events/{event}', 'EventsController@destroy')->name('events.destroy');
 
-	// PublicDashboard - FileController
-	Route::get('/file/{event}/create', 'FilesController@create')->name('file.create');
-	Route::post('/file', 'FilesController@store')->name('file.store');
+	// PublicDashboard - FilesController
+	Route::get('/files/{event}/create', 'FilesController@create')->name('files.create');
+	Route::post('/files', 'FilesController@store')->name('files.store');
+
+	// PublicDashboard - LocalizationsController
+	Route::get('/localizations/{event}/create', 'LocalizationsController@create')->name('localizations.create');
+	Route::post('/localizations', 'LocalizationsController@store')->name('localizations.store');
 });

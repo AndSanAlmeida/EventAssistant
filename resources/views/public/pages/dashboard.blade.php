@@ -18,7 +18,7 @@
 			@include('public.partials._alerts')
 
             <div class="title-wrap">
-                <h2 class="section-title">Dahsboard</h2>
+                <h2 class="section-title">Dashboard</h2>
             </div>
 
 			<div class="row">
@@ -26,7 +26,7 @@
 					<p class="h1">List of Events</p>
 				</div>
 				<div class="col-6">
-					<a href="{{ route('public.event.create') }}" class="btn btn-secondary btn-red float-right" ><i class="fas fa-plus"></i>Add New Event</a>
+					<a href="{{ route('public.events.create') }}" class="btn btn-secondary btn-red float-right" ><i class="fas fa-plus"></i>Add New Event</a>
 				</div>
 			</div>
 
@@ -42,7 +42,7 @@
 
 					<div class="col-12 mt-4">
 						<div class="table-responsive">
-						    <table id="dashboard" class="table table-borderless table-hover">
+						    <table id="dashboard" class="table table-hover">
 						        <thead>
 						            <tr>
 						                <th>Name</th>
@@ -60,36 +60,35 @@
 						                	<td>{{ date('F d, Y', strtotime($event->date)) }}</td>
 						                	<td>{!! $event->isActive() !!}</td>
 						                	<td>
-						                		<ul class="list-unstyled my-0">
-						                			<li>
-						                				<a href="{{ route('public.file.create', $event->id) }}" class="btn btn-secondary btn-purple btn-block" title="Add Files"><i class="fas fa-file-import"></i> Files</a>
+						                		<ul class="list-inline my-0">
+						                			<li class="list-inline-item">
+						                				<a href="{{ route('public.files.create', $event->id) }}" class="text-purple" data-toggle="tooltip" title="Add Files / Images"><i class="fas fa-file-import"></i></a>
 						                			</li>
-						                			<li>
-						                				<a href="#" class="btn btn-secondary btn-purple btn-block" title="Add Localizations"><i class="fas fa-map-marked-alt"></i> Localizations</a>
+						                			<li class="list-inline-item">
+						                				<a href="{{ route('public.localizations.create', $event->id) }}" class="text-purple" data-toggle="tooltip" title="Add Localizations"><i class="fas fa-map-marked-alt"></i></a>
 						                			</li>
 						                		</ul>
 						                	</td>
 						                	<td>
-						                		<ul class="list-unstyled my-0">
-						                			<li>
-						                				<a href="#" class="btn btn-secondary btn-orange btn-sm btn-block" title="Details"><i class="far fa-eye"></i> Details</a>
+						                		<ul class="list-inline my-0">
+						                			<li class="list-inline-item">
+						                				<a href="#" class="text-orange" data-toggle="tooltip" title="Preview Event"><i class="far fa-eye"></i></a>
 						                			</li>
-						                			<li>
-						                				<a href="#" class="btn btn-secondary btn-cyan btn-sm btn-block" title="Update"><i class="far fa-edit"></i> Update</a>
+						                			<li class="list-inline-item">
+						                				<a href="#" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
 						                			</li>
-						                			<li>
+						                			<li class="list-inline-item" data-toggle="modal" data-target="#deleteModal" >
 						                				<a href="javascript:;" 
-						                					class="btn btn-secondary btn-red btn-sm btn-block" 
+						                					class="text-red" 
+						                					data-toggle="tooltip" 
 						                					title="Delete"
-						                					data-toggle="modal" 
-						                					data-target="#deleteModal" 
 						                					onclick="deleteData({{$event->id}})">
-						                					<i class="far fa-trash-alt"></i> Delete
+						                					<i class="far fa-trash-alt"></i>
 						                				</a>
 						                			</li>
 						                		</ul>
 						                	</td>
-						                	<td><a href="#" title="Link"><i class="fas fa-share-alt"></i> Link</a></td>
+						                	<td><a href="#" class="text-blue" data-toggle="tooltip" title="Link"><i class="fas fa-share-alt"></i> Link</a></td>
 						            	</tr>
 						            @endforeach
 						        </tbody>
@@ -132,7 +131,7 @@
 <script type="text/javascript">
 	function deleteData(id) {
 		 var id = id;
-		 var url = '{{ route('public.event.destroy', ":id") }}';
+		 var url = '{{ route('public.events.destroy', ":id") }}';
 		 url = url.replace(':id', id);
 		 $("#deleteForm").attr('action', url);
 	}

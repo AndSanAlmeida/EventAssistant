@@ -4,10 +4,9 @@ namespace App\Http\Controllers\PublicAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\File;
 use App\Event;
 
-class FilesController extends Controller
+class LocalizationsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +27,7 @@ class FilesController extends Controller
     {
         $event = Event::findOrFail($id);
 
-        return view('public.pages.files.create', compact('event'));
+        return view('public.pages.localizations.create', compact('event'));
     }
 
     /**
@@ -39,23 +38,7 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
-            'caption' => ['required', 'string', 'min:6', 'max:30'],
-            'file' => ['required', 'image', 'file', 'max:1024'],
-            'event_id' => ['required'],
-        ]);
-
-        if (request('file')) {
-            
-            $file = new File();
-            $file->fill($request->all());
-            $file->save();
-            
-            return redirect()->route('public.dashboard')->with('success', 'Your file was uploaded with success!');
-
-        } else {
-            return redirect()->back()->withInput()->with('error', 'Something went wrong with your Upload! Try again.');
-        }
+        //
     }
 
     /**

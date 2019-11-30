@@ -15,7 +15,7 @@
 
 			@include('public.partials._alerts')
 
-			<form action="{{ route('public.file.store') }}" enctype="multipart/form-data" method="POST">
+			<form action="{{ route('public.files.store') }}" enctype="multipart/form-data" method="POST">
 				@csrf
 
 				<input name="event_id" value="{{$event->id}}" style="display: none">
