@@ -4,7 +4,9 @@ namespace App\Http\Controllers\PublicAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 use App\Event;
+use App\Localization;
 
 class LocalizationsController extends Controller
 {
@@ -38,7 +40,26 @@ class LocalizationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Validator::make($request->all(), [
+            'localization' => ['required', 'string', 'min:6', 'max:30'],
+            'latitude' => ['required','regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'], 
+            'longitude' => ['required','regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/']
+        ], [
+            'latitude.regex' => 'Latitude value appears to be incorrect format.',
+            'longitude.regex' => 'Longitude value appears to be incorrect format.'
+        ]);
+
+        if (!$data->fails()) {
+
+            $localization = new Localization();
+            $localization->fill($request->all());
+            $localization->save();
+
+            return redirect()->route('public.dashboard')->with('success', 'Your localization was added with success!');
+
+        } else {
+            return redirect()->back()->withErrors($data->errors())->withInput()->with('error', 'Something went wrong adding the localization! Try Again.');
+        }
     }
 
     /**

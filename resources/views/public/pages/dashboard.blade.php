@@ -62,10 +62,10 @@
 						                	<td>
 						                		<ul class="list-inline my-0">
 						                			<li class="list-inline-item">
-						                				<a href="{{ route('public.files.create', $event->id) }}" class="text-purple" data-toggle="tooltip" title="Add Files / Images"><i class="fas fa-file-import"></i></a>
+						                				<a href="{{ route('public.files.create', $event->id) }}" class="text-darkblue" data-toggle="tooltip" title="Add Files / Images"><i class="fas fa-file-import"></i></a>
 						                			</li>
 						                			<li class="list-inline-item">
-						                				<a href="{{ route('public.localizations.create', $event->id) }}" class="text-purple" data-toggle="tooltip" title="Add Localizations"><i class="fas fa-map-marked-alt"></i></a>
+						                				<a href="{{ route('public.localizations.create', $event->id) }}" class="text-darkblue" data-toggle="tooltip" title="Add Localizations"><i class="fas fa-map-marked-alt"></i></a>
 						                			</li>
 						                		</ul>
 						                	</td>
@@ -88,7 +88,7 @@
 						                			</li>
 						                		</ul>
 						                	</td>
-						                	<td><a href="#" class="text-blue" data-toggle="tooltip" title="Link"><i class="fas fa-share-alt"></i> Link</a></td>
+						                	<td><a href="#" class="text-lightblue" data-toggle="tooltip" title="Link"><i class="fas fa-share-alt"></i> Link</a></td>
 						            	</tr>
 						            @endforeach
 						        </tbody>

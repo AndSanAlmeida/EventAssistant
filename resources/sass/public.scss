@@ -208,8 +208,12 @@ a:focus, button:focus {
   color: #c863e4;
 }
 
-.text-blue {
+.text-lightblue {
   color: #32a4e6;
+}
+
+.text-darkblue {
+  color: #6367e4;
 }
 
 a {
@@ -270,8 +274,14 @@ a {
   border: none !important;
 }
 
-.btn-blue {
+.btn-lightblue {
   background-color: #32a4e6 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.btn-darkblue {
+  background-color: #6367e4 !important;
   color: #fff !important;
   border: none !important;
 }

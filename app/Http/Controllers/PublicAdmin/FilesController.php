@@ -41,7 +41,7 @@ class FilesController extends Controller
     {
         $data = request()->validate([
             'caption' => ['required', 'string', 'min:6', 'max:30'],
-            'file' => ['required', 'image', 'file', 'max:1024'],
+            'file' => ['required', 'mimetypes:application/pdf,jpeg,png', 'file', 'max:1024'],
             'event_id' => ['required'],
         ]);
 

@@ -52,8 +52,8 @@
 				                <input id="file" 
 					                type="file" 
 					                name="file" 
-					                class="form-control"
-					                value="{{ old('fileUpload') }}">
+					                class="form-control {{ $errors->has('file') ? ' is-invalid' : '' }}"
+					                value="{{ old('file') }}">
 				                @if ($errors->has('file'))
 									<span class="invalid-feedback" role="alert">
 										<strong>{{ $errors->first('file') }}</strong>
