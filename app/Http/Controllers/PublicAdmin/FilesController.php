@@ -4,8 +4,10 @@ namespace App\Http\Controllers\PublicAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Validator;
 use App\File;
 use App\Event;
+use Image;
 
 class FilesController extends Controller
 {
@@ -39,16 +41,27 @@ class FilesController extends Controller
      */
     public function store(Request $request)
     {
-        $data = request()->validate([
+        $data = Validator::make($request->all(), [
             'caption' => ['required', 'string', 'min:6', 'max:30'],
-            'file' => ['required', 'mimetypes:application/pdf,jpeg,png', 'file', 'max:1024'],
+            // 'file' => ['required', 'mimetypes:application/pdf,jpeg,png', 'file', 'max:1024'],
+            'file' => ['required', 'image', 'file', 'max:1024'],
             'event_id' => ['required'],
-        ]);
+        ]);        
 
-        if (request('file')) {
-            
+        if(!$data->fails()) {
+
+            if (request('file')) {
+
+                $filePath = request('file')->store('files', 'public');
+
+                $fileImage = Image::make(public_path("storage/{$filePath}"));
+                $fileImage->save();
+            }
+
             $file = new File();
-            $file->fill($request->all());
+            $file->event_id = $request->event_id;
+            $file->caption = $request->caption;
+            $file->file = $filePath;
             $file->save();
             
             return redirect()->route('public.dashboard')->with('success', 'Your file was uploaded with success!');
