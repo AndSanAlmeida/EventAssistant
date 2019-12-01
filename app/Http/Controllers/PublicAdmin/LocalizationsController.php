@@ -4,6 +4,7 @@ namespace App\Http\Controllers\PublicAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
 use Validator;
 use App\Event;
 use App\Localization;
@@ -25,10 +26,12 @@ class LocalizationsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create(Event $event)
     {
-        $event = Event::findOrFail($id);
-
+        if (Auth::user()->id != $event->user_id) {
+            return redirect()->back();
+        }
+        
         return view('public.pages.localizations.create', compact('event'));
     }
 
