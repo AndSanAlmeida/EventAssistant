@@ -394,6 +394,62 @@ a {
   }
 }
 
+.eventFiles {
+  position:relative;
+  overflow: hidden;
+
+  &-item-wrapper {
+    position:relative;
+    &:before {
+      content: '';
+      display: block;
+      background: rgba(255, 255, 255, 0.7);
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transition: all .3s ease;
+      opacity: 0;
+    }
+
+    &:hover:before {
+      opacity: 1;
+    }
+  }
+
+  &-item {
+    width: 32%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+
+    &:hover .eventFiles-info {
+      top: 50%;
+      opacity: 1;
+    }
+  }
+
+  &-link a {
+    margin: 5px;
+    font-size: 20px;
+    color: #000;
+  }
+
+  &-info {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .3s ease;
+  }
+
+  &-title {
+    text-align: center;
+  } 
+}
+
 .grid-link a {
   margin: 5px;
   font-size: 20px;

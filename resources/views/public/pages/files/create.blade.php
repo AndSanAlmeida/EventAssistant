@@ -53,6 +53,7 @@
 					                type="file" 
 					                name="file" 
 					                class="form-control {{ $errors->has('file') ? ' is-invalid' : '' }}"
+					                required
 					                value="{{ old('file') }}">
 				                @if ($errors->has('file'))
 									<span class="invalid-feedback" role="alert">

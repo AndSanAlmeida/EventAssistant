@@ -407,6 +407,63 @@ a {
   cursor: pointer;
 }
 
+.eventFiles {
+  position: relative;
+  overflow: hidden;
+}
+
+.eventFiles-item-wrapper {
+  position: relative;
+}
+
+.eventFiles-item-wrapper:before {
+  content: "";
+  display: block;
+  background: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.eventFiles-item-wrapper:hover:before {
+  opacity: 1;
+}
+
+.eventFiles-item {
+  width: 32%;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.eventFiles-item:hover .eventFiles-info {
+  top: 50%;
+  opacity: 1;
+}
+
+.eventFiles-link a {
+  margin: 5px;
+  font-size: 20px;
+  color: #000;
+}
+
+.eventFiles-info {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.eventFiles-title {
+  text-align: center;
+}
+
 .grid-link a {
   margin: 5px;
   font-size: 20px;
