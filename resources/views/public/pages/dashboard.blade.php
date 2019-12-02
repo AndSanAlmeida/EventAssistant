@@ -39,7 +39,6 @@
 						</div>		              					
 					</div>
 				@else
-
 					<div class="col-12 mt-4">
 						<div class="table-responsive">
 						    <table id="dashboard" class="table table-hover">
@@ -72,7 +71,7 @@
 						                	<td>
 						                		<ul class="list-inline my-0">
 						                			<li class="list-inline-item">
-						                				<a href="#" class="text-orange" data-toggle="tooltip" title="Preview Event"><i class="far fa-eye"></i></a>
+						                				<a href="{{ route('public.events.show', $event) }}" class="text-orange" data-toggle="tooltip" title="Preview Event"><i class="far fa-eye"></i></a>
 						                			</li>
 						                			<li class="list-inline-item">
 						                				<a href="#" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>

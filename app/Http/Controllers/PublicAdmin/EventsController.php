@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Event;
+use Auth;
 
 class EventsController extends Controller
 {
@@ -69,9 +70,13 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Event $event)
     {
-        //
+        if (Auth::user()->id != $event->user_id) {
+            return redirect()->back();
+        }
+
+        return view('public.pages.events.show', compact('event'));
     }
 
     /**
