@@ -395,7 +395,8 @@ a {
 }
 
 .eventFiles {
-  position:relative;
+  display: flex;
+  flex-wrap: wrap;
   overflow: hidden;
 
   &-item-wrapper {
@@ -403,7 +404,7 @@ a {
     &:before {
       content: '';
       display: block;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.8);
       position: absolute;
       top: 0;
       right: 0;
@@ -419,13 +420,13 @@ a {
   }
 
   &-item {
-    width: 32%;
-    margin-bottom: 20px;
+    width: 33%;
+    padding: 0.5rem;
     border-radius: 5px;
     overflow: hidden;
 
     &:hover .eventFiles-info {
-      top: 50%;
+      top: 40%;
       opacity: 1;
     }
   }
@@ -440,13 +441,29 @@ a {
     position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -20%);
     opacity: 0;
     transition: all .3s ease;
   }
 
   &-title {
     text-align: center;
+  } 
+}
+
+@media (max-width: 992px) { 
+  .eventFiles {
+    &-item {
+      width: 50%;
+    }
+  } 
+}
+
+@media (max-width: 768px) { 
+  .eventFiles {
+    &-item {
+      width: 100%;
+    }
   } 
 }
 
@@ -804,10 +821,10 @@ footer {
   padding: 0.5em 1em;
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 65%;
+  // font-size: 65%;
 }
 
 .tooltip {
-  font-size:  1.3rem;
+  font-size:  1.4rem;
 }
 

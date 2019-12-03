@@ -68,7 +68,7 @@
 							<div class="col-12">
 								<ul class="list-inline float-right">
 									<li class="list-inline-item"><a href="{{ route('public.dashboard') }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
-									<li class="list-inline-item"><button type="submit" class="btn btn-secondary btn-red" title="Submit">Import</button></li>
+									<li class="list-inline-item"><button type="submit" class="btn btn-secondary btn-red" title="Submit">Import File</button></li>
 								</ul>
 							</div>
 						</div>
