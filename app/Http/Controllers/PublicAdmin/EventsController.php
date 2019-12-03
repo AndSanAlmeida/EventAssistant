@@ -85,9 +85,13 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Event $event)
     {
-        //
+        if (Auth::user()->id != $event->user_id) {
+            return redirect()->back();
+        }  
+          
+        return view('public.pages.events.edit', compact('event'));
     }
 
     /**

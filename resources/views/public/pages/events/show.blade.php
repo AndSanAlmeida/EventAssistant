@@ -35,7 +35,7 @@
 
                             @if ($event->files->isEmpty())
                                 <div class="alert alert-warning" role="alert">
-                                    There are no Files associated with the event.
+                                    There are no Files associated with the event!
                                     <a href="{{ route('public.files.create', $event) }}" class="alert-link">Click here to Import</a>
                                 </div>
                             @else
@@ -68,8 +68,8 @@
                         <div class="col-12">
                             @if ($event->localizations->isEmpty())
                                 <div class="alert alert-warning" role="alert">
-                                    There are no Localizations associated with the event.
-                                    <a href="{{ route('public.localizations.create', $event) }}" class="alert-link">Click here to Import</a>
+                                    There are no Localizations associated with the event! 
+                                    <a href="{{ route('public.localizations.create', $event) }}" class="alert-link">Click here to Add</a>
                                 </div>
                             @else
                                 <ul class="list-unstyled">
@@ -89,7 +89,7 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <a href="{{ route('public.dashboard') }}" title="Back" class="float-right">Back</a>
+                            <a href="{{ redirect()->back()->getTargetUrl() }}" title="Back" class="float-right">Back</a>
                         </div>
                     </div>
 

@@ -71,10 +71,10 @@
 						                	<td>
 						                		<ul class="list-inline my-0">
 						                			<li class="list-inline-item">
-						                				<a href="{{ route('public.events.show', $event) }}" class="text-orange" data-toggle="tooltip" title="Preview Event"><i class="far fa-eye"></i></a>
+						                				<a href="{{ route('public.events.show', $event) }}" class="text-orange" data-toggle="tooltip" title="Preview"><i class="far fa-eye"></i></a>
 						                			</li>
 						                			<li class="list-inline-item">
-						                				<a href="#" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
+						                				<a href="{{ route('public.events.edit', $event) }}" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
 						                			</li>
 						                			<li class="list-inline-item" data-toggle="modal" data-target="#deleteModal" >
 						                				<a href="javascript:;" 
