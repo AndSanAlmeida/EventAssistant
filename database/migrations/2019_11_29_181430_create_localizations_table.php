@@ -22,6 +22,7 @@ class CreateLocalizationsTable extends Migration
             $table->timestamps();
 
             $table->index('event_id');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
 

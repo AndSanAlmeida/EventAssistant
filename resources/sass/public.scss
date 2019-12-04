@@ -100,7 +100,7 @@ p {
   line-height: 1.5em;
 }
 
-#dashboard {
+#dashboard, #files, #localization {
   td {
     line-height: 3.5em;
     vertical-align: middle !important;
@@ -111,7 +111,7 @@ p {
 }
 
 @media (max-width: 768px) {
-  #dashboard {
+  #dashboard, #files, #localization  {
     td {
       line-height: 2em;
     }

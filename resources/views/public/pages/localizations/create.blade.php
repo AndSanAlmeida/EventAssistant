@@ -13,17 +13,18 @@
 				<h2 class="section-title">Add New Localization</h2>
 			</div>
 
+			{{-- Alerts --}}
 			@include('public.partials._alerts')
 
-			<form action="{{ route('public.localizations.store') }}" enctype="form-data" method="POST">
-				@csrf
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
 
-				<input name="event_id" value="{{$event->id}}" style="display: none">
+					<form action="{{ route('public.localizations.store') }}" enctype="form-data" method="POST">
+						@csrf
 
-				<div class="row">
-					<div class="col-md-8 offset-md-2">
+						<input name="event_id" value="{{$event->id}}" style="display: none">
 
-						<h4 class="mb-4">General Information</h4>
+						<h4 class="my-4">General Information</h4>
 
 						{{-- Localization Name --}}
 						<div class="form-group row">
@@ -93,11 +94,9 @@
 								</ul>
 							</div>
 						</div>
-
-					</div>
-				</div>				
-
-			</form>
+					</form>
+				</div>
+			</div>				
 
 		</div>
 	</div>

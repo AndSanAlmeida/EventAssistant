@@ -107,6 +107,12 @@ class LocalizationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $localization = Localization::findOrFail($id);
+        if ($localization) {
+            $localization->delete();
+            return redirect()->back()->with('success', 'Localization has been deleted.');
+        }
+
+        return redirect()->back()->with('warning', 'This localization cant be deleted.');
     }
 }

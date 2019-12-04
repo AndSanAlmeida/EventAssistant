@@ -101,9 +101,9 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
@@ -117,9 +117,9 @@ class EventsController extends Controller
         $event = Event::findOrFail($id);
         if ($event) {
             $event->delete();
-            return redirect()->route('public.dashboard')->with('success', 'Event has been deleted.');
+            return redirect()->back()->with('success', 'Event has been deleted.');
         }
 
-        return redirect()->route('public.dashboard')->with('warning', 'This event can not be deleted.');
+        return redirect()->back()->with('warning', 'This event cant be deleted.');
     }
 }

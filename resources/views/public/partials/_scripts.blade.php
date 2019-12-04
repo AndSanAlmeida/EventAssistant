@@ -14,7 +14,7 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
 	crossorigin="anonymous"></script>
 
-<script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+{{-- <script src="{{ asset('vendor/select2/select2.min.js') }}"></script> --}}
 <script src="{{ asset('vendor/owlcarousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('vendor/isotope/isotope.min.js') }}"></script>
 <script src="{{ asset('vendor/lightcase/lightcase.js') }}"></script>

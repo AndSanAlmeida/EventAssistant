@@ -65,7 +65,11 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::get('/files/createOnEvent/{event}', 'FilesController@create')->name('files.create');
 	Route::post('/files', 'FilesController@store')->name('files.store');
 
+	Route::delete('/files/{file}', 'FilesController@destroy')->name('files.destroy');
+
 	// PublicDashboard - LocalizationsController
 	Route::get('/localizations/createOnEvent/{event}', 'LocalizationsController@create')->name('localizations.create');
 	Route::post('/localizations', 'LocalizationsController@store')->name('localizations.store');
+
+	Route::delete('/localizations/{localization}', 'LocalizationsController@destroy')->name('localizations.destroy');
 });

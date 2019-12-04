@@ -21,83 +21,90 @@
                 <h2 class="section-title">Dashboard</h2>
             </div>
 
-			<div class="row">
-				<div class="col-6">
-					<p class="h1">List of Events</p>
-				</div>
-				<div class="col-6">
-					<a href="{{ route('public.events.create') }}" class="btn btn-secondary btn-red float-right" ><i class="fas fa-plus"></i>Add New Event</a>
-				</div>
-			</div>
-
-			<div class="row">
-				@if (auth()->user()->getUserEvents()->isEmpty())
-					<div class="col-12 mt-4">
-						<div class="alert alert-danger" role="alert">
-						  	<h4 class="alert-heading">Error!</h4>
-						  	<p>There is no events yiet! You must first create one.</p>						  	
-						</div>		              					
-					</div>
-				@else
-					<div class="col-12 mt-4">
-						<div class="table-responsive">
-						    <table id="dashboard" class="table table-hover">
-						        <thead>
-						            <tr>
-						                <th>Name</th>
-						                <th>Date</th>
-						                <th>Status</th>
-						                <th>Add</th>
-						                <th>Actions</th>
-						                <th>Share</th>
-						            </tr>
-						        </thead>
-						        <tbody>
-						        	@foreach (auth()->user()->events as $event)
-						            	<tr>
-						                	<td>{{ $event->name }}</td>
-						                	<td>{{ date('F d, Y', strtotime($event->date)) }}</td>
-						                	<td>{!! $event->isActive() !!}</td>
-						                	<td>
-						                		<ul class="list-inline my-0">
-						                			<li class="list-inline-item">
-						                				<a href="{{ route('public.files.create', $event) }}" class="text-darkblue" data-toggle="tooltip" title="Add Files / Images"><i class="fas fa-file-import"></i></a>
-						                			</li>
-						                			<li class="list-inline-item">
-						                				<a href="{{ route('public.localizations.create', $event) }}" class="text-darkblue" data-toggle="tooltip" title="Add Localizations"><i class="fas fa-map-marked-alt"></i></a>
-						                			</li>
-						                		</ul>
-						                	</td>
-						                	<td>
-						                		<ul class="list-inline my-0">
-						                			<li class="list-inline-item">
-						                				<a href="{{ route('public.events.show', $event) }}" class="text-orange" data-toggle="tooltip" title="Preview"><i class="far fa-eye"></i></a>
-						                			</li>
-						                			<li class="list-inline-item">
-						                				<a href="{{ route('public.events.edit', $event) }}" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
-						                			</li>
-						                			<li class="list-inline-item" data-toggle="modal" data-target="#deleteModal" >
-						                				<a href="javascript:;" 
-						                					class="text-red" 
-						                					data-toggle="tooltip" 
-						                					title="Delete"
-						                					onclick="deleteData({{$event->id}})">
-						                					<i class="far fa-trash-alt"></i>
-						                				</a>
-						                			</li>
-						                		</ul>
-						                	</td>
-						                	<td><a href="#" class="text-lightblue" data-toggle="tooltip" title="Link"><i class="fas fa-share-alt"></i> Link</a></td>
-						            	</tr>
-						            @endforeach
-						        </tbody>
-						    </table>
+            <div class="row">
+            	<div class="col-md-10 offset-md-1">
+            		
+		            <div class="row">
+						<div class="col-6">
+							<h4>List of Events</h4>
 						</div>
-					</div>	
-					
-				@endif
+						<div class="col-6">
+							<a href="{{ route('public.events.create') }}" class="btn btn-secondary btn-red float-right" ><i class="fas fa-plus"></i>Add New Event</a>
+						</div>
+					</div>
 
-			</div>
+					<div class="row">
+						@if (auth()->user()->getUserEvents()->isEmpty())
+							<div class="col-12 mt-4">
+								<div class="alert alert-danger" role="alert">
+								  	<h4 class="alert-heading">Error!</h4>
+								  	<p>There is no events yiet! You must first create one.</p>						  	
+								</div>		              					
+							</div>
+						@else
+							<div class="col-12 mt-4">
+								<div class="table-responsive">
+								    <table id="dashboard" class="table table-hover table-borderless">
+								        <thead>
+								            <tr>
+								                <th>Name</th>
+								                <th>Date</th>
+								                <th>Status</th>
+								                <th>Add</th>
+								                <th>Actions</th>
+								                <th>Share</th>
+								            </tr>
+								        </thead>
+								        <tbody>
+								        	@foreach (auth()->user()->events as $event)
+								            	<tr>
+								                	<td>{{ $event->name }}</td>
+								                	<td>{{ date('F d, Y', strtotime($event->date)) }}</td>
+								                	<td>{!! $event->isActive() !!}</td>
+								                	<td>
+								                		<ul class="list-inline my-0">
+								                			<li class="list-inline-item">
+								                				<a href="{{ route('public.files.create', $event) }}" class="text-darkblue" data-toggle="tooltip" title="Add Files / Images"><i class="fas fa-file-import"></i></a>
+								                			</li>
+								                			<li class="list-inline-item">
+								                				<a href="{{ route('public.localizations.create', $event) }}" class="text-darkblue" data-toggle="tooltip" title="Add Localizations"><i class="fas fa-map-marked-alt"></i></a>
+								                			</li>
+								                		</ul>
+								                	</td>
+								                	<td>
+								                		<ul class="list-inline my-0">
+								                			<li class="list-inline-item">
+								                				<a href="{{ route('public.events.show', $event) }}" class="text-orange" data-toggle="tooltip" title="Preview"><i class="far fa-eye"></i></a>
+								                			</li>
+								                			<li class="list-inline-item">
+								                				<a href="{{ route('public.events.edit', $event) }}" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
+								                			</li>
+								                			<li class="list-inline-item" data-toggle="modal" data-target="#deleteModal" >
+								                				<a href="javascript:;" 
+								                					class="text-red" 
+								                					data-toggle="tooltip" 
+								                					title="Delete"
+								                					onclick="deleteData({{$event->id}})">
+								                					<i class="far fa-trash-alt"></i>
+								                				</a>
+								                			</li>
+								                		</ul>
+								                	</td>
+								                	<td><a href="#" class="text-lightblue" data-toggle="tooltip" title="Link"><i class="fas fa-share-alt"></i> Link</a></td>
+								            	</tr>
+								            @endforeach
+								        </tbody>
+								    </table>
+								</div>
+							</div>	
+							
+						@endif
+
+					</div>
+
+            	</div>
+            </div>
+
 		</div>
 	</div>
 </section>

@@ -13,7 +13,7 @@ class EventsTableSeeder extends Seeder
     public function run()
     {
         // Remove Tudo quando é corrido
-        Event::truncate();
+        // Event::truncate();
 
         Event::create([
         	'user_id' => '1',

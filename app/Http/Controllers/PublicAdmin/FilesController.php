@@ -116,6 +116,12 @@ class FilesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $file = File::findOrFail($id);
+        if ($file) {
+            $file->delete();
+            return redirect()->back()->with('success', 'File has been deleted.');
+        }
+
+        return redirect()->back()->with('warning', 'This file cant be deleted.');
     }
 }
