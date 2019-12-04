@@ -121,17 +121,23 @@ p {
   vertical-align: middle !important;
 }
 
-#dashboard li,
-#files li,
-#localization li {
-  padding: 0 5px;
+#dashboard a,
+#files a,
+#localization a {
+  padding-right: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   #dashboard td,
   #files td,
   #localization td {
     line-height: 2em;
+  }
+
+  #dashboard li,
+  #files li,
+  #localization li {
+    display: block;
   }
 }
 
@@ -841,8 +847,10 @@ footer {
 
 .badge {
   padding: 0.5em 1em;
+  margin-bottom: 2px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  vertical-align: middle;
 }
 
 .tooltip {

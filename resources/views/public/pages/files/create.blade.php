@@ -13,11 +13,11 @@
 				<h2 class="section-title">Upload Files</h2>
 			</div>
 
-			{{-- Alerts --}}
-			@include('public.partials._alerts')
-
 			<div class="row">
 				<div class="col-md-8 offset-md-2">
+
+					{{-- Alerts --}}
+                    @include('public.partials._alerts')
 
 					<form action="{{ route('public.files.store') }}" enctype="multipart/form-data" method="POST">
 						@csrf

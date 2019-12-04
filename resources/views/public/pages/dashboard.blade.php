@@ -15,14 +15,15 @@
 				</div>
 			@endif
 
-			@include('public.partials._alerts')
-
             <div class="title-wrap">
                 <h2 class="section-title">Dashboard</h2>
             </div>
 
             <div class="row">
             	<div class="col-md-10 offset-md-1">
+
+            		{{-- Alerts --}}
+                    @include('public.partials._alerts')
             		
 		            <div class="row">
 						<div class="col-6">
@@ -90,7 +91,9 @@
 								                			</li>
 								                		</ul>
 								                	</td>
-								                	<td><a href="#" class="text-lightblue" data-toggle="tooltip" title="Link"><i class="fas fa-share-alt"></i> Link</a></td>
+								                	<td>
+								                		<a href="#" class="text-lightblue" data-toggle="tooltip" title="Link"><i class="fas fa-share-alt"></i></a>
+								                	</td>
 								            	</tr>
 								            @endforeach
 								        </tbody>

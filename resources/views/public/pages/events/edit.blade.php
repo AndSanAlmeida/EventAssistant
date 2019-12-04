@@ -9,15 +9,15 @@
 
         <div class="section-content-extra">
 
-            {{-- Alerts --}}
-            @include('public.partials._alerts')
-
             <div class="title-wrap">
                 <h2 class="section-title">Update Event</h2>
             </div>
 
             <div class="row">
                 <div class="col-md-10 offset-md-1">
+
+                    {{-- Alerts --}}
+                    @include('public.partials._alerts')
 
                     {{-- TABS LINKS --}}
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -89,7 +89,7 @@
                                             type="time"
                                             class="form-control {{ $errors->has('hour') ? ' is-invalid' : '' }}"
                                             name="hour"
-                                            value="{{ old('hour') ?? $event->hour }}"
+                                            value="{{ old('hour') ?? date('h:i', strtotime($event->hour)) }}"
                                             required
                                             autocomplete="Name" autofocus>
                                         @if ($errors->has('hour'))
@@ -102,19 +102,15 @@
 
                                 {{-- Status --}}
                                 <div class="form-group row">
-                                    <label for="status" class="col-md-2 col-form-label">Status</label>
-                                    <div class="form-group col-md-2">
-                                        <select id="status" name="status" class="form-control {{ $errors->has('hour') ? ' is-invalid' : '' }}" >
-                                            <option value="1" {{ ($event->active == '1') ? 'selected' : '' }}>
-                                                {{ old('status') ?? ($event->active == '1') ? 'Active' : 'Inactive' }}
-                                            </option>  
-                                            <option value="0" {{ ($event->active == '0') ? 'selected' : '' }}>
-                                                {{ old('status') ?? ($event->active == '0') ? 'Active' : 'Inactive' }}
-                                            </option>        
+                                    <label for="active" class="col-md-2 col-form-label">Status</label>
+                                    <div class="form-group col-md-4">
+                                        <select id="active" name="active" class="form-control {{ $errors->has('hour') ? ' is-invalid' : '' }}" >
+                                            <option value="1" @if ($event->active == '1') selected @endif>Active</option>
+                                            <option value="0" @if ($event->active == '0') selected @endif>Inactive</option>   
                                         </select>
-                                        @if ($errors->has('status'))
+                                        @if ($errors->has('active'))
                                             <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('status') }}</strong>
+                                                <strong>{{ $errors->first('active') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -124,7 +120,7 @@
                                 <div class="form-group row">
                                     <div class="col-12">
                                         <ul class="list-inline float-right">
-                                            <li class="list-inline-item"><a href="{{ redirect()->back()->getTargetUrl() }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
+                                            <li class="list-inline-item"><a href="{{ route('public.dashboard') }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
                                             <li class="list-inline-item"><button type="submit" class="btn btn-secondary btn-red" title="Submit">Update Event</button></li>
                                         </ul>
                                     </div>
@@ -183,6 +179,15 @@
                                         </div>
                                     @endif
 
+                                    {{-- Actions --}}
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <ul class="list-inline float-right">
+                                                <li class="list-inline-item"><a href="{{ route('public.dashboard') }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -237,6 +242,15 @@
                                             </table>
                                         </div>
                                     @endif
+
+                                    {{-- Actions --}}
+                                    <div class="form-group row">
+                                        <div class="col-12">
+                                            <ul class="list-inline float-right">
+                                                <li class="list-inline-item"><a href="{{ route('public.dashboard') }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
@@ -302,6 +316,16 @@
 </div>
 
 <script type="text/javascript">
+
+    // DATE
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = yyyy + '-' + mm + '-' + dd;
+
+    document.getElementById("date").min = today;
 
     // FILES
     function deleteFilesData(id) {

@@ -103,7 +103,25 @@ class EventsController extends Controller
      */
     public function update(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        $data = request()->validate([
+            'name' => ['required', 'string', 'min:6', 'max:30'],
+            'date' => ['required', 'date'],
+            'hour' => ['required', 'date_format:H:i'],
+            'active' => ['required', 'boolean']
+        ]);
+
+        // Data Actual
+        $currentDate = date("Y-m-d");
+        
+        if (request('date') <= $currentDate) {
+            return redirect()->back()->withInput()->with('error', 'You cannot insert an older date! Try again.');
+        } else {
+
+            auth()->user()->events()->update($data);
+
+            return redirect()->route('public.dashboard')->with('success', 'Event was updated with success!');
+        }
     }
 
     /**

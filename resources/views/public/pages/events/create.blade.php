@@ -13,13 +13,14 @@
 				<h2 class="section-title">Create Event</h2>
 			</div>
 
-			@include('public.partials._alerts')
+			<div class="row">
+				<div class="col-md-10 offset-md-1">
 
-			<form action="{{ route('public.events.store') }}" enctype="form-data" method="POST">
-				@csrf
+					{{-- Alerts --}}
+                	@include('public.partials._alerts')
 
-				<div class="row">
-					<div class="col-md-10 offset-md-1">
+            		<form action="{{ route('public.events.store') }}" enctype="form-data" method="POST">
+						@csrf
 
 						<h4 class="mb-4">General Information</h4>
 
@@ -84,16 +85,16 @@
 						<div class="form-group row">
 							<div class="col-12">
 								<ul class="list-inline float-right">
-									<li class="list-inline-item"><a href="{{ redirect()->back()->getTargetUrl() }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
+									<li class="list-inline-item"><a href="{{ route('public.dashboard') }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
 									<li class="list-inline-item"><button type="submit" class="btn btn-secondary btn-red" title="Submit">Create Event</button></li>
 								</ul>
 							</div>
 						</div>
 
-					</div>
-				</div>				
+					</form>
 
-			</form>
+				</div>
+			</div>
 
 		</div>
 	</div>

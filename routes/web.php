@@ -41,7 +41,7 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	// PublicDashboard
 	Route::get('/', 'UsersController@dashboard')->name('dashboard');
 
-	// PublicDashboard - UserController
+	// PublicDashboard - UsersController
 	Route::get('/user/{user}', 'UsersController@show')->name('user.show');
 
 	Route::get('/edit/user', 'UsersController@edit')->name('user.edit');

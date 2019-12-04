@@ -105,15 +105,18 @@ p {
     line-height: 3.5em;
     vertical-align: middle !important;
   }
-  li {
-    padding: 0 5px;
+  a {
+    padding-right: 10px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   #dashboard, #files, #localization  {
     td {
       line-height: 2em;
+    }
+    li {
+      display: block;
     }
   }
 }
@@ -819,9 +822,10 @@ footer {
 
 .badge {
   padding: 0.5em 1em;
+  margin-bottom: 2px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  // font-size: 65%;
+  vertical-align: middle;
 }
 
 .tooltip {
