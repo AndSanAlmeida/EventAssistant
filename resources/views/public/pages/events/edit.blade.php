@@ -53,6 +53,8 @@
                                             class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
                                             name="name"
                                             value="{{ old('name') ?? $event->name }}"
+                                            required
+                                            placeholder="Ex: Michael and Julia" 
                                             autocomplete="Name" autofocus>
 
                                         @if ($errors->has('name'))
@@ -160,7 +162,7 @@
                                                         <td>{{ $file->caption }}</td>
                                                         <td>
                                                             <li class="list-inline-item">
-                                                                <a href="#" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
+                                                                <a href="{{ route('public.files.edit', $file) }}" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
                                                             </li>
                                                             <li class="list-inline-item" data-toggle="modal" data-target="#deleteModalFiles" >
                                                                 <a href="javascript:;" 
@@ -224,7 +226,7 @@
                                                         <td>{{ $localization->longitude }}</td>
                                                         <td>
                                                             <li class="list-inline-item">
-                                                                <a href="#" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
+                                                                <a href="{{ route('public.localizations.edit', $localization) }}" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
                                                             </li>
                                                             <li class="list-inline-item" data-toggle="modal" data-target="#deleteModalLocalization" >
                                                                 <a href="javascript:;" 
@@ -275,7 +277,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">You really want do delete this file?</div>
+            <div class="modal-body">You really want to delete this file?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-orange" type="button" data-dismiss="modal">Cancel</button>
                 <form id="deleteFilesForm" action="" method="POST">
@@ -300,7 +302,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">You really want do delete this localization?</div>
+            <div class="modal-body">You really want to delete this localization?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-orange" type="button" data-dismiss="modal">Cancel</button>
                 <form id="deleteLocalizationForm" action="" method="POST">

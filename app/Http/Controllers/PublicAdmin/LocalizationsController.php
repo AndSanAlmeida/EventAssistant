@@ -82,9 +82,13 @@ class LocalizationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Localization $localization)
     {
-        //
+        if (Auth::user()->id != $localization->event->user_id) {
+            return redirect()->back();
+        }
+
+        return view('public.pages.localizations.edit', compact('localization'));
     }
 
     /**
@@ -94,9 +98,9 @@ class LocalizationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

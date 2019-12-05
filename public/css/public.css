@@ -857,3 +857,19 @@ footer {
   font-size: 1.4rem;
 }
 
+@media (min-width: 576px) {
+  .modal-dialog {
+    margin: 8rem auto;
+  }
+}
+
+.modal-header,
+.modal-footer,
+.modal-body {
+  padding: 1.5rem 2rem;
+}
+
+.close {
+  font-size: 2.5rem;
+}
+

@@ -91,9 +91,13 @@ class FilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(File $file)
     {
-        //
+        if (Auth::user()->id != $file->event->user_id) {
+            return redirect()->back();
+        }
+
+        return view('public.pages.files.edit', compact('file'));
     }
 
     /**
@@ -103,9 +107,9 @@ class FilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        dd($request->all());
     }
 
     /**

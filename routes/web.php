@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');
-
 // Namespace: Admin
 // Prefix: admin
 // Middleware: auth e auth.admin
@@ -57,7 +55,7 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::get('/events/{event}', 'EventsController@show')->name('events.show'); 
 
 	Route::get('/events/{event}/edit', 'EventsController@edit')->name('events.edit');
-	Route::patch('events/{event}', 'EventsController@update')->name('events.update');
+	Route::patch('/events/{event}', 'EventsController@update')->name('events.update');
 
 	Route::delete('/events/{event}', 'EventsController@destroy')->name('events.destroy');
 
@@ -65,11 +63,17 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::get('/files/createOnEvent/{event}', 'FilesController@create')->name('files.create');
 	Route::post('/files', 'FilesController@store')->name('files.store');
 
+	Route::get('/files/{file}/edit', 'FilesController@edit')->name('files.edit');
+	Route::patch('/files/{file}', 'FilesController@update')->name('files.update');
+
 	Route::delete('/files/{file}', 'FilesController@destroy')->name('files.destroy');
 
 	// PublicDashboard - LocalizationsController
 	Route::get('/localizations/createOnEvent/{event}', 'LocalizationsController@create')->name('localizations.create');
 	Route::post('/localizations', 'LocalizationsController@store')->name('localizations.store');
+
+	Route::get('/localizations/{localization}/edit', 'LocalizationsController@edit')->name('localizations.edit');
+	Route::patch('/localizations/{localization}', 'LocalizationsController@update')->name('localizations.update');
 
 	Route::delete('/localizations/{localization}', 'LocalizationsController@destroy')->name('localizations.destroy');
 });
