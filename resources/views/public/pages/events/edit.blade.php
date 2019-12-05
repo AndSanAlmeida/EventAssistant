@@ -158,7 +158,9 @@
                                                 <tbody>
                                                     @foreach($event->files as $file)
                                                     <tr>
-                                                        <td><img class="rounded" src="{{ asset('storage/'.$file->file) }}" title="{{ $file->caption }}" height="150"></td>
+                                                        <td>
+                                                            <img class="rounded" src="{{ asset('storage/'.$file->file) }}" title="{{ $file->caption }}" height="150">
+                                                        </td>
                                                         <td>{{ $file->caption }}</td>
                                                         <td>
                                                             <li class="list-inline-item">

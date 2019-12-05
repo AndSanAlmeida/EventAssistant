@@ -46,8 +46,7 @@ class FilesController extends Controller
     {
         $data = Validator::make($request->all(), [
             'caption' => ['required', 'string', 'min:6', 'max:30'],
-            // 'file' => ['required', 'mimetypes:application/pdf,jpeg,png', 'file', 'max:1024'],
-            'file' => ['required', 'image', 'file', 'max:1024'],
+            'file' => ['required', 'mimes:pdf,jpeg,png', 'file', 'max:1024'],
             'event_id' => ['required'],
         ]);        
 
@@ -55,10 +54,17 @@ class FilesController extends Controller
 
             if (request('file')) {
 
+                // Store
                 $filePath = request('file')->store('files', 'public');
 
-                $fileImage = Image::make(public_path("storage/{$filePath}"));
-                $fileImage->save();
+                // Get Extension After Store
+                $info = pathinfo($filePath);
+                $ext = $info['extension'];
+
+                if ($ext == 'jpeg' || $ext == 'png') {
+                    $fileImage = Image::make(public_path("storage/{$filePath}"));
+                    $fileImage->save();
+                }
             }
 
             $file = new File();
