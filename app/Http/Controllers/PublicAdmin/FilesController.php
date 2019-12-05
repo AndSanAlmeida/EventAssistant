@@ -127,7 +127,10 @@ class FilesController extends Controller
     public function destroy($id)
     {
         $file = File::findOrFail($id);
-        if ($file) {
+        $image_path = "/storage/".$file->file;
+
+        if ($fil && $image_path) {
+            unlink(public_path().$image_path);
             $file->delete();
             return redirect()->back()->with('success', 'File has been deleted.');
         }

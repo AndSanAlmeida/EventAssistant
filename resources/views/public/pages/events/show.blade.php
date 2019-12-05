@@ -43,11 +43,11 @@
                                 @foreach ($event->files as $file)
                                     <div class="eventFiles-item">
                                         <div class="eventFiles-item-wrapper">
-                                            <img src="{{ asset('storage/'.$file->file) }}" alt="{{ $file->caption }}" class="rounded">
+                                            <img src="{{ ($file->getExtension($file->file) == 'pdf') ? asset('img/pdf.png') : asset('storage/'.$file->file) }}" alt="{{ $file->caption }}" class="rounded">
                                             <div class="eventFiles-info">
                                                 <div class="eventFiles-link d-flex justify-content-center">
                                                     <a class="img-pop" data-rel="lightcase" href="{{ asset('storage/'.$file->file) }}" title="{{ $file->caption }}">
-                                                        <i class="fas fa-search-plus"></i>                                                
+                                                        <i class="fas fa-search-plus"></i>               
                                                     </a>
                                                 </div>
                                                 <div class="eventFiles-title">

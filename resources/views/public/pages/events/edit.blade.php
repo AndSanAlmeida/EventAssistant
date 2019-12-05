@@ -159,19 +159,19 @@
                                                     @foreach($event->files as $file)
                                                     <tr>
                                                         <td>
-                                                            <img class="rounded" src="{{ asset('storage/'.$file->file) }}" title="{{ $file->caption }}" height="150">
+                                                            <img class="rounded" src="{{ ($file->getExtension($file->file) == 'pdf') ? asset('img/pdf.png') : asset('storage/'.$file->file)}}" title="{{ $file->caption }}" height="150">
                                                         </td>
                                                         <td>{{ $file->caption }}</td>
                                                         <td>
                                                             <li class="list-inline-item">
                                                                 <a href="{{ route('public.files.edit', $file) }}" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
                                                             </li>
-                                                            <li class="list-inline-item" data-toggle="modal" data-target="#deleteModalFiles" >
+                                                            <li class="list-inline-item" data-toggle="modal" data-target="#deleteModalFile" >
                                                                 <a href="javascript:;" 
                                                                     class="text-red" 
                                                                     data-toggle="tooltip" 
                                                                     title="Delete"
-                                                                    onclick="deleteData({{$file->id}})">
+                                                                    onclick="deleteFileData({{$file->id}})">
                                                                     <i class="far fa-trash-alt"></i>
                                                                 </a>
                                                             </li>
@@ -270,11 +270,11 @@
 </section>
 
 <!-- Modal Delete Files -->
-<div class="modal fade" id="deleteModalFiles" tabindex="-1" role="dialog" aria-labelledby="deleteFilesModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteModalFile" tabindex="-1" role="dialog" aria-labelledby="deleteFileModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteFilesModalLabel">Delete!</h5>
+                <h5 class="modal-title" id="deleteFileModalLabel">Delete!</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -282,10 +282,10 @@
             <div class="modal-body">You really want to delete this file?</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary btn-orange" type="button" data-dismiss="modal">Cancel</button>
-                <form id="deleteFilesForm" action="" method="POST">
+                <form id="deleteFileForm" action="" method="POST">
                     @csrf 
                     @method('DELETE')
-                    <button type="submit" class="btn btn-secondary btn-red" data-dismiss="modal" onclick="formSubmitFiles()">
+                    <button type="submit" class="btn btn-secondary btn-red" data-dismiss="modal" onclick="formSubmitFile()">
                         <span class="text">Delete</span>
                     </button>
                 </form>
@@ -332,15 +332,15 @@
     document.getElementById("date").min = today;
 
     // FILES
-    function deleteFilesData(id) {
+    function deleteFileData(id) {
          var id = id;
          var url = '{{ route('public.files.destroy', ":id") }}';
          url = url.replace(':id', id);
-         $("#deleteFilesForm").attr('action', url);
+         $("#deleteFileForm").attr('action', url);
     }
 
-    function formSubmitFiles(){
-        $("#deleteFilesForm").submit();
+    function formSubmitFile(){
+        $("#deleteFileForm").submit();
     }
 
     // LOCALIZATIONS

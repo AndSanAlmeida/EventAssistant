@@ -14,4 +14,12 @@ class File extends Model
     public function event() {
     	return $this->belongsTo(Event::class);
     }
+
+    public function getExtension($filePath) {
+    	
+    	$info = pathinfo($filePath);
+        $ext = $info['extension'];
+
+        return $ext;
+    }	
 }
