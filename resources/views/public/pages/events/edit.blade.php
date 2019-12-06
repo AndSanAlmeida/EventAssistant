@@ -123,7 +123,7 @@
                                     <div class="col-12">
                                         <ul class="list-inline float-right">
                                             <li class="list-inline-item"><a href="{{ route('public.dashboard') }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
-                                            <li class="list-inline-item"><button type="submit" class="btn btn-secondary btn-red" title="Submit">Update Event</button></li>
+                                            <li class="list-inline-item"><button type="submit" class="btn btn-secondary btn-red" title="Submit">Save Changes</button></li>
                                         </ul>
                                     </div>
                                 </div>                           

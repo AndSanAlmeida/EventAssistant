@@ -242,7 +242,7 @@ a:hover {
 }
 
 .text-darkblue {
-  color: #6367e4;
+  color: #1e699a;
 }
 
 a {
@@ -308,7 +308,7 @@ a {
 }
 
 .btn-darkblue {
-  background-color: #6367e4 !important;
+  background-color: #1e699a !important;
   color: #fff !important;
   border: none !important;
 }
@@ -423,6 +423,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
+  align-items: center;
 }
 
 .eventFiles-item-wrapper {
@@ -725,10 +726,9 @@ footer {
 .form-field-file label {
   position: relative;
   display: inline-block;
+  margin: 0;
   width: auto;
-  line-height: 35px;
-  padding: 0 1em;
-  background: #336699;
+  padding: 0 0.5em;
   border-radius: 0.25rem;
   color: #fff;
   text-transform: uppercase;
@@ -741,11 +741,6 @@ footer {
 
 .form-field-file label i {
   margin-right: 1em;
-}
-
-.form-field-file label:hover,
-.form-field-file label:active {
-  background: shade(#336699, 34%);
 }
 
 .form-field-file input[type=file] {

@@ -17,28 +17,63 @@
             </div>
 
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="col-md-10 offset-md-1">
 
                     <form action="{{ route('public.files.update', $file) }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         @method('PATCH')
 
+                        {{-- Event ID  --}}
+                        <input name="event_id" value="{{ $file->event_id }}" class="d-none" readonly>
+
                         <div class="row">
                             <div class="col-md-5">
                                 {{-- Image --}}
-                                <img class="rounded" src="" alt="">
+                                <img class="rounded"src="{{ ($file->getExtension($file->file) == 'pdf') ? asset('img/pdf.png') : asset('storage/'.$file->file) }}" alt="{{ $file->caption }}">
                             </div>
 
                             <div class="col-md-7">
+
+                                <div class="form-group mt-4">
+                                    {{-- Caption --}}
+                                    <label for="caption">Caption</label>            
+                                    <input id="caption"
+                                        type="text"
+                                        class="form-control {{ $errors->has('caption') ? ' is-invalid' : '' }}"
+                                        name="caption"
+                                        placeholder="Ex: Event Invite" 
+                                        value="{{ old('caption') ?? $file->caption }}"
+                                        autocomplete="Caption" autofocus>
+
+                                    @if ($errors->has('caption'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('caption') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
                                 
-                                
+                                <div class="form-group files">
+                                    {{-- File --}}
+                                    <label for="file">Upload Your File</label>
+                                    <input id="file" 
+                                        type="file" 
+                                        name="file" 
+                                        class="form-control {{ $errors->has('file') ? ' is-invalid' : '' }}"
+                                        required
+                                        value="{{ old('file') ?? $file->file }}">
+                                    @if ($errors->has('file'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('file') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
 
                                 {{-- Actions --}}
                                 <div class="form-group row">                          
                                     <div class="col-12">
-                                        <ul class="list-inline">
+                                        <ul class="list-inline float-right">
                                             <li class="list-inline-item"><a href="{{ route('public.events.edit', $file->event->id) }}" class="btn btn-secondary btn-orange" title="Back">Back</a></li>
-                                            <li class="list-inline-item"><button class="btn btn-secondary btn-red" title="Submit">Save File</button></li>
+                                            <li class="list-inline-item"><button class="btn btn-secondary btn-red" title="Submit">Save Changes</button></li>
                                         </ul>                               
                                     </div>
                                 </div>

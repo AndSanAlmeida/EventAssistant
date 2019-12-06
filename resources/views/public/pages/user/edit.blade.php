@@ -69,10 +69,10 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group form-field-file">
+                                <div class="form-group form-field-file btn btn-darkblue">
                                     {{-- Profile Image --}}
                                     <label for="avatar"><i class="fas fa-upload"></i>Change Profile Image</label>
-                                    <input type="file" id="avatar" name="avatar" class="btn">
+                                    <input type="file" id="avatar" name="avatar">
 
                                     @if ($errors->has('avatar'))
                                         <strong>{{ $errors->first('avatar') }}</strong>

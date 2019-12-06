@@ -22,7 +22,7 @@
 					<form action="{{ route('public.files.store') }}" enctype="multipart/form-data" method="POST">
 						@csrf
 
-						<input name="event_id" value="{{$event->id}}" style="display: none">
+						<input name="event_id" value="{{$event->id}}" class="d-none" readonly>
 
 						<h4 class="my-4">Import Your File</h4>
 

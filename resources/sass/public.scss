@@ -216,7 +216,7 @@ a:focus, button:focus {
 }
 
 .text-darkblue {
-  color: #6367e4;
+  color: #1e699a;
 }
 
 a {
@@ -284,7 +284,7 @@ a {
 }
 
 .btn-darkblue {
-  background-color: #6367e4 !important;
+  background-color: #1e699a !important;
   color: #fff !important;
   border: none !important;
 }
@@ -401,6 +401,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
+  align-items: center;
 
   &-item-wrapper {
     position:relative;
@@ -703,10 +704,9 @@ footer {
   label { 
     position: relative;
     display: inline-block;
-    width: auto; 
-    line-height: 35px;  
-    padding: 0 1em;
-    background: #336699;
+    margin: 0;
+    width: auto;
+    padding: 0 0.5em;
     border-radius: .25rem;
     color: #fff;
     text-transform: uppercase;
@@ -715,10 +715,6 @@ footer {
     transition: background 0.25s ease-in-out;
     i {
       margin-right: 1em;
-    }
-    &:hover,
-    &:active { 
-      background: shade(#336699, 34%);
     }
   }
   input[type="file"] { 
