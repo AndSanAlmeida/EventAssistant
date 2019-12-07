@@ -113,9 +113,45 @@ class FilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        dd($request->all());
+        $file = File::findOrFail($id);
+
+        // Verifica se o Evento Pertence ao User
+        if(Auth::user()->id == $file->event->user_id) {
+
+            $data = request()->validate([
+                'caption' => ['required', 'string', 'min:6', 'max:30'],
+                'file' => ['required', 'mimes:pdf,jpeg,png', 'file', 'max:1024'],
+                'event_id' => ['required'],
+            ]);   
+
+            if (request('file')) {
+
+                // Store
+                $filePath = request('file')->store('files', 'public');
+
+                // Get Extension After Store
+                $info = pathinfo($filePath);
+                $ext = $info['extension'];
+
+                if ($ext == 'jpeg' || $ext == 'png') {
+                    $fileImage = Image::make(public_path("storage/{$filePath}"));
+                    $fileImage->save();
+                }
+            }
+
+            $file = new File();
+            $file->event_id = $request->event_id;
+            $file->caption = $request->caption;
+            $file->file = $filePath;
+            $file->update();
+            
+            return redirect()->route('public.events.edit', $file->event_id)->with('success', 'Your file was updated with success!');
+
+        } else {
+            return redirect()->back()->withInput()->with('error', 'Something went wrong with your Update! Try again.');
+        }
     }
 
     /**
