@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-10 offset-md-1">
 
-                    <form action="{{ route('public.localizations.update', $localization) }}" enctype="form-data" method="POST">
+                    <form action="{{ route('public.localizations.update', $localization->id) }}" enctype="form-data" method="POST">
                         @csrf
                         @method('PATCH')
                                 

@@ -58,10 +58,10 @@ class LocalizationsController extends Controller
             $localization->fill($request->all());
             $localization->save();
 
-            return redirect()->route('public.dashboard')->with('success', 'Your localization was added with success!');
+            return redirect()->route('public.dashboard')->with('success', 'Your localization was been added with success!');
 
         } else {
-            return redirect()->back()->withErrors($data->errors())->withInput()->with('error', 'Something went wrong adding the localization! Try Again.');
+            return redirect()->back()->withErrors($data->errors())->withInput()->with('error', 'Something went wrong while adding localization! Try Again.');
         }
     }
 
@@ -86,9 +86,9 @@ class LocalizationsController extends Controller
     {
         if (Auth::user()->id != $localization->event->user_id) {
             return redirect()->back();
+        } else {
+            return view('public.pages.localizations.edit', compact('localization'));
         }
-
-        return view('public.pages.localizations.edit', compact('localization'));
     }
 
     /**
@@ -98,9 +98,34 @@ class LocalizationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        dd($request->all());
+        $localization_object = Localization::findOrFail($id);
+
+        if (Auth::user()->id == $localization_object->event->user_id) {
+
+            $data = Validator::make($request->all(), [
+                'localization' => ['required', 'string', 'min:6', 'max:30'],
+                'latitude' => ['required','regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'], 
+                'longitude' => ['required','regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/']
+            ], [
+                'latitude.regex' => 'Latitude value appears to be incorrect format.',
+                'longitude.regex' => 'Longitude value appears to be incorrect format.'
+            ]);
+
+            if (!$data->fails()) {
+
+                $localization_object->fill($request->all());
+                $localization_object->update();
+
+                return redirect()->route('public.events.edit', $localization_object->event_id)->with('success', 'Your localization was been updated with success!');
+
+            } else {
+                return redirect()->back()->withErrors($data->errors())->withInput()->with('error', 'Something went wrong while updating localization! Try Again.');
+            }
+        } else {
+            return redirect()->back()->with('warning', 'You have no permissions! Try Again.');
+        }
     }
 
     /**
@@ -111,12 +136,19 @@ class LocalizationsController extends Controller
      */
     public function destroy($id)
     {
-        $localization = Localization::findOrFail($id);
-        if ($localization) {
-            $localization->delete();
-            return redirect()->back()->with('success', 'Localization has been deleted.');
-        }
+        $localization_object = Localization::findOrFail($id);
 
-        return redirect()->back()->with('warning', 'This localization cant be deleted.');
+        if (Auth::user()->id == $localization_object->event->user_id) {
+
+            if ($localization_object) {
+                $localization_object->delete();
+                return redirect()->back()->with('success', 'Localization was been deleted.');
+            } else {
+                return redirect()->back()->with('error', 'Something went wrong while deleting Localization! Try Again.');
+            }
+
+        } else {
+            return redirect()->back()->with('warning', 'You have no permissions! Try Again.');
+        }
     }
 }

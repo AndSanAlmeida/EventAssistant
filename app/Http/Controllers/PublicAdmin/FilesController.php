@@ -73,10 +73,10 @@ class FilesController extends Controller
             $file->file = $filePath;
             $file->save();
             
-            return redirect()->route('public.dashboard')->with('success', 'Your file was uploaded with success!');
+            return redirect()->route('public.dashboard')->with('success', 'Your file was been uploaded with success!');
 
         } else {
-            return redirect()->back()->withInput()->with('error', 'Something went wrong with your Upload! Try again.');
+            return redirect()->back()->withInput()->with('error', 'Something went wrong while adding File! Try again.');
         }
     }
 
@@ -152,10 +152,10 @@ class FilesController extends Controller
             $file_object->event_id = $request->event_id;
             $file_object->update();
             
-            return redirect()->route('public.events.edit', $file_object->event_id)->with('success', 'Your file was updated with success!');
+            return redirect()->route('public.events.edit', $file_object->event_id)->with('success', 'Your file was been updated with success!');
 
         } else {
-            return redirect()->back()->withInput()->with('error', 'Something went wrong with your Update! Try again.');
+            return redirect()->back()->withInput()->with('error', 'Something went wrong while updating File! Try again.');
         }
     }
 
@@ -166,16 +166,24 @@ class FilesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $file = File::findOrFail($id);
-        $file_path = "/storage/".$file->file;
+    {   
+        $file_object = File::findOrFail($id);
 
-        if ($file && $file_path) {
-            unlink(public_path().$file_path);
-            $file->delete();
-            return redirect()->back()->with('success', 'File has been deleted.');
+        if (Auth::user()->id == $file_object->event->user_id) {
+
+            $file_path = "/storage/".$file_object->file;
+
+            if ($file_object && $file_path) {
+                unlink(public_path().$file_path);
+                $file_object->delete();
+                return redirect()->back()->with('success', 'File was been deleted.');
+            } else {
+                return redirect()->back()->with('error', 'Something went wrong while deleting File! Try Again.');
+            }
+
+        } else {
+            return redirect()->back()->with('warning', 'You have no permissions! Try Again.');
+
         }
-
-        return redirect()->back()->with('warning', 'This file cant be deleted.');
     }
 }
