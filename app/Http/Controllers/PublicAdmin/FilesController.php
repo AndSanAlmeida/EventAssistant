@@ -115,39 +115,44 @@ class FilesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $file = File::findOrFail($id);
+        $file_object = File::findOrFail($id);
 
         // Verifica se o Evento Pertence ao User
-        if(Auth::user()->id == $file->event->user_id) {
+        if(Auth::user()->id == $file_object->event->user_id) {
 
             $data = request()->validate([
                 'caption' => ['required', 'string', 'min:6', 'max:30'],
-                'file' => ['required', 'mimes:pdf,jpeg,png', 'file', 'max:1024'],
+                'file' => ['mimes:pdf,jpeg,png', 'file', 'max:1024'],
                 'event_id' => ['required'],
-            ]);   
+            ]);
 
-            if (request('file')) {
+            // Verifica se existe File ou Não
+            if (isset($data['file'])) {
 
-                // Store
-                $filePath = request('file')->store('files', 'public');
+                // Apaga o Ficheiro Antigo
+                $file_path = "/storage/".$file_object->file;
+                unlink(public_path().$file_path);
+
+                // Store de um Novo File
+                $file_path = request('file')->store('files', 'public');
 
                 // Get Extension After Store
-                $info = pathinfo($filePath);
+                $info = pathinfo($file_path);
                 $ext = $info['extension'];
 
+                // Save
                 if ($ext == 'jpeg' || $ext == 'png') {
-                    $fileImage = Image::make(public_path("storage/{$filePath}"));
+                    $fileImage = Image::make(public_path("storage/{$file_path}"));
                     $fileImage->save();
                 }
             }
 
-            $file = new File();
-            $file->event_id = $request->event_id;
-            $file->caption = $request->caption;
-            $file->file = $filePath;
-            $file->update();
+            $file_object->caption = $request->caption;
+            $file_object->file = $file_path ?? $file_object->file; // Ou coloca o Novo File ou fica com o Antigo
+            $file_object->event_id = $request->event_id;
+            $file_object->update();
             
-            return redirect()->route('public.events.edit', $file->event_id)->with('success', 'Your file was updated with success!');
+            return redirect()->route('public.events.edit', $file_object->event_id)->with('success', 'Your file was updated with success!');
 
         } else {
             return redirect()->back()->withInput()->with('error', 'Something went wrong with your Update! Try again.');
@@ -163,10 +168,10 @@ class FilesController extends Controller
     public function destroy($id)
     {
         $file = File::findOrFail($id);
-        $image_path = "/storage/".$file->file;
+        $file_path = "/storage/".$file->file;
 
-        if ($file && $image_path) {
-            unlink(public_path().$image_path);
+        if ($file && $file_path) {
+            unlink(public_path().$file_path);
             $file->delete();
             return redirect()->back()->with('success', 'File has been deleted.');
         }

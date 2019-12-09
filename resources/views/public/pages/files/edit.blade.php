@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-10 offset-md-1">
 
-                    <form action="{{ route('public.files.update', $file) }}" enctype="multipart/form-data" method="POST">
+                    <form action="{{ route('public.files.update', $file->id) }}" enctype="multipart/form-data" method="POST">
                         @csrf
                         @method('PATCH')
 
@@ -55,12 +55,8 @@
                                 <div class="form-group files">
                                     {{-- File --}}
                                     <label for="file">Upload Your File</label>
-                                    <input id="file" 
-                                        type="file" 
-                                        name="file" 
-                                        class="form-control {{ $errors->has('file') ? ' is-invalid' : '' }}"
-                                        required
-                                        value="{{ old('file') ?? $file->file }}">
+                                    <input id="file" type="file" name="file" 
+                                        class="form-control {{ $errors->has('file') ? ' is-invalid' : '' }}">
                                     @if ($errors->has('file'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('file') }}</strong>
