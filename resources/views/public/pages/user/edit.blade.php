@@ -14,7 +14,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-8 offset-md-2">
+                <div class="col-md-10 offset-md-1">
 
                     {{-- Alerts --}}
                     @include('public.partials._alerts')
@@ -69,9 +69,9 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group form-field-file btn btn-darkblue">
+                                <div class="form-group">
                                     {{-- Profile Image --}}
-                                    <label for="avatar"><i class="fas fa-upload"></i>Change Profile Image</label>
+                                    <label for="avatar">Profile Image</label>
                                     <input type="file" id="avatar" name="avatar">
 
                                     @if ($errors->has('avatar'))

@@ -15,46 +15,49 @@
                 </li>
 
                 @if (Route::has('login'))
-                    @auth   
-                        <div class="navbar-nav ml-auto">      
-                            <div class="dropdown">
-                                <div class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img class="rounded-circle mr-2" width="40" height="40" src="{{ Auth::user()->profileImage() }}" alt="Profile Image"><b>{{ Auth::user()->name}}</b>
+                    @auth
+                        {{-- Dropdown   --}}
+                        <li class="nav-item mr-4"> 
+                            <div class="navbar-nav ml-auto">      
+                                <div class="dropdown">
+                                    <div class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img class="rounded-circle mr-2" width="40" height="40" src="{{ Auth::user()->profileImage() }}" alt="Profile Image"><b>{{ Auth::user()->name}}</b>
+                                    </div>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    
+                                    @hasRole('user')
+                                        <a href="{{ route('public.dashboard') }}" class="dropdown-item" title="Dashboard">
+                                            <i class="fas fa-user-cog mr-3"></i>
+                                            Dashboard
+                                        </a>
+                                        <a href="{{ route('public.user.show', Auth::user()) }}" class="dropdown-item" title="View Profile">
+                                            <i class="fas fa-user mr-4"></i>
+                                            Profile
+                                        </a>
+                                    @endhasRole
+
+                                    @hasRole('admin')
+                                        <a href="{{ route('admin.dashboard') }}" class="dropdown-item" title="BackOffice">
+                                            <i class="fas fa-cogs mr-3"></i>
+                                            BackOffice
+                                        </a>
+                                    @endhasRole
+                                        <div class="dropdown-divider"></div>
+
+                                        <a href="{{ route('logout') }}" class="dropdown-item"
+                                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();" title="Logout">
+                                            <i class="fas fa-sign-out-alt mr-4"></i>
+                                            {{ __('Logout') }}
+                                        </a>                                
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </div>
-
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                
-                                @hasRole('user')
-                                    <a href="{{ route('public.dashboard') }}" class="dropdown-item" title="Dashboard">
-                                        <i class="fas fa-user-cog mr-3"></i>
-                                        Dashboard
-                                    </a>
-                                    <a href="{{ route('public.user.show', Auth::user()) }}" class="dropdown-item" title="View Profile">
-                                        <i class="fas fa-user mr-4"></i>
-                                        Profile
-                                    </a>
-                                @endhasRole
-
-                                @hasRole('admin')
-                                    <a href="{{ route('admin.dashboard') }}" class="dropdown-item" title="BackOffice">
-                                        <i class="fas fa-cogs mr-3"></i>
-                                        BackOffice
-                                    </a>
-                                @endhasRole
-                                    <div class="dropdown-divider"></div>
-
-                                    <a href="{{ route('logout') }}" class="dropdown-item"
-                                            onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();" title="Logout">
-                                        <i class="fas fa-sign-out-alt mr-4"></i>
-                                        {{ __('Logout') }}
-                                    </a>                                
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
                             </div>
-                        </div>
+                        </li>
                     @else
 
                         <li class="nav-item">

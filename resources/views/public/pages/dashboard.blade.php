@@ -27,10 +27,10 @@
             		
 		            <div class="row">
 						<div class="col-6">
-							<h4>List of Events</h4>
+							<h4 class="my-4">List of Events</h4>
 						</div>
 						<div class="col-6">
-							<a href="{{ route('public.events.create') }}" class="btn btn-secondary btn-red float-right" ><i class="fas fa-plus"></i>Add New Event</a>
+							<a href="{{ route('public.events.create') }}" class="btn btn-secondary btn-red float-right my-4" ><i class="fas fa-plus"></i>Add New Event</a>
 						</div>
 					</div>
 

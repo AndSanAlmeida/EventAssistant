@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 html {
-  font-size: 64.5%;
+  font-size: 80%;
   overflow-x: hidden;
 }
 
@@ -42,15 +42,21 @@ body:after {
   border-top-right-radius: 5px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1366px) {
   .boxed-page {
-    width: 1024px;
+    width: 1260px;
   }
 
   .boxed-page .container {
-    max-width: 1080px;
+    max-width: 1260px;
     padding-left: 30px;
     padding-right: 30px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 860px;
   }
 }
 
@@ -361,7 +367,7 @@ a {
 
 .not-on-top #gtco-header-navbar {
   position: fixed;
-  max-width: 1024px;
+  max-width: 1260px;
   margin: 0 auto;
   left: 0;
   right: 0;
@@ -688,16 +694,24 @@ footer {
   border-bottom-right-radius: 5px;
 }
 
+.form-group {
+  margin-bottom: 3rem;
+}
+
+.col-form-label {
+  display: flex;
+  align-items: center;
+}
+
 .form-control {
   font-size: 1.6rem;
-  margin-bottom: 15px;
-  height: 38px;
+  height: 58px;
   font-weight: 300;
 }
 
 .form-control:focus {
   border-color: #f15e75;
-  box-shadow: 0 0 0 0.2rem rgba(253, 101, 90, 0.25);
+  box-shadow: 0 0 0 0.4rem rgba(253, 101, 90, 0.25);
 }
 
 #gtco-contact-form form label.error {
@@ -789,7 +803,7 @@ footer {
   margin: 15px 0 15px 15px;
 }
 
-@media (min-width: 768px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1366px) {
   .boxed-page,
   .not-on-top #gtco-header-navbar {
     margin-right: 30px;
@@ -838,6 +852,10 @@ footer {
   .card-deck {
     flex-direction: column;
   }
+}
+
+.list-inline-item:not(:last-child) {
+  margin-bottom: 0.5rem;
 }
 
 .badge {

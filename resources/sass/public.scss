@@ -1,5 +1,19 @@
+// Imports
+@import '_mixins.scss';
+
+// Varialbles
+$primary: #f15e75;
+
+$orange: #FDBA51;
+$cyan: #35B8AD;
+$red: #FC665F;
+$purple: #c863e4;
+$lightblue: #32a4e6;
+$darkblue: #1e699a;
+
+
 html {
-  font-size: 64.5%;
+  font-size: 80%; // Default - 64%
   overflow-x: hidden;
 }
 
@@ -43,15 +57,21 @@ body {
   border-top-right-radius: 5px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1366px) {
   .boxed-page {
-    width: 1024px;
+    width: 1260px;
 
     .container {
-      max-width: 1080px;
+      max-width: 1260px;
       padding-left: 30px;
       padding-right: 30px;
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+      max-width: 860px;
   }
 }
 
@@ -182,7 +202,7 @@ a:focus, button:focus {
 }
 
 .btn-link {
-  color: #f15e75;
+  color: $primary;
 
   &:hover {
     text-decoration: none;
@@ -190,37 +210,37 @@ a:focus, button:focus {
 }
 
 .color-primary {
-  color: #f15e75;
+  color: $primary;
 }
 
 /* Colours */
 
 .text-orange {
-  color: #FDBA51;
+  color: $orange;
 }
 
 .text-cyan {
-  color: #35B8AD;
+  color: $cyan;
 }
 
 .text-red {
-  color: #FC665F;
+  color: $red;
 }
 
 .text-purple {
-  color: #c863e4;
+  color: $purple;
 }
 
 .text-lightblue {
-  color: #32a4e6;
+  color: $lightblue;
 }
 
 .text-darkblue {
-  color: #1e699a;
+  color: $darkblue;
 }
 
 a {
-  color: #f15e75;
+  color: $primary;
 }
 
 .fs-40 {
@@ -254,37 +274,37 @@ a {
 }
 
 .btn-orange {
-  background-color: #FDBA51 !important;
+  background-color: $orange !important;
   color: #fff !important;
   border: none !important;
 }
 
 .btn-cyan {
-  background-color: #35B8AD !important;
+  background-color: $cyan !important;
   color: #fff !important;
   border: none !important;
 }
 
 .btn-red {
-  background-color: #FC665F !important;
+  background-color: $red !important;
   color: #fff !important;
   border: none !important;
 }
 
 .btn-purple {
-  background-color: #c863e4 !important;
+  background-color: $purple !important;
   color: #fff !important;
   border: none !important;
 }
 
 .btn-lightblue {
-  background-color: #32a4e6 !important;
+  background-color: $lightblue !important;
   color: #fff !important;
   border: none !important;
 }
 
 .btn-darkblue {
-  background-color: #1e699a !important;
+  background-color: $darkblue !important;
   color: #fff !important;
   border: none !important;
 }
@@ -339,7 +359,7 @@ a {
 
 .not-on-top #gtco-header-navbar {
   position: fixed;
-  max-width: 1024px;
+  max-width: 1260px;
   margin: 0 auto;
   left: 0;
   right: 0;
@@ -672,21 +692,29 @@ footer {
   border-bottom-right-radius: 5px;
 }
 
+.form-group {
+    margin-bottom: 3rem;
+}
+
+.col-form-label {
+  display: flex;
+  align-items: center;
+}
+
 .form-control {
   font-size: 1.6rem;
-  margin-bottom: 15px;
-  height: 38px;
+  height: 58px;
   font-weight: 300;
 
   &:focus {
-    border-color: #f15e75;
-    box-shadow: 0 0 0 0.2rem rgba(253, 101, 90, 0.25);
+    border-color: $primary;
+    box-shadow: 0 0 0 0.4rem rgba(253, 101, 90, 0.25);
   }
 }
 
 #gtco-contact-form form label.error {
   margin-bottom: 15px;
-  color: #f15e75;
+  color: $primary;
   font-size: 1.4rem;
 }
 
@@ -767,7 +795,7 @@ footer {
   }
 }
 
-@media (min-width: 768px) and (max-width: 1200px) {
+@media (min-width: 768px) and (max-width: 1366px) {
   .boxed-page, .not-on-top #gtco-header-navbar {
     margin-right: 30px;
     margin-left: 30px;
@@ -814,6 +842,10 @@ footer {
   .card-deck {
     flex-direction: column;
   }
+}
+
+.list-inline-item:not(:last-child) {
+    margin-bottom: .5rem;
 }
 
 .badge {

@@ -22,7 +22,7 @@
             		<form action="{{ route('public.events.store') }}" enctype="form-data" method="POST">
 						@csrf
 
-						<h4 class="mb-4">General Information</h4>
+						<h4 class="my-4">General Information</h4>
 
 						{{-- Name --}}
 						<div class="form-group row">
