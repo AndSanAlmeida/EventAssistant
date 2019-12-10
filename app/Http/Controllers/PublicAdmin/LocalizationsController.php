@@ -142,7 +142,7 @@ class LocalizationsController extends Controller
 
             if ($localization_object) {
                 $localization_object->delete();
-                return redirect()->back()->with('success', 'Localization was been deleted.');
+                return redirect()->back()->with('success', 'Localization was been deleted with success.');
             } else {
                 return redirect()->back()->with('error', 'Something went wrong while deleting Localization! Try Again.');
             }

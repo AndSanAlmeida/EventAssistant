@@ -102,25 +102,30 @@ class EventsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
-    {
-        // dd($request->all());
-        $data = request()->validate([
-            'name' => ['required', 'string', 'min:6', 'max:30'],
-            'date' => ['required', 'date'],
-            'hour' => ['required', 'date_format:H:i'],
-            'active' => ['required', 'boolean']
-        ]);
+    {   
+        if (Auth::user()->id == $event->user_id) {
 
-        // Data Actual
-        $currentDate = date("Y-m-d");
-        
-        if (request('date') <= $currentDate) {
-            return redirect()->back()->withInput()->with('error', 'You cannot insert an older date! Try again.');
+            $data = request()->validate([
+                'name' => ['required', 'string', 'min:6', 'max:30'],
+                'date' => ['required', 'date'],
+                'hour' => ['required', 'date_format:H:i'],
+                'active' => ['required', 'boolean']
+            ]);
+
+            // Data Actual
+            $currentDate = date("Y-m-d");
+            
+            if (request('date') <= $currentDate) {
+                return redirect()->back()->withInput()->with('error', 'You cannot insert an older date! Try again.');
+            } else {
+
+                auth()->user()->events()->update($data);
+
+                return redirect()->route('public.dashboard')->with('success', 'Event was updated with success!');
+
+            } 
         } else {
-
-            auth()->user()->events()->update($data);
-
-            return redirect()->route('public.dashboard')->with('success', 'Event was updated with success!');
+            return redirect()->back()->with('warning', 'You have no permissions! Try Again.');
         }
     }
 
@@ -133,11 +138,16 @@ class EventsController extends Controller
     public function destroy($id)
     {
         $event = Event::findOrFail($id);
-        if ($event) {
-            $event->delete();
-            return redirect()->back()->with('success', 'Event has been deleted.');
-        }
 
-        return redirect()->back()->with('warning', 'This event cant be deleted.');
+        if (Auth::user()->id == $event->user_id) {
+            if ($event) {
+                $event->delete();
+                return redirect()->back()->with('success', 'Event was been deleted with success.');
+            } else {
+                return redirect()->back()->with('error', 'Something went wrong while deleting Event! Try Again.');
+            }
+        } else {
+            return redirect()->back()->with('warning', 'You have no permissions! Try Again.');
+        }
     }
 }

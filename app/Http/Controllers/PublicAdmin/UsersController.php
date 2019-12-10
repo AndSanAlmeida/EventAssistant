@@ -61,13 +61,21 @@ class UsersController extends Controller
                 ]);
             }
 
-            if (request('avatar')) {
-                $avatarPath = request('avatar')->store('profile', 'public');
+            if (isset($data['avatar'])) {
 
-                $avatar = Image::make(public_path("storage/{$avatarPath}"))->fit(600, 600);
+                if (isset($user->avatar)) {
+                    // Apaga o Ficheiro Antigo
+                    $avatar_path = "/storage/".$user->avatar;
+                    unlink(public_path().$avatar_path);
+                }
+
+                // Store
+                $avatar_path = $data['avatar']->store('profile', 'public');
+
+                $avatar = Image::make(public_path("storage/{$avatar_path}"))->fit(600, 600);
                 $avatar->save();
 
-                $avatarArray = ['avatar' => $avatarPath];
+                $avatarArray = ['avatar' => $avatar_path];
             }
 
             auth()->user()->update(array_merge(

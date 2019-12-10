@@ -9,15 +9,15 @@
 
         <div class="section-content-extra">
 
-            {{-- Alerts --}}
-            @include('public.partials._alerts')
-
             <div class="title-wrap">
                 <h2 class="section-title">Update Profile</h2>
             </div>
 
             <div class="row">
                 <div class="col-md-8 offset-md-2">
+
+                    {{-- Alerts --}}
+                    @include('public.partials._alerts')
 
                     <form action="{{ route('public.user.update') }}" enctype="multipart/form-data" method="POST">
                         @csrf

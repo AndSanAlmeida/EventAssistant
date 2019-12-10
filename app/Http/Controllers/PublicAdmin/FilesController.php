@@ -134,7 +134,7 @@ class FilesController extends Controller
                 unlink(public_path().$file_path);
 
                 // Store de um Novo File
-                $file_path = request('file')->store('files', 'public');
+                $file_path = $data['file']->store('files', 'public');
 
                 // Get Extension After Store
                 $info = pathinfo($file_path);
@@ -176,14 +176,13 @@ class FilesController extends Controller
             if ($file_object && $file_path) {
                 unlink(public_path().$file_path);
                 $file_object->delete();
-                return redirect()->back()->with('success', 'File was been deleted.');
+                return redirect()->back()->with('success', 'File was been deleted with success.');
             } else {
                 return redirect()->back()->with('error', 'Something went wrong while deleting File! Try Again.');
             }
 
         } else {
             return redirect()->back()->with('warning', 'You have no permissions! Try Again.');
-
         }
     }
 }

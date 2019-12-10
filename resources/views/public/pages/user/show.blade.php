@@ -9,15 +9,15 @@
 
         <div class="section-content-extra">
 
-            {{-- Alerts --}}
-            @include('public.partials._alerts')
-
             <div class="title-wrap">
                 <h2 class="section-title">Profile</h2>
             </div>
 
             <div class="row">
                 <div class="col-md-8 offset-md-2">
+
+                    {{-- Alerts --}}
+                    @include('public.partials._alerts')
 
                     <div class="row">
                         <div class="col-md-5">
