@@ -53,7 +53,7 @@
 								                <th>Status</th>
 								                <th>Add</th>
 								                <th>Actions</th>
-								                <th>Share</th>
+								                <th>Link</th>
 								            </tr>
 								        </thead>
 								        <tbody>
@@ -91,13 +91,9 @@
 								                			</li>
 								                		</ul>
 								                	</td>
-								                	<td data-toggle="popover" 
-								                		{{-- data-trigger="focus"  --}}
-								                		title="Share this Event!" 		
-								                		data-content="<div><b>Example popover</b> - content</div>">
-								                		
-								                		<a href="#" class="text-lightblue" data-toggle="tooltip" title="Link"><i class="fas fa-share-alt"></i></a>
-								                	</td>
+								                	<td>
+								                		<button id="share" class="btn btn-lightblue btn-sm mb-3" data-toggle="tooltip" title="Copy to Clipboard" onclick="CopyToClipboard('Event Example.', true, 'Link is now Copied!')"><i class="fas fa-share-alt"></i> Share</button>
+													</td>
 								            	</tr>
 								            @endforeach
 								        </tbody>
@@ -141,6 +137,23 @@
 	</div>
 </div>
 
+{{-- Toast --}}
+<div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+  <div class="toast" style="position: absolute; top: 0; right: 0;">
+    <div class="toast-header">
+      <img src="..." class="rounded mr-2" alt="...">
+      <strong class="mr-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Hello, world! This is a toast message.
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
 	function deleteData(id) {
 		 var id = id;
@@ -152,6 +165,11 @@
 	function formSubmit(){
 	 	$("#deleteForm").submit();
 	}
+
 </script>
 
 @endsection
+
+
+
+

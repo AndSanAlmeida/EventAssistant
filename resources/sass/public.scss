@@ -872,6 +872,12 @@ input[type='date']::-webkit-inner-spin-button, input[type='time']::-webkit-inner
 }
 
 // ==================================================
+// Share
+// ==================================================
+
+
+
+// ==================================================
 // Media Queries
 // ==================================================
 
@@ -950,11 +956,13 @@ input[type='date']::-webkit-inner-spin-button, input[type='time']::-webkit-inner
 }
 
 .popover-header {
+  padding: 0.75rem;
   font-weight: bold;
   font-size: 1.3rem;
 }
 
 .popover-body {
+  padding: 0.75rem;
   font-size:1.2rem;
 }
 
