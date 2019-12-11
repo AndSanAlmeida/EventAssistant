@@ -91,7 +91,11 @@
 								                			</li>
 								                		</ul>
 								                	</td>
-								                	<td>
+								                	<td data-toggle="popover" 
+								                		{{-- data-trigger="focus"  --}}
+								                		title="Share this Event!" 		
+								                		data-content="<div><b>Example popover</b> - content</div>">
+								                		
 								                		<a href="#" class="text-lightblue" data-toggle="tooltip" title="Link"><i class="fas fa-share-alt"></i></a>
 								                	</td>
 								            	</tr>

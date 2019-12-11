@@ -944,6 +944,20 @@ input[type='date']::-webkit-inner-spin-button, input[type='time']::-webkit-inner
   font-size:  1.4rem;
 }
 
+.popover {
+  border-color: $primary;
+  box-shadow: 0 0 0 0.4rem rgba(253, 101, 90, 0.6);
+}
+
+.popover-header {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.popover-body {
+  font-size:1.2rem;
+}
+
 .close {
   font-size: 2.5rem;
 }

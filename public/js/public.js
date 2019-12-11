@@ -82,4 +82,4 @@
 $("[data-toggle=\"tooltip\"]").tooltip({placement:'bottom'});
 
 // Pophovers
-$("[data-toggle=\"popover\"]").popover();
+$("[data-toggle=\"popover\"]").popover({html:true});
