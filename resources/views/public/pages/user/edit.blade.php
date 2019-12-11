@@ -72,7 +72,7 @@
                                 <div class="form-group">
                                     {{-- Profile Image --}}
                                     <label for="avatar">Profile Image</label>
-                                    <input type="file" id="avatar" name="avatar">
+                                    <input type="file" id="avatar" name="avatar" class="form-control-file">
 
                                     @if ($errors->has('avatar'))
                                         <strong>{{ $errors->first('avatar') }}</strong>

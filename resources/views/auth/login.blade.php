@@ -14,7 +14,7 @@
 					<div class="col-lg-12">
 						<div class="p-5">
 							<div class="text-center">
-								<h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+								<h1 class="h4 mb-4">Welcome Back!</h1>
 							</div>
 							<form class="user" method="POST" action="{{ route('login') }}">
 								@csrf
@@ -41,8 +41,15 @@
 									@enderror
 
 								</div>
+
+
 								<div class="form-group">
-									<div class="custom-control custom-checkbox small">
+									<div class="form-check form-check-inline">
+									  <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+									  <label class="form-check-label" for="remember">{{ __('Remember Me') }}</label>
+									</div>
+
+									{{-- <div class="custom-control custom-checkbox small">
 
 										<input class="custom-control-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
@@ -50,10 +57,10 @@
 											{{ __('Remember Me') }}
 										</label>
 
-									</div>
+									</div> --}}
 								</div>
 
-								<button type="submit" class="btn btn-danger btn-user btn-block">
+								<button type="submit" class="btn btn-red btn-block">
 									{{ __('Login') }}
 								</button>
 

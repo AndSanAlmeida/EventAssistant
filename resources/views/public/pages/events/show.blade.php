@@ -20,11 +20,11 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <p><strong>Date: </strong>{{ date('F d, Y', strtotime($event->date)) }}</p>
-                            <p><strong>Start Hour: </strong>{{ date('h:i\h', strtotime($event->hour)) }}</p>
+                            <p><strong class="mr-2">Date: </strong>{{ date('F d, Y', strtotime($event->date)) }}</p>
+                            <p><strong class="mr-2">Start Hour: </strong>{{ date('h:i\h', strtotime($event->hour)) }}</p>
                         </div>
                         <div class="col-md-6">
-                            <p><strong>Status: </strong>{!! $event->isActive() !!}</p>
+                            <p><strong class="mr-2">Status: </strong>{!! $event->isActive() !!}</p>
                         </div>
                     </div>
 
@@ -79,7 +79,7 @@
                                         <a href="https://www.google.pt/maps/dir//{{ $localization->latitude}},{{ $localization->longitude}}" target="_blank" data-toggle="tooltip" title="Directions to: {{ $localization->localization}}">
                                             {{ $localization->localization}}
                                         </a>
-                                        <small class="mx-4">({{ $localization->latitude}}, {{ $localization->longitude}})</small>
+                                        <small class="mx-4">(<b>Lat. </b>{{ $localization->latitude}}, <b>Long. </b>{{ $localization->longitude}})</small>
                                     </li>
                                 @endforeach
                                 </ul>

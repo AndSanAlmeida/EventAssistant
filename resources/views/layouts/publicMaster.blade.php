@@ -11,7 +11,9 @@
 		@include('public.partials._styles')
 
 	</head> 
-	<body data-spy="scroll" data-target="#navbar-nav-header" class="static-layout" style="background-image: url('{{ asset('img/bg.jpg') }}');">
+	{{-- <body data-spy="scroll" data-target="#navbar-nav-header" class="static-layout" style="background-image: url('{{ asset('img/bg.jpg') }}');"> --}}
+	<body data-spy="scroll" data-target="#navbar-nav-header" class="static-layout">
+
     	<div class="boxed-page">
 			{{-- Header --}}
 			@include('public.includes.header')

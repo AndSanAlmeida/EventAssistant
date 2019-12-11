@@ -117,7 +117,7 @@
 
                                 </div>
 
-                                <button type="submit" class="btn btn-danger btn-user btn-block">
+                                <button type="submit" class="btn btn-red btn-block">
                                     {{ __('Reset Password') }}
                                 </button>
 
