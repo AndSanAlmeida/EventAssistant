@@ -103,18 +103,6 @@ function CopyToClipboard(value, showNotification, notificationText) {
     var notificationTag = $("div.copy-notification");
     if (showNotification && notificationTag.length == 0) {
 
-        $('.toast').toast('show', {
-            delay: 10000
-        });
-        // notificationTag = $("<div/>", { "class": "copy-notification", text: notificationText });
-        // $("body").append(notificationTag);
-
-        // notificationTag.fadeIn("slow", function () {
-        //     setTimeout(function () {
-        //         notificationTag.fadeOut("slow", function () {
-        //             notificationTag.remove();
-        //         });
-        //     }, 1000);
-        // });
+        $('.toast').toast('show');
     }
 }

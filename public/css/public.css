@@ -797,6 +797,54 @@ input[type=time]::-webkit-inner-spin-button {
   }
 }
 
+.toast {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 2rem 2rem 0 0;
+  font-size: 1.3rem;
+  border-color: #f15e75;
+  box-shadow: 0 0 10px 0.4rem rgba(253, 101, 90, 0.6);
+  z-index: 999;
+}
+
+.toast-header {
+  padding: 0 1rem;
+  font-weight: bold;
+}
+
+.toast-body {
+  padding: 0.75rem 3rem;
+}
+
+.badge {
+  padding: 0.5em 1em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  vertical-align: middle;
+}
+
+.tooltip {
+  font-size: 1.4rem;
+}
+
+.popover {
+  border-color: #f15e75;
+  box-shadow: 0 0 0 0.4rem rgba(253, 101, 90, 0.6);
+}
+
+.popover-header {
+  padding: 0.75rem;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.popover-body {
+  padding: 0.75rem;
+  font-size: 1.2rem;
+}
+
 @media (min-width: 768px) and (max-width: 1366px) {
   .boxed-page,
   .not-on-top #gtco-header-navbar {
@@ -850,34 +898,6 @@ input[type=time]::-webkit-inner-spin-button {
 
 .list-inline-item:not(:last-child) {
   margin-bottom: 0.5rem;
-}
-
-.badge {
-  padding: 0.5em 1em;
-  margin-bottom: 8px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  vertical-align: middle;
-}
-
-.tooltip {
-  font-size: 1.4rem;
-}
-
-.popover {
-  border-color: #f15e75;
-  box-shadow: 0 0 0 0.4rem rgba(253, 101, 90, 0.6);
-}
-
-.popover-header {
-  padding: 0.75rem;
-  font-weight: bold;
-  font-size: 1.3rem;
-}
-
-.popover-body {
-  padding: 0.75rem;
-  font-size: 1.2rem;
 }
 
 .close {

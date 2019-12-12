@@ -14,6 +14,8 @@
 	{{-- <body data-spy="scroll" data-target="#navbar-nav-header" class="static-layout" style="background-image: url('{{ asset('img/bg.jpg') }}');"> --}}
 	<body data-spy="scroll" data-target="#navbar-nav-header" class="static-layout">
 
+		@include('public.partials._toasts')
+
     	<div class="boxed-page">
 			{{-- Header --}}
 			@include('public.includes.header')
