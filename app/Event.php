@@ -29,6 +29,11 @@ class Event extends Model
     	return $status;
     }
 
+    public function getStatus($status) {
+
+        return $status;
+    }
+
     public function files() {
         return $this->hasMany(File::class);
     }

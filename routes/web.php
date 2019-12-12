@@ -21,8 +21,9 @@ Auth::routes();
 // Prefix: admin
 // Middleware: auth e auth.admin
 // Name: admin.
-Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function() {
-	
+Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->name('admin.')->group(function()
+	{
+
 	// Dashboard
 	Route::get('/', 'UserController@dashboard')->name('dashboard');
 
@@ -34,7 +35,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 // Prefix: public
 // Middleware: auth e auth.public
 // Name: public.
-Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.public'])->name('public.')->group(function() {
+Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.public'])->name('public.')->group(function(){
 	
 	// PublicDashboard
 	Route::get('/', 'UsersController@dashboard')->name('dashboard');
@@ -49,10 +50,11 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::post('/edit/password/user', 'UsersController@passwordUpdate')->name('password.update');
 
 	// PublicDashboard - EventsController
+
 	Route::get('/events/create', 'EventsController@create')->name('events.create');
 	Route::post('/events', 'EventsController@store')->name('events.store');
 	
-	Route::get('/events/{event}', 'EventsController@show')->name('events.show'); 
+	Route::get('/events/{event}', 'EventsController@index')->name('events.index'); 
 
 	Route::get('/events/{event}/edit', 'EventsController@edit')->name('events.edit');
 	Route::patch('/events/{event}', 'EventsController@update')->name('events.update');
@@ -76,4 +78,13 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::patch('/localizations/{localization}', 'LocalizationsController@update')->name('localizations.update');
 
 	Route::delete('/localizations/{localization}', 'LocalizationsController@destroy')->name('localizations.destroy');
+});
+
+// Namespace: Public
+// Prefix: public
+// Name: public.
+Route::namespace('PublicAdmin')->prefix('public')->name('public.')->group(function()
+	{
+
+	Route::get('/events/{id}/{slug}', 'EventsController@show')->name('events.show');
 });

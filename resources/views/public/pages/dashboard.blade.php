@@ -75,7 +75,7 @@
 								                	<td>
 								                		<ul class="list-inline my-0">
 								                			<li class="list-inline-item">
-								                				<a href="{{ route('public.events.show', $event) }}" class="text-orange" data-toggle="tooltip" title="Preview"><i class="far fa-eye"></i></a>
+								                				<a href="{{ route('public.events.index', $event) }}" class="text-orange" data-toggle="tooltip" title="Preview"><i class="far fa-eye"></i></a>
 								                			</li>
 								                			<li class="list-inline-item">
 								                				<a href="{{ route('public.events.edit', $event) }}" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
@@ -92,7 +92,7 @@
 								                		</ul>
 								                	</td>
 								                	<td>
-								                		<button id="share" class="btn btn-lightblue btn-sm mb-3" data-toggle="tooltip" title="Copy to Clipboard" onclick="CopyToClipboard('Event Example.', true, 'Link is now Copied!')"><i class="fas fa-share-alt"></i> Share</button>
+								                		<button id="share" class="btn btn-lightblue btn-sm mb-3" data-toggle="tooltip" title="Copy to Clipboard" onclick="CopyToClipboard( '{{ route('public.events.show', ['id'=>$event->id,'slug'=>$event->slug]) }}', true, 'Link is now Copied!')"><i class="fas fa-share-alt"></i> Share</button>
 													</td>
 								            	</tr>
 								            @endforeach

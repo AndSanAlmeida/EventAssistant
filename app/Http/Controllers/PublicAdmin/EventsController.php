@@ -15,9 +15,13 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Event $event)
     {
-        //
+        if (Auth::user()->id != $event->user_id) {
+            return redirect()->back();
+        }
+
+        return view('public.pages.events.index', compact('event'));
     }
 
     /**
@@ -70,13 +74,17 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($id, $slug)
     {
-        if (Auth::user()->id != $event->user_id) {
+        $event = Event::where('id', $id)
+                      ->where('slug', $slug)
+                      ->firstOrFail();
+
+        if(! $event) {
             return redirect()->back();
         }
 
-        return view('public.pages.events.show', compact('event'));
+        return view('public.pages.events.show', compact('event'));        
     }
 
     /**
@@ -101,8 +109,11 @@ class EventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {   
+
+        $event = Event::findOrFail($id);
+
         if (Auth::user()->id == $event->user_id) {
 
             $data = request()->validate([

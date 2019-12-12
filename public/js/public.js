@@ -80,7 +80,8 @@
 
 // ToolTip
 $("[data-toggle=\"tooltip\"]").tooltip({
-    placement:'bottom'
+    placement:'bottom',
+    container: '.boxed-page'
 });
 
 // Pophovers
