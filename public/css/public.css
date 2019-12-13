@@ -26,6 +26,12 @@ body:after {
   background-image: linear-gradient(180deg, #171A3D 25%, #4B3870 100%);
 }
 
+@media (max-width: 767px) {
+  html {
+    font-size: 65%;
+  }
+}
+
 .boxed-page {
   margin: 0 auto;
   margin-top: 6rem;
@@ -135,7 +141,7 @@ img {
   padding-right: 10px;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
   #dashboard td,
   #files td,
   #localization td {
@@ -802,9 +808,11 @@ input[type=time]::-webkit-inner-spin-button {
   top: 0;
   right: 0;
   margin: 2rem 2rem 0 0;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   border-color: #f15e75;
-  box-shadow: 0 0 10px 0.4rem rgba(253, 101, 90, 0.6);
+  box-shadow: 0 0 0 0.4rem rgba(253, 101, 90, 0.6);
+  border-radius: 0.5rem;
+  background-color: white;
   z-index: 999;
 }
 
@@ -814,7 +822,7 @@ input[type=time]::-webkit-inner-spin-button {
 }
 
 .toast-body {
-  padding: 0.75rem 3rem;
+  padding: 2rem 6rem;
 }
 
 .badge {

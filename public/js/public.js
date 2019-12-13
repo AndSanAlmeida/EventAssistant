@@ -2,12 +2,7 @@
     console.log("init");
     var o = {
         init: function(t) {
-            o.select2(), o.owlCarousel(), o.portfolio(), o.lightCase(), o.counter(), o.scrollTo(), o.navbarChange()
-        },
-        select2: function() {
-            e(t).ready(function() {
-                e("select").select2()
-            })
+            o.owlCarousel(), o.portfolio(), o.lightCase(), o.counter(), o.scrollTo(), o.navbarChange()
         },
         owlCarousel: function() {
             e(".slideshow").owlCarousel({

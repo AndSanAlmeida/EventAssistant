@@ -52,6 +52,12 @@ body {
   }
 }
 
+@media (max-width: 767px) {
+  html {
+    font-size: 65%;
+  }
+}
+
 // ==================================================
 // Box - Container
 // ==================================================
@@ -155,7 +161,7 @@ img {
   }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1100px) {
   #dashboard, #files, #localization  {
     td {
       line-height: 2em;
@@ -880,9 +886,11 @@ input[type='date']::-webkit-inner-spin-button, input[type='time']::-webkit-inner
   top: 0; 
   right: 0;
   margin: 2rem 2rem 0 0;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   border-color: $primary;
-  box-shadow: 0 0 10px 0.4rem rgba(253, 101, 90, 0.6);
+  box-shadow: 0 0 0 0.4rem rgba(253, 101, 90, 0.6);
+  border-radius: .50rem;
+  background-color: white;
   z-index: 999;
 }
 
@@ -892,7 +900,7 @@ input[type='date']::-webkit-inner-spin-button, input[type='time']::-webkit-inner
 }
 
 .toast-body {
-  padding: 0.75rem 3rem;
+  padding: 2rem 6rem;
 }
 
 // ==================================================
@@ -958,6 +966,7 @@ input[type='date']::-webkit-inner-spin-button, input[type='time']::-webkit-inner
 }
 
 @media (max-width: 767px) {
+
   .boxed-page {
     margin: 4rem 15px;
   }

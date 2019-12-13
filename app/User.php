@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function profileImage()
     {   
-        $avatarPath = ($this->avatar) ? '/storage/'.$this->avatar : '/img/avatar/default-avatar.png';
+        $avatarPath = ($this->avatar) ? '/storage/'.$this->avatar : '/img/default-avatar.png';
         return $avatarPath;
     }
 
