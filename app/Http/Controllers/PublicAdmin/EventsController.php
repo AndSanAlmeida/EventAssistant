@@ -45,7 +45,8 @@ class EventsController extends Controller
         $data = request()->validate([
             'name' => ['required', 'string', 'min:6', 'max:30'],
             'date' => ['required', 'date'],
-            'hour' => ['required', 'date_format:H:i']
+            'hour' => ['required', 'date_format:H:i'],
+            'website' => ['url', 'nullable'],
         ]);
 
         // Cria uma slug do name e gera uma random string no fim
@@ -120,6 +121,7 @@ class EventsController extends Controller
                 'name' => ['required', 'string', 'min:6', 'max:30'],
                 'date' => ['required', 'date'],
                 'hour' => ['required', 'date_format:H:i'],
+                'website' => ['url', 'nullable'],
                 'active' => ['required', 'boolean']
             ]);
 

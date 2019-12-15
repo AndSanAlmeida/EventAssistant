@@ -19,6 +19,7 @@ class CreateLocalizationsTable extends Migration
             $table->string('localization');
             $table->string('latitude');
             $table->string('longitude');
+            $table->time('hour');
             $table->timestamps();
 
             $table->index('event_id');

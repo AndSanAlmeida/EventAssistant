@@ -82,6 +82,7 @@ $("[data-toggle=\"tooltip\"]").tooltip({
 // Pophovers
 $("[data-toggle=\"popover\"]").popover({html:true});
 
+// Copy to Clipboard
 function CopyToClipboard(value, showNotification, notificationText) {
     var $temp = $("<input>");
     $("body").append($temp);

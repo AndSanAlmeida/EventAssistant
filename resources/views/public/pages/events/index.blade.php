@@ -8,9 +8,13 @@
     <div class="container">
 
         <div class="section-content-extra">
-
             <div class="title-wrap">
                 <h1 class="section-title">{{ $event->name }}</h1>
+                <p class="section-sub-title h2">
+                    <i class="fas fa-stopwatch text-cyan"></i>
+                    <span id="days"></span><small class="text-cyan"> Days</small>
+                    <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span><small class="text-cyan"> (h:s:m)</small>
+                </p>
             </div>
 
             <div class="row">
@@ -20,11 +24,12 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <p><strong class="mr-2">Date: </strong>{{ date('F d, Y', strtotime($event->date)) }}</p>
-                            <p><strong class="mr-2">Start Hour: </strong>{{ date('h:i\h', strtotime($event->hour)) }}</p>
+                            <p><strong class="mr-2"><i class="fas fa-calendar-day fa-lg text-red mr-4"></i>Date: </strong>{{ date('F d, Y', strtotime($event->date)) }}</p>
+                            <p><strong class="mr-2"><i class="far fa-clock fa-lg text-red mr-4"></i>Starting Hour: </strong>{{ date('h:i\h', strtotime($event->hour)) }}</p>
                         </div>
                         <div class="col-md-6">
-                            <p><strong class="mr-2">Status: </strong>{!! $event->isActive() !!}</p>
+                            <p><strong class="mr-2"><i class="fas fa-toggle-on fa-lg text-red mr-4"></i>Status: </strong>{!! $event->isActive() !!}</p>
+                            <p><strong class="mr-2"><i class="fas fa-globe fa-lg text-red mr-4"></i>Website: </strong><a href="{{ $event->website }}" target="_blank" title="Website">{{ $event->website }}</a></p>
                         </div>
                     </div>
 
@@ -80,12 +85,25 @@
                                             {{ $localization->localization}}
                                         </a>
                                         <small class="mx-4">(<b>Lat. </b>{{ $localization->latitude}}, <b>Long. </b>{{ $localization->longitude}})</small>
+                                        <i class="far fa-clock fa-lg text-lightblue mr-4"></i>{{ date('h:i\h', strtotime($event->hour)) }}                                        
                                     </li>
                                 @endforeach
                                 </ul>
                             @endif
                         </div>
                     </div>
+
+                    <h4 class="my-4">Event QRcode</h4>
+
+                    <div class="row">
+                        <div class="col-12">
+                            {!! QrCode::size(300)->generate( $event->slug); !!}
+                            {{-- <a href="#" download="QRcode">
+                                <img src="">
+                            </a> --}}
+                        </div>
+                    </div>
+
 
                     <div class="row">
                         <div class="col-12">
@@ -99,5 +117,30 @@
         </div>
     </div>   
 </section>
+
+<script type="text/javascript">
+const second = 1000,
+  minute = second * 60,
+  hour = minute * 60,
+  day = hour * 24;
+
+let countDown = new Date("{{ $event->date }} {{ $event->hour }}").getTime(),
+    x = setInterval(function() {
+    let now = new Date().getTime(),
+        distance = countDown - now;
+
+        document.getElementById('days').innerText = Math.floor(distance / (day)),
+        document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
+        document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+        document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+          
+        // do something later when date is reached
+        if (distance < 0) {
+         clearInterval(x);
+         'In Progress!';
+        }
+
+    }, second) 
+</script>
 
 @endsection

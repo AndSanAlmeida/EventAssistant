@@ -19,28 +19,32 @@ class LocalizationsTableSeeder extends Seeder
             'event_id' => '1',
             'localization' => 'Lisboa City',
             'latitude' => '38.721711',
-            'longitude' => '-9.136848'
+            'longitude' => '-9.136848',
+            'hour' => '10:00'
         ]);
 
         Localization::create([
             'event_id' => '1',
             'localization' => 'Fátima City',
             'latitude' => '38.721711',
-            'longitude' => '-9.136848'
+            'longitude' => '-9.136848',
+            'hour' => '10:00'
         ]);
 
         Localization::create([
             'event_id' => '2',
             'localization' => 'Lisboa City',
             'latitude' => '38.721711',
-            'longitude' => '-9.136848'
+            'longitude' => '-9.136848',
+            'hour' => '10:00'
         ]);
 
         Localization::create([
             'event_id' => '2',
             'localization' => 'Fátima City',
             'latitude' => '38.721711',
-            'longitude' => '-9.136848'
+            'longitude' => '-9.136848',
+            'hour' => '10:00'
         ]);
     }
 }

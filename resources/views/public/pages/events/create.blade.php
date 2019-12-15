@@ -79,6 +79,28 @@
 									</span>
 								@endif
 							</div>
+						</div>
+
+						{{-- Website --}}
+						<div class="form-group row">
+							<label for="website" class="col-md-2 col-form-label">Website</label>
+							<div class="col-md-10">
+								<input id="website"
+									type="url"
+									class="form-control {{ $errors->has('website') ? ' is-invalid' : '' }}"
+									name="website"
+									value="{{ old('website') }}"
+									placeholder="Ex: http://www.examplepage.com" 
+									autocomplete="Website" autofocus>
+								<small id="passwordHelpBlock" class="form-text text-muted">
+                                  Must have: http:// or https://
+                                </small>
+								@if ($errors->has('website'))
+									<span class="invalid-feedback" role="alert">
+										<strong>{{ $errors->first('website') }}</strong>
+									</span>
+								@endif
+							</div>
 						</div>	
 						
 						{{-- Actions --}}

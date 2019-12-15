@@ -8,7 +8,7 @@ use App\Event;
 class Localization extends Model
 {
     protected $fillable = [
-        'localization', 'latitude', 'longitude', 'event_id'
+        'localization', 'latitude', 'longitude', 'hour', 'event_id'
     ];
     
     public function event() {

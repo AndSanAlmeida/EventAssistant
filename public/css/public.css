@@ -827,10 +827,8 @@ input[type=time]::-webkit-inner-spin-button {
 
 .badge {
   padding: 0.5em 1em;
-  margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  vertical-align: middle;
 }
 
 .tooltip {

@@ -13,7 +13,7 @@ class Event extends Model
 	// protected $guarded = [];
 
 	protected $fillable = [
-        'name', 'date', 'hour', 'slug', 'active',
+        'name', 'date', 'hour', 'website', 'slug', 'active',
     ];
 
     public function user() {

@@ -20,6 +20,7 @@ class EventsTableSeeder extends Seeder
         	'name' => 'Rui e Maria',
         	'date' => '2020/09/19',
         	'hour' => '11:00',
+            'website' => 'http://www.examplepage.com',
         	'slug' => 'rui_e_maria',
         	'active' => 1,
         ]);
@@ -29,6 +30,7 @@ class EventsTableSeeder extends Seeder
             'name' => 'Miguel e Júlia',
             'date' => '2020/10/03',
             'hour' => '11:00',
+            'website' => 'http://www.examplepage.com',
             'slug' => 'miguel_e_julia',
             'active' => 1,
         ]);

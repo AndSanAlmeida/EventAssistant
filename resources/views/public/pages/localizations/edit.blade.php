@@ -82,6 +82,25 @@
                             </div>
                         </div>
 
+                        {{-- Hour --}}
+                        <div class="form-group row">
+                            <label for="hour" class="col-md-2 col-form-label">Hour</label>
+                            <div class="col-md-4">
+                                <input id="hour"
+                                    type="time"
+                                    class="form-control {{ $errors->has('hour') ? ' is-invalid' : '' }}"
+                                    name="hour"
+                                    value="{{ old('hour') ?? date('h:i', strtotime($localization->hour)) }}"
+                                    required
+                                    autocomplete="Hour" autofocus>
+                                @if ($errors->has('hour'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('hour') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         {{-- Actions --}}
                         <div class="form-group row">                          
                             <div class="col-12">

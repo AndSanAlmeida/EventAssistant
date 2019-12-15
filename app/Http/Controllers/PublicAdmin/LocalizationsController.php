@@ -46,7 +46,8 @@ class LocalizationsController extends Controller
         $data = Validator::make($request->all(), [
             'localization' => ['required', 'string', 'min:6', 'max:30'],
             'latitude' => ['required','regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'], 
-            'longitude' => ['required','regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/']
+            'longitude' => ['required','regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/'],
+            'hour' => ['required', 'date_format:H:i'],
         ], [
             'latitude.regex' => 'Latitude value appears to be incorrect format.',
             'longitude.regex' => 'Longitude value appears to be incorrect format.'
@@ -107,7 +108,8 @@ class LocalizationsController extends Controller
             $data = Validator::make($request->all(), [
                 'localization' => ['required', 'string', 'min:6', 'max:30'],
                 'latitude' => ['required','regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'], 
-                'longitude' => ['required','regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/']
+                'longitude' => ['required','regex:/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/'],
+                'hour' => ['required', 'date_format:H:i'],
             ], [
                 'latitude.regex' => 'Latitude value appears to be incorrect format.',
                 'longitude.regex' => 'Longitude value appears to be incorrect format.'

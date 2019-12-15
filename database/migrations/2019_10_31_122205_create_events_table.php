@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->date('date');
             $table->time('hour');
+            $table->string('website')->nullable();
             $table->string('slug')->unique();
             $table->boolean('active')->default(true);
             $table->timestamps();

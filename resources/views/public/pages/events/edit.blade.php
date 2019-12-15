@@ -76,7 +76,7 @@
                                             name="date"
                                             value="{{ old('date') ?? $event->date }}"
                                             required
-                                            autocomplete="Name" autofocus>
+                                            autocomplete="Date" autofocus>
                                         @if ($errors->has('date'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('date') }}</strong>
@@ -93,10 +93,33 @@
                                             name="hour"
                                             value="{{ old('hour') ?? date('h:i', strtotime($event->hour)) }}"
                                             required
-                                            autocomplete="Name" autofocus>
+                                            autocomplete="Hour" autofocus>
                                         @if ($errors->has('hour'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('hour') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                {{-- Website --}}
+                                <div class="form-group row">
+                                    <label for="website" class="col-md-2 col-form-label">Website</label>
+                                    <div class="col-md-10">              
+                                        <input id="website"
+                                            type="url"
+                                            class="form-control {{ $errors->has('website') ? ' is-invalid' : '' }}"
+                                            name="website"
+                                            value="{{ old('website') ?? $event->website }}"
+                                            placeholder="Ex: http://www.examplepage.com" 
+                                            autocomplete="Website" autofocus>
+                                        <small id="passwordHelpBlock" class="form-text text-muted">
+                                          Must have: http:// or https://
+                                        </small>
+
+                                        @if ($errors->has('website'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('website') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -217,6 +240,7 @@
                                                         <th>Localization</th>
                                                         <th>Latitude</th>
                                                         <th>Longitude</th>
+                                                        <th>Hour</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
@@ -226,6 +250,7 @@
                                                         <td>{{ $localization->localization }}</td>
                                                         <td>{{ $localization->latitude }}</td>
                                                         <td>{{ $localization->longitude }}</td>
+                                                        <td>{{ date('h:i\h', strtotime($localization->hour)) }}</td>
                                                         <td>
                                                             <li class="list-inline-item">
                                                                 <a href="{{ route('public.localizations.edit', $localization) }}" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
