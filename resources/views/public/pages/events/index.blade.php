@@ -93,17 +93,16 @@
                         </div>
                     </div>
 
-                    <h4 class="my-4">Event QRcode</h4>
+                    <h4 class="my-4">Event QR Code</h4>
 
                     <div class="row">
                         <div class="col-12">
-                            {!! QrCode::size(300)->generate( $event->slug); !!}
-                            {{-- <a href="#" download="QRcode">
-                                <img src="">
-                            </a> --}}
+                            <img class="rounded" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->backgroundColor(253,186,81)->color(255,255,255)->generate($event->slug)) !!} " alt="QR Code">
+                            <p class="my-4">                                
+                                <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->backgroundColor(253,186,81)->color(255,255,255)->generate($event->slug)) !!}" download="QR Code"><i class="fas fa-file-download fa-lg text-orange mr-4" title="QR Code"></i>Download QR Code</a>
+                            </p>
                         </div>
                     </div>
-
 
                     <div class="row">
                         <div class="col-12">

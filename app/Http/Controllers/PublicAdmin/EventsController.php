@@ -51,7 +51,7 @@ class EventsController extends Controller
 
         // Cria uma slug do name e gera uma random string no fim
         $slug = str_slug(request('name'), '-') . '-' . Str::random(48); 
-        
+
         // Data Actual
         $currentDate = date("Y-m-d");
         

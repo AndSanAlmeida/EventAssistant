@@ -906,6 +906,10 @@ input[type=time]::-webkit-inner-spin-button {
   margin-bottom: 0.5rem;
 }
 
+.rounded {
+  border-radius: 0.5rem !important;
+}
+
 .close {
   font-size: 2.5rem;
 }

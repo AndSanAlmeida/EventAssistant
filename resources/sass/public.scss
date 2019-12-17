@@ -1003,6 +1003,11 @@ input[type='date']::-webkit-inner-spin-button, input[type='time']::-webkit-inner
   margin-bottom: .5rem;
 }
 
+.rounded {
+  border-radius: .50rem!important;
+
+}
+
 .close {
   font-size: 2.5rem;
 }
