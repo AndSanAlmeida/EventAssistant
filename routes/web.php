@@ -78,11 +78,6 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::patch('/localizations/{localization}', 'LocalizationsController@update')->name('localizations.update');
 
 	Route::delete('/localizations/{localization}', 'LocalizationsController@destroy')->name('localizations.destroy');
-
-	// PublicDashboard - QRCode
-	// Route::get('qrcode', function () {
-	//     return QrCode::size(300)->generate('A basic example of QR code!');
-	//  });
 });
 
 // Namespace: Public
