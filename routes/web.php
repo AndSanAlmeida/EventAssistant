@@ -86,5 +86,10 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 Route::namespace('PublicAdmin')->prefix('public')->name('public.')->group(function()
 	{
 
+	// Show Event to Public
 	Route::get('/events/{id}/{slug}', 'EventsController@show')->name('events.show');
+
+	// Google Calendar Routes
+	Route::resource('/googleCalendar', 'GoogleCalendarController');
+	Route::get('/oauth', ['as' => 'oauthCallback', 'uses' => 'GoogleCalendarController@oauth']);
 });
