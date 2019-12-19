@@ -81,7 +81,7 @@
                                 @foreach ($event->localizations as $localization)
                                     <li class="py-2">
                                         <i class="fas fa-map-marker-alt fa-lg text-lightblue mr-4"></i>
-                                        <a href="https://www.google.pt/maps/dir//{{ $localization->latitude}},{{ $localization->longitude}}" target="_blank" data-toggle="tooltip" title="Directions to: {{ $localization->localization}}">
+                                        <a href="https://maps.google.com/?q={{ $localization->latitude}}, {{ $localization->longitude   }}" target="_blank" data-toggle="tooltip" title="Directions to: {{ $localization->localization}}">
                                             {{ $localization->localization}}
                                         </a>
                                         <small class="mx-4">(<b>Lat. </b>{{ $localization->latitude}}, <b>Long. </b>{{ $localization->longitude}})</small>
