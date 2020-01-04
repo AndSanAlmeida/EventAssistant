@@ -88,8 +88,5 @@ Route::namespace('PublicAdmin')->prefix('public')->name('public.')->group(functi
 
 	// Show Event to Public
 	Route::get('/events/{id}/{slug}', 'EventsController@show')->name('events.show');
-
-	// Google Calendar Routes
-	Route::resource('/googleCalendar', 'GoogleCalendarController');
-	Route::get('/oauth', ['as' => 'oauthCallback', 'uses' => 'GoogleCalendarController@oauth']);
+	Route::get('/events/createEventOnGoogleCalendar', 'EventsController@createEventOnGoogleCalendar')->name('events.createEventOnGoogleCalendar');
 });
