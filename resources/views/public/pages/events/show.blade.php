@@ -10,7 +10,7 @@
         <div class="section-content-extra">
 
             {{-- Just testing --}}
-            {{dd(Spatie\GoogleCalendar\Event::get())}}
+            {{-- {{dd(Spatie\GoogleCalendar\Event::get())}} --}}
 
             @if ($event->getStatus($event->active) == '1')
                 <div class="title-wrap">
@@ -31,7 +31,7 @@
                             <div class="col-md-6">
                                 <p>
                                     <strong class="mr-2"><i class="fas fa-calendar-day fa-lg text-red mr-4"></i>Date: </strong>{{ date('F d, Y', strtotime($event->date)) }} 
-                                    <a href="{{ route('public.events.createEventOnGoogleCalendar')}}" data-toggle="tooltip" title="Add to Google Calendar" class="text-purple">
+                                    <a href="{{ route('public.googlecalendar.createEvent') }}" data-toggle="tooltip" title="Add to Google Calendar" class="text-purple">
                                         <strong><i class="far fa-calendar-plus fa-lg ml-4"></i></strong>
                                     </a>
                                 </p>

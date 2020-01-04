@@ -88,12 +88,6 @@ class EventsController extends Controller
         return view('public.pages.events.show', compact('event'));        
     }
 
-    public function createEventOnGoogleCalendar()
-    {
-        dd('Dentro');
-        // dd(Spatie\GoogleCalendar\Event::get());
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
