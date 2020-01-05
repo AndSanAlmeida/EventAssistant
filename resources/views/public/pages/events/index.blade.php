@@ -118,12 +118,12 @@
 </section>
 
 <script type="text/javascript">
-const second = 1000,
-  minute = second * 60,
-  hour = minute * 60,
-  day = hour * 24;
+    const second = 1000,
+      minute = second * 60,
+      hour = minute * 60,
+      day = hour * 24;
 
-let countDown = new Date("{{ $event->date }} {{ $event->hour }}").getTime(),
+    let countDown = new Date("{{ $event->date }} {{ $event->hour }}").getTime(),
     x = setInterval(function() {
     let now = new Date().getTime(),
         distance = countDown - now;
