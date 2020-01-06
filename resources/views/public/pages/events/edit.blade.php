@@ -296,7 +296,7 @@
 
 <!-- Modal Delete Files -->
 <div class="modal fade" id="deleteModalFile" tabindex="-1" role="dialog" aria-labelledby="deleteFileModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteFileModalLabel">Delete!</h5>
@@ -321,7 +321,7 @@
 
 <!-- Modal Delete Localization -->
 <div class="modal fade" id="deleteModalLocalization" tabindex="-1" role="dialog" aria-labelledby="deleteLocalizationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteLocalizationModalLabel">Delete!</h5>

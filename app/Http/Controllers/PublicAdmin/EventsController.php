@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Event;
 use Auth;
+use Carbon\Carbon;
 
 class EventsController extends Controller
 {
@@ -21,7 +22,9 @@ class EventsController extends Controller
             return redirect()->back();
         }
 
-        return view('public.pages.events.index', compact('event'));
+        $eventDate = Carbon::createFromFormat('Y-m-d H:i:s', $event->date.' '.$event->hour);
+
+        return view('public.pages.events.index', compact('event', 'eventDate'));
     }
 
     /**
@@ -85,7 +88,9 @@ class EventsController extends Controller
             return redirect()->back();
         }
 
-        return view('public.pages.events.show', compact('event'));        
+        $eventDate = Carbon::createFromFormat('Y-m-d H:i:s', $event->date.' '.$event->hour);
+
+        return view('public.pages.events.show', compact('event', 'eventDate'));        
     }
 
     /**

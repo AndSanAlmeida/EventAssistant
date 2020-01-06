@@ -14,21 +14,23 @@
                     <h1 class="section-title">{{ $event->name }}</h1>
                     <p class="section-sub-title h2">
                     <i class="fas fa-stopwatch text-cyan"></i>
-                    <span id="days"></span><small class="text-cyan"> Days</small>
-                    <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span><small class="text-cyan"> (h:s:m)</small>
+                    <span class="h4 text-muted">{{ $eventDate->diffForHumans() }}</span>
                 </p>
                 </div>
 
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
 
+                        {{-- Alerts --}}
+                        @include('public.partials._alerts')
+
                         <h4 class="my-4">General Information</h4>
 
                         <div class="row">
                             <div class="col-md-6">
-                                <p>
+                                <p data-toggle="tooltip" title="Click to add Event in Google Calendar">
                                     <strong class="mr-2"><i class="fas fa-calendar-day fa-lg text-red mr-4"></i>Date: </strong>
-                                    <a href="{{ route('public.googlecalendar.createEvent', [$event->id, $event->slug]) }}" data-toggle="tooltip" title="Click to add Event in Google Calendar">
+                                    <a href="#" data-toggle="modal" data-target="#modalGoogleCalendar">
                                         {{ date('F d, Y', strtotime($event->date)) }} 
                                     </a>
                                 </p>
@@ -125,29 +127,25 @@
     </div>   
 </section>
 
-<script type="text/javascript">
-    const second = 1000,
-      minute = second * 60,
-      hour = minute * 60,
-      day = hour * 24;
-
-    let countDown = new Date("{{ $event->date }} {{ $event->hour }}").getTime(),
-    x = setInterval(function() {
-    let now = new Date().getTime(),
-        distance = countDown - now;
-
-        document.getElementById('days').innerText = Math.floor(distance / (day)),
-        document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
-        document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
-        document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
-          
-        // do something later when date is reached
-        if (distance < 0) {
-         clearInterval(x);
-         'In Progress!';
-        }
-
-    }, second) 
-</script>
+<!-- Google Calendar Modal -->
+<div class="modal fade" id="modalGoogleCalendar" tabindex="-1" role="dialog" aria-labelledby="modalGoogleCalendarTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Google Calendar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>You would like to add this Event to your Google Calendar?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-orange" data-dismiss="modal">No</button>
+        <a href="{{ route('public.googlecalendar.create', [$event->id, $event->slug]) }}" class="btn btn-secondary btn-red">Yes</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection

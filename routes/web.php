@@ -86,7 +86,9 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 Route::namespace('PublicAdmin')->prefix('public')->name('public.')->group(function()
 	{
 
+	// Google Calendar 
+	Route::get('/events/{id}/{slug}/addToGoogleCalendar', 'GoogleCalendarController@create')->name('googlecalendar.create');
+	
 	// Show Event to Public
-	Route::get('/events/{id}/{slug}/addToGoogleCalendar', 'GoogleCalendarController@createEvent')->name('googlecalendar.createEvent');
 	Route::get('/events/{id}/{slug}', 'EventsController@show')->name('events.show');
 });

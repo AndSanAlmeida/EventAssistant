@@ -12,8 +12,7 @@
                 <h1 class="section-title">{{ $event->name }}</h1>
                 <p class="section-sub-title h2">
                     <i class="fas fa-stopwatch text-cyan"></i>
-                    <span id="days"></span><small class="text-cyan"> Days</small>
-                    <span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span><small class="text-cyan"> (h:s:m)</small>
+                    <span class="h4 text-muted">{{ $eventDate->diffForHumans() }}</span>
                 </p>
             </div>
 
@@ -116,30 +115,5 @@
         </div>
     </div>   
 </section>
-
-<script type="text/javascript">
-    const second = 1000,
-      minute = second * 60,
-      hour = minute * 60,
-      day = hour * 24;
-
-    let countDown = new Date("{{ $event->date }} {{ $event->hour }}").getTime(),
-    x = setInterval(function() {
-    let now = new Date().getTime(),
-        distance = countDown - now;
-
-        document.getElementById('days').innerText = Math.floor(distance / (day)),
-        document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
-        document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
-        document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
-          
-        // do something later when date is reached
-        if (distance < 0) {
-         clearInterval(x);
-         'In Progress!';
-        }
-
-    }, second) 
-</script>
 
 @endsection

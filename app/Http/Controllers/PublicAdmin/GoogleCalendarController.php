@@ -10,17 +10,23 @@ use Carbon\Carbon;
 
 class GoogleCalendarController extends Controller
 {
-    public function createEvent($id)
+    public function create($id)
     {   
         $eventId = Event::findOrFail($id);
 
-        $event = new GoogleCalendarObject;
+        if ($eventId) {
 
-        $event->name = $eventId->name;
-        $event->startDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $eventId->date.' '.$eventId->hour);
-        $event->endDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $eventId->date.' '.$eventId->hour)->addHour();
+            $event = new GoogleCalendarObject;
 
-        $event->save();
-        return redirect()->back()->with('success', 'This Event was been added correctly to your Google Calendar!');
+            $event->name = $eventId->name;
+            $event->startDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $eventId->date.' '.$eventId->hour);
+            $event->endDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $eventId->date.' '.$eventId->hour)->addHour();
+            $event->save();
+
+            return redirect()->back()->with('success', 'This Event was been added correctly to your Google Calendar!');
+
+        } else {
+            return redirect()->back()->with('warning', 'An error occured while trying to add the event to your calendar! Try Again.');
+        }
     }
 }
