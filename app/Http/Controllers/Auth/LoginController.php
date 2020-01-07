@@ -87,7 +87,7 @@ class LoginController extends Controller
 
             // Attach Role
             $userRole = Role::where('name', 'user')->first();
-            $newUser->roles()->attach($userRole, $newUser->id);
+            $newUser->roles()->attach([$userRole->id, $newUser->id]);
 
             auth()->login($newUser, true);
         }
