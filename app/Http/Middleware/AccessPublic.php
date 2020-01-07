@@ -20,6 +20,6 @@ class AccessPublic
             return $next($request);
         }
 
-        return  redirect('home');        
+        return  redirect('/');        
     }
 }

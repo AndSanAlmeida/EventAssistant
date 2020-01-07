@@ -14,7 +14,11 @@ class User extends Authenticatable
 
     public function profileImage()
     {   
-        $avatarPath = ($this->avatar) ? '/storage/'.$this->avatar : '/img/default-avatar.png';
+        if (isset($this->google_id)) {
+            $avatarPath = asset($this->avatar);
+        } else {
+            $avatarPath = ($this->avatar) ? '/storage/'.$this->avatar : '/img/default-avatar.png';
+        }
         return $avatarPath;
     }
 
@@ -24,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar',
+        'name', 'google_id', 'email', 'password', 'avatar',
     ];
 
     /**

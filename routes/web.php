@@ -11,11 +11,18 @@
 |
 */
 
+
+// Homepage
 Route::get('/', function () {
     return view('public.pages.home');
 });
 
+// Auth Routes
 Auth::routes();
+
+// Auth Google Account
+Route::get('/redirect', 'Auth\LoginController@redirectToProvider')->name('redirectGoogle');
+Route::get('/callback', 'Auth\LoginController@handleProviderCallback')->name('callbackGoogle');
 
 // Namespace: Admin
 // Prefix: admin
