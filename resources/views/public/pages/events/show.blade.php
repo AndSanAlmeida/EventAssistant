@@ -101,9 +101,9 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <img class="rounded" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(400)->backgroundColor(253,186,81)->color(255,255,255)->generate($event->slug)) !!} " alt="QR Code">
+                                <img class="rounded" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->backgroundColor(253,186,81)->color(255,255,255)->generate($event->slug)) !!} " alt="QR Code">
                                 <p class="my-4">                                
-                                    <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(400)->backgroundColor(253,186,81)->color(255,255,255)->generate($event->slug)) !!}" download="QR Code"><i class="fas fa-file-download fa-lg text-orange mr-4" title="QR Code"></i>Download QR Code</a>
+                                    <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->backgroundColor(253,186,81)->color(255,255,255)->generate($event->slug)) !!}" download="QR Code"><i class="fas fa-file-download fa-lg text-orange mr-4" title="QR Code"></i>Download QR Code</a>
                                 </p>
                             </div>
                         </div>
@@ -129,16 +129,21 @@
 
 <!-- Google Calendar Modal -->
 <div class="modal fade" id="modalGoogleCalendar" tabindex="-1" role="dialog" aria-labelledby="modalGoogleCalendarTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Google Calendar</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle"><i class="fab fa-google"></i>oogle Calendar <i class="far fa-calendar-alt"></i></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>You would like to add this Event to your Google Calendar?</p>
+        <p class="h3">You would like to add this Event to your Google Calendar?</p>
+        <ul class="list-unstyled my-4 ml-4">
+            <li><b>Event Name: </b>{{ $event->name }}</li>
+            <li><b>Starting Time: </b>{{ date('h:i\h', strtotime($event->hour)) }}</li>
+            <li><b>Description: </b>Link of this Event</li>
+        </ul>        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-orange" data-dismiss="modal">No</button>
