@@ -38,28 +38,37 @@ class UsersController extends Controller
     public function update(Request $request)
     {   
         $user = User::find(Auth::user()->id);
+
         // dd($request);
+        
         if ($user) {
 
-            // Se o Email for igual ao existente
-            if (Auth::user()->email === $request['email']) {
+            // Validation Without Email
+            $data = request()->validate([
+                'name' => ['required', 'string', 'min:2', 'max:30'],
+                'avatar' => ['file', 'image', 'max:1000'],
+            ]);
 
-                // Não verifica se o email é UNIQUE
-                $data = request()->validate([
-                    'name' => ['required', 'string', 'min:2', 'max:30'],
-                    //Verifica se o email inserido já existe
-                    'email' => ['required', 'string', 'email', 'max:40'], 
-                    'avatar' => ['file', 'image', 'max:1000'],
-                ]);
-            } else {
-                // Verifica se o email é UNIQUE
-                $data = request()->validate([
-                    'name' => ['required', 'string', 'min:2', 'max:30'],
-                    //Verifica se o email inserido já existe
-                    'email' => ['required', 'string', 'email', 'max:40', 'unique:users'], 
-                    'avatar' => ['file', 'image', 'max:1000'],
-                ]);
-            }
+            // Validation With Email
+
+            // Se o Email for igual ao existente
+            // if (Auth::user()->email === $request['email']) {
+            //     // Não verifica se o email é UNIQUE
+            //     $data = request()->validate([
+            //         'name' => ['required', 'string', 'min:2', 'max:30'],
+            //         //Verifica se o email inserido já existe
+            //         email' => ['required', 'string', 'email', 'max:40'], 
+            //         'avatar' => ['file', 'image', 'max:1000'],
+            //     ]);
+            // } else {
+            //     // Verifica se o email é UNIQUE
+            //     $data = request()->validate([
+            //         'name' => ['required', 'string', 'min:2', 'max:30'],
+            //         //Verifica se o email inserido já existe
+            //         'email' => ['required', 'string', 'email', 'max:40', 'unique:users'], 
+            //         'avatar' => ['file', 'image', 'max:1000'],
+            //     ]);
+            // }
 
             if (isset($data['avatar'])) {
 

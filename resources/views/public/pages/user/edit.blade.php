@@ -31,8 +31,8 @@
 
                             <div class="col-md-7">
                                 
+                                {{-- Name --}}
                                 <div class="form-group row">
-                                    {{-- Name --}}
                                     <label for="name" class="col-md-2 col-form-label">Name</label>
                                     <div class="col-md-10">              
                                         <input id="name"
@@ -50,8 +50,8 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    {{-- Email --}}
+                                {{-- Email --}}
+                                {{-- <div class="form-group row">
                                     <label for="email" class="col-md-2 col-form-label">Email</label>
                                     <div class="col-md-10">
                                         <input id="email"
@@ -67,10 +67,21 @@
                                             </span>
                                         @endif
                                     </div>
+                                </div> --}}
+
+                                {{-- Email --}}
+                                <div class="form-group row">
+                                    <label for="email" class="col-md-2 col-form-label">Email</label>
+                                    <div class="col-md-10">
+                                        <input id="email"
+                                            type="email"
+                                            class="form-control"
+                                            value="{{ $user->email }}" disabled>
+                                    </div>
                                 </div>
 
+                                {{-- Profile Image --}}
                                 <div class="form-group">
-                                    {{-- Profile Image --}}
                                     <label for="avatar">Profile Image</label>
                                     <input type="file" id="avatar" name="avatar" class="form-control-file">
 
