@@ -63,10 +63,12 @@ class UsersController extends Controller
 
             if (isset($data['avatar'])) {
 
-                if (isset($user->avatar)) {
-                    // Apaga o Ficheiro Antigo
-                    $avatar_path = "/storage/".$user->avatar;
-                    unlink(public_path().$avatar_path);
+                if (!str_contains($user->avatar, 'https://lh3.googleusercontent.com')) {
+                    if (isset($user->avatar)) {
+                        // Apaga o Ficheiro Antigo
+                        $avatar_path = 'storage/'.$user->avatar;
+                        unlink($avatar_path);
+                    }
                 }
 
                 // Store

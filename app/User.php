@@ -14,7 +14,7 @@ class User extends Authenticatable
 
     public function profileImage()
     {   
-        if (isset($this->google_id)) {
+        if (str_contains($this->avatar, 'https://lh3.googleusercontent.com')) {
             $avatarPath = asset($this->avatar);
         } else {
             $avatarPath = ($this->avatar) ? '/storage/'.$this->avatar : '/img/default-avatar.png';
