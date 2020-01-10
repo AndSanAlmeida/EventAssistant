@@ -9,13 +9,25 @@ use App\Event;
 use Auth;
 use Image;
 use Hash;
+use Braintree\Gateway as Braintree;
 
 class UsersController extends Controller
 {   
 
     public function dashboard()
     {   
-        return view('public.pages.dashboard');
+
+        // Braintree Token           
+        $gateway = new Braintree([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchantId'),
+            'publicKey' => config('services.braintree.publicKey'),
+            'privateKey' => config('services.braintree.privateKey')
+        ]);
+
+        $token = $gateway->ClientToken()->generate();
+
+        return view('public.pages.dashboard', compact('token'));
     }
 
     public function show(User $user)

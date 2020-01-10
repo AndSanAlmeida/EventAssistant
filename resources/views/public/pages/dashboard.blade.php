@@ -86,13 +86,14 @@
 								                					data-toggle="tooltip" 
 								                					title="Delete"
 								                					onclick="deleteData({{$event->id}})">
-								                					<i class="far fa-trash-alt"></i>
+								                					<i class="fas fa-trash-alt"></i>
 								                				</a>
 								                			</li>
 								                		</ul>
 								                	</td>
 								                	<td>
-								                		<button id="share" class="btn btn-lightblue btn-sm mb-3" data-toggle="tooltip" title="Copy to Clipboard" onclick="CopyToClipboard( '{{ route('public.events.show', ['id'=>$event->id,'slug'=>$event->slug]) }}', true, 'Link is now Copied!')"><i class="fas fa-share-alt"></i> Share</button>
+						                				<button id="share" class="btn btn-lightblue btn-sm mb-3" data-toggle="tooltip" title="Copy to Clipboard" onclick="CopyToClipboard( '{{ route('public.events.show', ['id'=>$event->id,'slug'=>$event->slug]) }}', true, 'Link is now Copied!')"><i class="fas fa-share-alt"></i> Share</button>
+						                				<button data-toggle="modal" data-target="#transactionModal"  class="btn btn-lightblue btn-sm mb-3"><i class="fas fa-money-check-alt"></i> Payment</button>
 													</td>
 								            	</tr>
 								            @endforeach
@@ -117,18 +118,18 @@
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="deleteModalLabel">Delete!</h5>
+				<h5 class="modal-title" id="deleteModalLabel">Delete <i class="fas fa-trash-alt"></i></h5>
 				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
 			<div class="modal-body">You really want do delete this event?</div>
 			<div class="modal-footer">
-				<button class="btn btn-secondary btn-orange" type="button" data-dismiss="modal">Cancel</button>
+				<button class="btn btn-orange" type="button" data-dismiss="modal">Cancel</button>
 				<form id="deleteForm" action="" method="POST">
 					@csrf 
 					@method('DELETE')
-					<button type="submit" class="btn btn-secondary btn-red" data-dismiss="modal" onclick="formSubmit()">
+					<button type="submit" class="btn btn-red" data-dismiss="modal" onclick="formSubmit()">
 						<span class="text">Delete</span>
 					</button>
 				</form>
@@ -137,6 +138,41 @@
 	</div>
 </div>
 
+<!-- Modal Payment -->
+<div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="transactionModalLabel">Checkout <i class="fas fa-shopping-cart"></i></h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<form method="post" id="payment-form" action="{{ route('public.transaction.checkout', auth()->user()) }}">
+                @csrf
+				<div class="modal-body"> 
+					<p><b>To share this event you must first purchase the link access.</b></p>
+					<p>Make the purchase? <b class="ml-4">Amount: </b>10€</p>
+                    
+                    <section>
+                        <div class="bt-drop-in-wrapper">
+                            <div id="bt-dropin"></div>
+                        </div>
+                    </section>
+
+                    <input id="nonce" name="payment_method_nonce" hidden />
+
+				</div>
+			<div class="modal-footer">
+				<button class="btn btn-orange" type="button" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-red" type="submit"><span>Make Transaction</span></button>
+			</div>
+            </form>
+		</div>
+	</div>
+</div>
+
+<script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
 <script type="text/javascript">
 	function deleteData(id) {
 		 var id = id;
@@ -149,6 +185,32 @@
 	 	$("#deleteForm").submit();
 	}
 
+	var form = document.querySelector('#payment-form');
+    var client_token = "{{ $token }}";
+    braintree.dropin.create({
+      authorization: client_token,
+      selector: '#bt-dropin',
+      paypal: {
+        flow: 'vault'
+      }
+    }, function (createErr, instance) {
+      if (createErr) {
+        console.log('Create Error', createErr);
+        return;
+      }
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        instance.requestPaymentMethod(function (err, payload) {
+          if (err) {
+            console.log('Request Payment Method Error', err);
+            return;
+          }
+          // Add the nonce to the form and submit
+          document.querySelector('#nonce').value = payload.nonce;
+          form.submit();
+        });
+      });
+    });
 </script>
 
 @endsection

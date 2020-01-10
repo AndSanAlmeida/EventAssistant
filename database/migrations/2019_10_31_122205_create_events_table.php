@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->time('hour');
             $table->string('website')->nullable();
             $table->string('slug')->unique();
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(false);
             $table->timestamps();
             
             $table->index('user_id');

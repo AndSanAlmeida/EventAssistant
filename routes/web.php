@@ -85,6 +85,9 @@ Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.pub
 	Route::patch('/localizations/{localization}', 'LocalizationsController@update')->name('localizations.update');
 
 	Route::delete('/localizations/{localization}', 'LocalizationsController@destroy')->name('localizations.destroy');
+
+	// PublicDashboard - PaymentsController 
+	Route::post('/{user}/checkout', 'TransactionsController@checkout')->name('transaction.checkout');
 });
 
 // Namespace: Public

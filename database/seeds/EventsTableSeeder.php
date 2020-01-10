@@ -22,7 +22,7 @@ class EventsTableSeeder extends Seeder
         	'hour' => '11:00',
             'website' => 'http://www.examplepage.com',
         	'slug' => 'rui_e_maria',
-        	'active' => 1,
+        	'active' => 0,
         ]);
 
         Event::create([
@@ -32,7 +32,7 @@ class EventsTableSeeder extends Seeder
             'hour' => '11:00',
             'website' => 'http://www.examplepage.com',
             'slug' => 'miguel_e_julia',
-            'active' => 1,
+            'active' => 0,
         ]);
     }
 }
