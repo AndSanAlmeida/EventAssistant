@@ -45,49 +45,49 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'auth.admin'])->
 Route::namespace('PublicAdmin')->prefix('public')->middleware(['auth', 'auth.public'])->name('public.')->group(function(){
 	
 	// PublicDashboard
-	Route::get('/', 'UsersController@dashboard')->name('dashboard');
+	Route::get('/', 'UserController@dashboard')->name('dashboard');
 
-	// PublicDashboard - UsersController
-	Route::get('/user/{user}', 'UsersController@show')->name('user.show');
+	// PublicDashboard - UserController
+	Route::get('/user/{user}', 'UserController@show')->name('user.show');
 
-	Route::get('/edit/user', 'UsersController@edit')->name('user.edit');
-	Route::patch('/edit/user', 'UsersController@update')->name('user.update');
+	Route::get('/edit/user', 'UserController@edit')->name('user.edit');
+	Route::patch('/edit/user', 'UserController@update')->name('user.update');
 
-	Route::get('/edit/password/user', 'UsersController@passwordEdit')->name('password.edit');
-	Route::post('/edit/password/user', 'UsersController@passwordUpdate')->name('password.update');
+	Route::get('/edit/password/user', 'UserController@passwordEdit')->name('password.edit');
+	Route::post('/edit/password/user', 'UserController@passwordUpdate')->name('password.update');
 
-	// PublicDashboard - EventsController
+	// PublicDashboard - EventController
 
-	Route::get('/events/create', 'EventsController@create')->name('events.create');
-	Route::post('/events', 'EventsController@store')->name('events.store');
+	Route::get('/events/create', 'EventController@create')->name('events.create');
+	Route::post('/events', 'EventController@store')->name('events.store');
 	
-	Route::get('/events/{event}', 'EventsController@index')->name('events.index'); 
+	Route::get('/events/{event}', 'EventController@index')->name('events.index'); 
 
-	Route::get('/events/{event}/edit', 'EventsController@edit')->name('events.edit');
-	Route::patch('/events/{event}', 'EventsController@update')->name('events.update');
+	Route::get('/events/{event}/edit', 'EventController@edit')->name('events.edit');
+	Route::patch('/events/{event}', 'EventController@update')->name('events.update');
 
-	Route::delete('/events/{event}', 'EventsController@destroy')->name('events.destroy');
+	Route::delete('/events/{event}', 'EventController@destroy')->name('events.destroy');
 
-	// PublicDashboard - FilesController
-	Route::get('/files/createOnEvent/{event}', 'FilesController@create')->name('files.create');
-	Route::post('/files', 'FilesController@store')->name('files.store');
+	// PublicDashboard - FileController
+	Route::get('/files/createOnEvent/{event}', 'FileController@create')->name('files.create');
+	Route::post('/files', 'FileController@store')->name('files.store');
 
-	Route::get('/files/{file}/edit', 'FilesController@edit')->name('files.edit');
-	Route::patch('/files/{file}', 'FilesController@update')->name('files.update');
+	Route::get('/files/{file}/edit', 'FileController@edit')->name('files.edit');
+	Route::patch('/files/{file}', 'FileController@update')->name('files.update');
 
-	Route::delete('/files/{file}', 'FilesController@destroy')->name('files.destroy');
+	Route::delete('/files/{file}', 'FileController@destroy')->name('files.destroy');
 
-	// PublicDashboard - LocalizationsController
-	Route::get('/localizations/createOnEvent/{event}', 'LocalizationsController@create')->name('localizations.create');
-	Route::post('/localizations', 'LocalizationsController@store')->name('localizations.store');
+	// PublicDashboard - LocalizationController
+	Route::get('/localizations/createOnEvent/{event}', 'LocalizationController@create')->name('localizations.create');
+	Route::post('/localizations', 'LocalizationController@store')->name('localizations.store');
 
-	Route::get('/localizations/{localization}/edit', 'LocalizationsController@edit')->name('localizations.edit');
-	Route::patch('/localizations/{localization}', 'LocalizationsController@update')->name('localizations.update');
+	Route::get('/localizations/{localization}/edit', 'LocalizationController@edit')->name('localizations.edit');
+	Route::patch('/localizations/{localization}', 'LocalizationController@update')->name('localizations.update');
 
-	Route::delete('/localizations/{localization}', 'LocalizationsController@destroy')->name('localizations.destroy');
+	Route::delete('/localizations/{localization}', 'LocalizationController@destroy')->name('localizations.destroy');
 
 	// PublicDashboard - PaymentsController 
-	Route::post('/{user}/checkout', 'TransactionsController@checkout')->name('transaction.checkout');
+	Route::post('/{user}/checkout', 'TransactionController@checkout')->name('transaction.checkout');
 });
 
 // Namespace: Public
@@ -100,5 +100,5 @@ Route::namespace('PublicAdmin')->prefix('public')->name('public.')->group(functi
 	Route::get('/events/{id}/{slug}/addToGoogleCalendar', 'GoogleCalendarController@create')->name('googlecalendar.create');
 	
 	// Show Event to Public
-	Route::get('/events/{id}/{slug}', 'EventsController@show')->name('events.show');
+	Route::get('/events/{id}/{slug}', 'EventController@show')->name('events.show');
 });

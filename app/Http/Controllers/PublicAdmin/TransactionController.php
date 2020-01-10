@@ -5,10 +5,11 @@ namespace App\Http\Controllers\PublicAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use App\Transaction;
 use Braintree\Gateway as Braintree;
 use Illuminate\Support\Str;
 
-class TransactionsController extends Controller
+class TransactionController extends Controller
 {
     public function checkout(Request $request, $id)
     {	
@@ -29,7 +30,6 @@ class TransactionsController extends Controller
     		list($firstname, $lastname) = explode(' ', $user->name);
     	}
         
-
 	    $amount = 10;
 	    $nonce = $request->payment_method_nonce;
 
@@ -45,15 +45,26 @@ class TransactionsController extends Controller
 	            'submitForSettlement' => true
 	        ]
 	    ]);
+
 	    if ($result->success) {
-	        $transaction = $result->transaction;
-	        return back()->with('success', 'Transaction successful. The ID is:'. $transaction->id);
+
+	    	// dd($result->transaction);
+	        $newTransaction = new Transaction;
+	    	$newTransaction->transaction_id = $result->transaction->id;   	
+	    	$newTransaction->amount = $result->transaction->amount;   	
+	    	$newTransaction->currency = $result->transaction->currencyIsoCode;   	
+	    	$newTransaction->status = $result->transaction->status;   	
+	    	$newTransaction->costumer_name = $user->name;   	
+	    	$newTransaction->costumer_email = $user->email;
+	    	event()->transaction()->create($newTransaction); 	
+
+	        return back()->with('success', 'Transaction successful.');
 	    } else {
 	        $errorString = "";
 	        foreach ($result->errors->deepAll() as $error) {
 	            $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
 	        }
-	        return back()->with('Error', 'An error occurred with the message: '. $result->message);
+	        return back()->withErrors('Error', 'An error occurred with the message: '. $result->message);
 	    }
     }
 }

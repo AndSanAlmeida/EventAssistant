@@ -11,7 +11,7 @@ use Image;
 use Hash;
 use Braintree\Gateway as Braintree;
 
-class UsersController extends Controller
+class UserController extends Controller
 {   
 
     public function dashboard()

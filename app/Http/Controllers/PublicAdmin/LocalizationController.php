@@ -9,7 +9,7 @@ use Validator;
 use App\Event;
 use App\Localization;
 
-class LocalizationsController extends Controller
+class LocalizationController extends Controller
 {
     /**
      * Display a listing of the resource.

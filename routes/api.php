@@ -19,5 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::namespace('PublicAdmin')->group(function() {
 	// Ajax Email Validation
-	Route::get('/user/check/{email}', 'UsersController@checkEmail');
+	Route::get('/user/check/{email}', 'UserController@checkEmail');
 });

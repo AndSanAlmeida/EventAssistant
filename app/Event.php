@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\File;
 use App\Localization;
+use App\Transaction;
 
 class Event extends Model
 {	
@@ -40,5 +41,9 @@ class Event extends Model
 
     public function localizations() {
         return $this->hasMany(Localization::class);
+    }
+
+    public function transaction() {
+        return $this->belongsTo(Transaction::class);
     }
 }

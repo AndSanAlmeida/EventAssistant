@@ -10,7 +10,7 @@ use App\File;
 use App\Event;
 use Image;
 
-class FilesController extends Controller
+class FileController extends Controller
 {
     /**
      * Display a listing of the resource.

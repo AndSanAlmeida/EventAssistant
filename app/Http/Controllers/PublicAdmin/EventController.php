@@ -9,7 +9,7 @@ use App\Event;
 use Auth;
 use Carbon\Carbon;
 
-class EventsController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
