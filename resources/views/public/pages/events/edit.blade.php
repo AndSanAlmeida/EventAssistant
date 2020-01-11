@@ -126,7 +126,9 @@
                                 </div>
 
                                 {{-- Status --}}
-                                @if ($event->transaction->getTransactionStatus() == true)
+                                @if (is_null($event->transaction))
+                                    <p class="h3 text-red text-center"><b>Status:</b> Incative</p>
+                                @elseif ($event->transaction->getTransactionStatus() == true)
                                     <div class="form-group row">
                                         <label for="active" class="col-md-2 col-form-label">Status</label>
                                         <div class="col-md-4">
@@ -142,7 +144,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <p><b>Status:</b> Incative</p>
+                                    <p class="h3 text-red text-center"><b>Status:</b> Incative</p>
                                 @endif
 
 

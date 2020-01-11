@@ -92,10 +92,12 @@
 								                		</ul>
 								                	</td>
 								                	<td>
-								                		@if (!is_null($event->transaction->getTransactionStatus()))
+								                		@if (is_null($event->transaction))
+								                			<button data-toggle="modal" data-target="#transactionModal"  class="btn btn-red btn-sm mb-3"><i class="fas fa-money-check-alt"></i> Payment</button>
+								                		@elseif ($event->transaction->getTransactionStatus() == true)
 								                			<button id="share" class="btn btn-lightblue btn-sm mb-3" data-toggle="tooltip" title="Copy to Clipboard" onclick="CopyToClipboard( '{{ route('public.events.show', ['id'=>$event->id,'slug'=>$event->slug]) }}', true, 'Link is now Copied!')"><i class="fas fa-share-alt"></i> Share</button>
-								                		@else
-						                					<button data-toggle="modal" data-target="#transactionModal"  class="btn btn-red btn-sm mb-3"><i class="fas fa-money-check-alt"></i> Payment</button>
+								                		@else 
+						                					<button data-toggle="modal" data-target="#transactionModal"  class="btn btn-red btn-sm mb-3"><i class="fas fa-money-check-alt" onclick="checkout({{$event->id}})"></i> Payment</button>
 								                		@endif
 													</td>
 								            	</tr>
@@ -132,7 +134,7 @@
 				<form id="deleteForm" action="" method="POST">
 					@csrf 
 					@method('DELETE')
-					<button type="submit" class="btn btn-red" data-dismiss="modal" onclick="formSubmit()">
+					<button type="submit" class="btn btn-red" data-dismiss="modal" onclick="deleteSubmit()">
 						<span class="text">Delete</span>
 					</button>
 				</form>
@@ -151,7 +153,7 @@
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
-			<form method="post" id="payment-form" action="{{ route('public.transaction.checkout', $event->id) }}">
+			<form method="post" id="payment-form" action="">
                 @csrf
 				<div class="modal-body"> 
 					<p><b>To share this event you must first purchase the link access.</b></p>
@@ -168,7 +170,7 @@
 				</div>
 			<div class="modal-footer">
 				<button class="btn btn-orange" type="button" data-dismiss="modal">Cancel</button>
-                <button class="btn btn-red" type="submit"><span>Make Transaction</span></button>
+                <button class="btn btn-red" type="submit" onclick="transactionSubmit()"><span>Make Transaction</span></button>
 			</div>
             </form>
 		</div>
@@ -184,8 +186,19 @@
 		 $("#deleteForm").attr('action', url);
 	}
 
-	function formSubmit(){
+	function deleteSubmit(){
 	 	$("#deleteForm").submit();
+	}
+
+	function checkout(id) {
+		var id = id;
+		var url = '{{ route('public.transaction.checkout', ":id") }}';
+		 url = url.replace(':id', id);
+		 $("#payment-form").attr('action', url);
+	}
+
+	function transactionSubmit(){
+	 	$("#payment-form").submit();
 	}
 
 	var form = document.querySelector('#payment-form');

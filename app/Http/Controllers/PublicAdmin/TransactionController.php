@@ -15,6 +15,8 @@ class TransactionController extends Controller
     {	
     	$event = Event::findOrFail($id);
 
+    	dd($event);
+
     	$gateway = new Braintree([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
