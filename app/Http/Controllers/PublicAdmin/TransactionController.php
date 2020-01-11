@@ -5,15 +5,15 @@ namespace App\Http\Controllers\PublicAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use App\Event;
 use App\Transaction;
 use Braintree\Gateway as Braintree;
-use Illuminate\Support\Str;
 
 class TransactionController extends Controller
 {
     public function checkout(Request $request, $id)
     {	
-    	$user = User::findOrFail($id);
+    	$event = Event::findOrFail($id);
 
     	$gateway = new Braintree([
             'environment' => config('services.braintree.environment'),
@@ -23,11 +23,11 @@ class TransactionController extends Controller
         ]);
 
     	// First and Last Name
-    	if ( !preg_match('/\s/', $user->name)) {
-    		$firstname = $user->name;
+    	if ( !preg_match('/\s/', $event->user->name)) {
+    		$firstname = $event->user->name;
     		$lastname = '';
     	} else {
-    		list($firstname, $lastname) = explode(' ', $user->name);
+    		list($firstname, $lastname) = explode(' ', $event->user->name);
     	}
         
 	    $amount = 10;
@@ -39,7 +39,7 @@ class TransactionController extends Controller
 	        'customer' => [
 	            'firstName' => trim($firstname),
 	            'lastName' => trim($lastname),
-	            'email' => $user->email,
+	            'email' => $event->user->email,
 	        ],
 	        'options' => [
 	            'submitForSettlement' => true
@@ -48,17 +48,16 @@ class TransactionController extends Controller
 
 	    if ($result->success) {
 
-	    	// dd($result->transaction);
 	        $newTransaction = new Transaction;
 	    	$newTransaction->transaction_id = $result->transaction->id;   	
 	    	$newTransaction->amount = $result->transaction->amount;   	
 	    	$newTransaction->currency = $result->transaction->currencyIsoCode;   	
 	    	$newTransaction->status = $result->transaction->status;   	
-	    	$newTransaction->costumer_name = $user->name;   	
-	    	$newTransaction->costumer_email = $user->email;
-	    	event()->transaction()->create($newTransaction); 	
+	    	$newTransaction->costumer_name = $event->user->name;   	
+	    	$newTransaction->costumer_email = $event->user->email;
+	    	$event->transaction()->save($newTransaction);
 
-	        return back()->with('success', 'Transaction successful.');
+	        return back()->with('success', 'Transaction successful. Your link is now available!');
 	    } else {
 	        $errorString = "";
 	        foreach ($result->errors->deepAll() as $error) {

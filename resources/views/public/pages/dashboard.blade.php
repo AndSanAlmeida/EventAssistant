@@ -148,7 +148,7 @@
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
-			<form method="post" id="payment-form" action="{{ route('public.transaction.checkout', auth()->user()) }}">
+			<form method="post" id="payment-form" action="{{ route('public.transaction.checkout', $event->id) }}">
                 @csrf
 				<div class="modal-body"> 
 					<p><b>To share this event you must first purchase the link access.</b></p>
