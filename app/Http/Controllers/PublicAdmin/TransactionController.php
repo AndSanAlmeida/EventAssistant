@@ -46,16 +46,23 @@ class TransactionController extends Controller
 	        ]
 	    ]);
 
+	    // dd($result);
+
 	    if ($result->success) {
 
+	    	// Create new Transaction
 	        $newTransaction = new Transaction;
 	    	$newTransaction->transaction_id = $result->transaction->id;   	
 	    	$newTransaction->amount = $result->transaction->amount;   	
 	    	$newTransaction->currency = $result->transaction->currencyIsoCode;   	
-	    	$newTransaction->status = $result->transaction->status;   	
-	    	$newTransaction->costumer_name = $event->user->name;   	
-	    	$newTransaction->costumer_email = $event->user->email;
+	    	$newTransaction->status = $result->transaction->status;   	  	
+	    	$newTransaction->customer_name = $event->user->name;   	
+	    	$newTransaction->customer_email = $event->user->email;
+	    	$newTransaction->user_id = $event->user_id;
 	    	$event->transaction()->save($newTransaction);
+
+	    	// Update Event Status
+	    	$event->update(['active' => '1']);
 
 	        return back()->with('success', 'Transaction successful. Your link is now available!');
 	    } else {
@@ -63,7 +70,9 @@ class TransactionController extends Controller
 	        foreach ($result->errors->deepAll() as $error) {
 	            $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
 	        }
-	        return back()->withErrors('Error', 'An error occurred with the message: '. $result->message);
+	        return back()->withErrors('error', 'An error occurred with the message: '. $result->message);
+
+	        // return back()->with('error', 'An error occurred with the message: '. $result->message);
 	    }
     }
 }

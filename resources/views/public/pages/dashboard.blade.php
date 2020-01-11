@@ -92,8 +92,11 @@
 								                		</ul>
 								                	</td>
 								                	<td>
-						                				<button id="share" class="btn btn-lightblue btn-sm mb-3" data-toggle="tooltip" title="Copy to Clipboard" onclick="CopyToClipboard( '{{ route('public.events.show', ['id'=>$event->id,'slug'=>$event->slug]) }}', true, 'Link is now Copied!')"><i class="fas fa-share-alt"></i> Share</button>
-						                				<button data-toggle="modal" data-target="#transactionModal"  class="btn btn-lightblue btn-sm mb-3"><i class="fas fa-money-check-alt"></i> Payment</button>
+								                		@if (!is_null($event->transaction->getTransactionStatus()))
+								                			<button id="share" class="btn btn-lightblue btn-sm mb-3" data-toggle="tooltip" title="Copy to Clipboard" onclick="CopyToClipboard( '{{ route('public.events.show', ['id'=>$event->id,'slug'=>$event->slug]) }}', true, 'Link is now Copied!')"><i class="fas fa-share-alt"></i> Share</button>
+								                		@else
+						                					<button data-toggle="modal" data-target="#transactionModal"  class="btn btn-red btn-sm mb-3"><i class="fas fa-money-check-alt"></i> Payment</button>
+								                		@endif
 													</td>
 								            	</tr>
 								            @endforeach
@@ -172,7 +175,7 @@
 	</div>
 </div>
 
-<script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
+<script src="https://js.braintreegateway.com/web/dropin/1.21.0/js/dropin.min.js"></script>
 <script type="text/javascript">
 	function deleteData(id) {
 		 var id = id;
@@ -191,7 +194,12 @@
       authorization: client_token,
       selector: '#bt-dropin',
       paypal: {
-        flow: 'vault'
+        flow: 'vault',
+        buttonStyle: {
+	      size: 'responsive',
+	      color: 'blue',
+	      shape: 'pill'
+	    }
       }
     }, function (createErr, instance) {
       if (createErr) {

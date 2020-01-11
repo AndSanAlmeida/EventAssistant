@@ -16,15 +16,17 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('event_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('transaction_id');
             $table->float('amount');
             $table->string('currency');
             $table->string('status');
-            $table->string('costumer_name');
-            $table->string('costumer_email');
+            $table->string('customer_name');
+            $table->string('customer_email');
             $table->timestamps();
 
             $table->index('event_id');
+            $table->index('user_id');
         });
     }
 

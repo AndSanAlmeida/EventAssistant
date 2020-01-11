@@ -16,7 +16,6 @@ class UserController extends Controller
 
     public function dashboard()
     {   
-
         // Braintree Token           
         $gateway = new Braintree([
             'environment' => config('services.braintree.environment'),

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Role;
 use App\Event;
+use App\Transaction;
 
 class User extends Authenticatable
 {
@@ -53,6 +54,14 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function events() {
+        return $this->hasMany(Event::class)->orderBy('created_at', 'DESC');
+    }
+
+    public function transactions() {
+        return $this->hasMany(Transaction::class);
+    }
+
     // Verifica se os utilizadores têm Roles (Passa um Array com a Roles)
     public function hasAnyRoles($roles) {
         return null !== $this->roles()->whereIn('name', $roles)->first();
@@ -63,10 +72,7 @@ class User extends Authenticatable
         return null !== $this->roles()->where('name', $role)->first();
     }
 
-    public function events() {
-        return $this->hasMany(Event::class)->orderBy('created_at', 'DESC');
-    }
-
+    // Devolve todos os Eventos do User
     public function getUserEvents() {
         $getUserEvents = Event::select('user_id')->where('user_id', $this->id)->get();
         return $getUserEvents;

@@ -126,20 +126,25 @@
                                 </div>
 
                                 {{-- Status --}}
-                                <div class="form-group row">
-                                    <label for="active" class="col-md-2 col-form-label">Status</label>
-                                    <div class="col-md-4">
-                                        <select id="active" name="active" class="form-control {{ $errors->has('hour') ? ' is-invalid' : '' }}" >
-                                            <option value="1" @if ($event->active == '1') selected @endif>Active</option>
-                                            <option value="0" @if ($event->active == '0') selected @endif>Inactive</option>   
-                                        </select>
-                                        @if ($errors->has('active'))
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('active') }}</strong>
-                                            </span>
-                                        @endif
+                                @if ($event->transaction->getTransactionStatus() == true)
+                                    <div class="form-group row">
+                                        <label for="active" class="col-md-2 col-form-label">Status</label>
+                                        <div class="col-md-4">
+                                            <select id="active" name="active" class="form-control {{ $errors->has('hour') ? ' is-invalid' : '' }}" >
+                                                <option value="1" @if ($event->active == '1') selected @endif>Active</option>
+                                                <option value="0" @if ($event->active == '0') selected @endif>Inactive</option>   
+                                            </select>
+                                            @if ($errors->has('active'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('active') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
                                     </div>
-                                </div>
+                                @else
+                                    <p><b>Status:</b> Incative</p>
+                                @endif
+
 
                                 {{-- Actions --}}
                                 <div class="form-group row">
