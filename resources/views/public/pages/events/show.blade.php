@@ -101,9 +101,9 @@
 
                         <div class="row">
                             <div class="col-12">
-                                <img class="rounded" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->backgroundColor(253,186,81)->color(255,255,255)->generate($event->slug)) !!} " alt="QR Code">
+                                <img class="rounded" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->backgroundColor(253,186,81)->color(255,255,255)->generate(url('/') . '/' . $event->slug)) !!} " alt="QR Code">
                                 <p class="my-4">                                
-                                    <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->backgroundColor(253,186,81)->color(255,255,255)->generate($event->slug)) !!}" download="QR Code"><i class="fas fa-file-download fa-lg text-orange mr-4" title="QR Code"></i>Download QR Code</a>
+                                    <a href="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->backgroundColor(253,186,81)->color(255,255,255)->generate(url('/') . '/' . $event->slug)) !!}" download="QR Code"><i class="fas fa-file-download fa-lg text-orange mr-4" title="QR Code"></i>Download QR Code</a>
                                 </p>
                             </div>
                         </div>

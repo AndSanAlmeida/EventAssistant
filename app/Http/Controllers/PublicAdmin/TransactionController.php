@@ -15,8 +15,6 @@ class TransactionController extends Controller
     {	
     	$event = Event::findOrFail($id);
 
-    	dd($event);
-
     	$gateway = new Braintree([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -47,8 +45,6 @@ class TransactionController extends Controller
 	            'submitForSettlement' => true
 	        ]
 	    ]);
-
-	    // dd($result);
 
 	    if ($result->success) {
 

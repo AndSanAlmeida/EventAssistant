@@ -151,7 +151,7 @@ img {
 // Tables
 // ==================================================
 
-#dashboard, #files, #localization {
+#files, #localization {
   td {
     line-height: 3.5em;
     vertical-align: middle !important;
@@ -162,13 +162,33 @@ img {
 }
 
 @media (max-width: 1100px) {
-  #dashboard, #files, #localization  {
+  #files, #localization  {
     td {
       line-height: 2em;
     }
     li {
       display: block;
     }
+  }
+}
+
+// ==================================================
+// Dashboard Cards
+// ==================================================
+
+#dashboard {
+  .card {
+    border-radius: 1.5rem;
+    @include transition(all, .2s, ease-in-out)
+  }
+  .active:hover {
+    box-shadow: 0 0 0 0.4rem rgba(64, 169, 51, 0.4); // Green 
+  }
+  .disable:hover {
+    box-shadow: 0 0 0 0.4rem rgba(253, 101, 90, 0.4); // Red
+  }
+  li {
+    margin: 0 0.5rem;
   }
 }
 
@@ -910,6 +930,7 @@ input[type='date']::-webkit-inner-spin-button, input[type='time']::-webkit-inner
   padding: 0.5em 1em;
   text-transform: uppercase;
   letter-spacing: 1px;
+  vertical-align: bottom;
 }
 
 // ==================================================

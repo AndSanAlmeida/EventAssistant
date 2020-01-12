@@ -128,31 +128,46 @@ img {
   max-width: 100%;
 }
 
-#dashboard td,
 #files td,
 #localization td {
   line-height: 3.5em;
   vertical-align: middle !important;
 }
 
-#dashboard a,
 #files a,
 #localization a {
   padding-right: 10px;
 }
 
 @media (max-width: 1100px) {
-  #dashboard td,
   #files td,
   #localization td {
     line-height: 2em;
   }
 
-  #dashboard li,
   #files li,
   #localization li {
     display: block;
   }
+}
+
+#dashboard .card {
+  border-radius: 1.5rem;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+}
+
+#dashboard .active:hover {
+  box-shadow: 0 0 0 0.4rem rgba(64, 169, 51, 0.4);
+}
+
+#dashboard .disable:hover {
+  box-shadow: 0 0 0 0.4rem rgba(253, 101, 90, 0.4);
+}
+
+#dashboard li {
+  margin: 0 0.5rem;
 }
 
 .section-title,
@@ -828,6 +843,7 @@ input[type=time]::-webkit-inner-spin-button {
   padding: 0.5em 1em;
   text-transform: uppercase;
   letter-spacing: 1px;
+  vertical-align: bottom;
 }
 
 .tooltip {

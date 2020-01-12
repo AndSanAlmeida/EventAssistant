@@ -37,14 +37,14 @@
 					<div class="row">
 						@if (auth()->user()->getUserEvents()->isEmpty())
 							<div class="col-12 mt-4">
-								<div class="alert alert-danger" role="alert">
-								  	<h4 class="alert-heading">Error!</h4>
+								<div class="alert alert-warning" role="alert">
+								  	<h4 class="alert-heading">Warning!</h4>
 								  	<p>There is no events yiet! You must first create one.</p>						  	
 								</div>		              					
 							</div>
 						@else
 							<div class="col-12 mt-4">
-								<div class="table-responsive">
+								{{-- <div class="table-responsive">
 								    <table id="dashboard" class="table table-hover table-borderless">
 								        <thead>
 								            <tr>
@@ -85,25 +85,96 @@
 								                					class="text-red" 
 								                					data-toggle="tooltip" 
 								                					title="Delete"
-								                					onclick="deleteData({{$event->id}})">
+								                					onclick="deleteId({{ $event->id }})">
 								                					<i class="fas fa-trash-alt"></i>
 								                				</a>
 								                			</li>
 								                		</ul>
 								                	</td>
 								                	<td>
-								                		@if (is_null($event->transaction))
-								                			<button data-toggle="modal" data-target="#transactionModal"  class="btn btn-red btn-sm mb-3"><i class="fas fa-money-check-alt"></i> Payment</button>
-								                		@elseif ($event->transaction->getTransactionStatus() == true)
+								                		@if (is_null($event->transaction) || $event->transaction->getTransactionStatus() == false)
+								                			<a href="javascript:;" 
+							                					data-toggle="modal" 
+							                					data-target="#transactionModal" 
+							                					class="btn btn-red btn-sm mb-3" 
+							                					onclick="checkoutId({{ $event->id }})">
+							                					<i class="fas fa-money-check-alt"></i> Purshase
+							                				</a>
+								                		@else
 								                			<button id="share" class="btn btn-lightblue btn-sm mb-3" data-toggle="tooltip" title="Copy to Clipboard" onclick="CopyToClipboard( '{{ route('public.events.show', ['id'=>$event->id,'slug'=>$event->slug]) }}', true, 'Link is now Copied!')"><i class="fas fa-share-alt"></i> Share</button>
-								                		@else 
-						                					<button data-toggle="modal" data-target="#transactionModal"  class="btn btn-red btn-sm mb-3"><i class="fas fa-money-check-alt" onclick="checkout({{$event->id}})"></i> Payment</button>
 								                		@endif
 													</td>
 								            	</tr>
 								            @endforeach
 								        </tbody>
 								    </table>
+								</div> --}}
+								
+								<div id="dashboard">
+									@foreach (auth()->user()->events as $event)
+									<div class="card {{ ($event->active == '1') ? 'border-success active' : 'border-danger disable' }} mb-3">
+								      <div class="card-body">
+								      	<div class="row">
+											<div class="col-md-7 offset-md-1 col-12-sm d-flex">
+												<h4 class="card-title align-self-center">
+											        {{ $event->name }}
+											        <p class="text-muted">{{ date('F d, Y', strtotime($event->date)) }} | {!! $event->isActive() !!}</p>
+											    </h4>
+											</div>
+											<div class="col-md-3 col-12-sm text-center">
+												<ul class="list-inline">
+						                			<li class="list-inline-item">
+						                				<a href="{{ route('public.files.create', $event) }}" class="text-darkblue" data-toggle="tooltip" title="Add Files / Images"><i class="fas fa-file-import"></i></a>
+						                			</li>
+						                			<li class="list-inline-item">
+						                				<a href="{{ route('public.localizations.create', $event) }}" class="text-darkblue" data-toggle="tooltip" title="Add Localizations"><i class="fas fa-map-marked-alt"></i></a>
+						                			</li>
+						                		</ul>
+
+						                		<hr>
+
+						                		<ul class="list-inline">
+						                			<li class="list-inline-item">
+						                				<a href="{{ route('public.events.index', $event) }}" class="text-orange" data-toggle="tooltip" title="Preview"><i class="far fa-eye"></i></a>
+						                			</li>
+						                			<li class="list-inline-item">
+						                				<a href="{{ route('public.events.edit', $event) }}" class="text-cyan" data-toggle="tooltip" title="Update"><i class="far fa-edit"></i></a>
+						                			</li>
+						                			<li class="list-inline-item" data-toggle="modal" data-target="#deleteModal" >
+						                				<a href="javascript:;" 
+						                					class="text-red" 
+						                					data-toggle="tooltip" 
+						                					title="Delete"
+						                					onclick="deleteId({{ $event->id }})">
+						                					<i class="fas fa-trash-alt"></i>
+						                				</a>
+						                			</li>
+						                		</ul>
+
+						                		<hr>
+
+						                		@if (is_null($event->transaction) || $event->transaction->getTransactionStatus() == false)
+						                			<a href="javascript:;" 
+					                					data-toggle="modal" 
+					                					data-target="#transactionModal" 
+					                					class="btn btn-red btn-sm mb-3" 
+					                					onclick="checkoutId({{ $event->id }})">
+					                					<i class="fas fa-money-check-alt"></i> Purshase
+					                				</a>
+						                		@else
+						                			<button id="share" 
+					                					class="btn btn-lightblue btn-sm mb-3" 
+					                					data-toggle="tooltip" 
+					                					title="Copy to Clipboard" 
+					                					onclick="CopyToClipboard( '{{ route('public.events.show', ['id'=>$event->id,'slug'=>$event->slug]) }}', true, 'Link is now Copied!')">
+					                					<i class="fas fa-share-alt"></i> Share
+					                				</button>
+						                		@endif
+											</div>
+										</div>
+								      </div>
+								    </div>
+								   	@endforeach
 								</div>
 							</div>	
 							
@@ -153,7 +224,7 @@
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
-			<form method="post" id="payment-form" action="">
+			<form id="payment-form" action="" method="POST">
                 @csrf
 				<div class="modal-body"> 
 					<p><b>To share this event you must first purchase the link access.</b></p>
@@ -179,22 +250,22 @@
 
 <script src="https://js.braintreegateway.com/web/dropin/1.21.0/js/dropin.min.js"></script>
 <script type="text/javascript">
-	function deleteData(id) {
-		 var id = id;
-		 var url = '{{ route('public.events.destroy', ":id") }}';
-		 url = url.replace(':id', id);
-		 $("#deleteForm").attr('action', url);
+	function deleteId(id) {
+		var id = id;
+		var url = '{{ route('public.events.destroy', ":id") }}';
+		url = url.replace(':id', id);
+		$("#deleteForm").attr('action', url);
 	}
 
 	function deleteSubmit(){
 	 	$("#deleteForm").submit();
 	}
 
-	function checkout(id) {
+	function checkoutId(id) {
 		var id = id;
 		var url = '{{ route('public.transaction.checkout', ":id") }}';
-		 url = url.replace(':id', id);
-		 $("#payment-form").attr('action', url);
+		url = url.replace(':id', id);
+		$("#payment-form").attr('action', url);
 	}
 
 	function transactionSubmit(){
