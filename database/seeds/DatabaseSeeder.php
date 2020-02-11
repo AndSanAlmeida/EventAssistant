@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         //User dão seed depois das Roles por causa do Attach
         $this->call(UsersTableSeeder::class);
         $this->call(EventsTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
         $this->call(LocalizationsTableSeeder::class);
     }
 }

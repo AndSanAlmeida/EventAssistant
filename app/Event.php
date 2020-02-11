@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\User;
 use App\File;
 use App\Localization;
+use App\Category;
 use App\Transaction;
 
 class Event extends Model
@@ -33,6 +34,10 @@ class Event extends Model
     public function getStatus($status) {
 
         return $status;
+    }
+
+    public function category() {
+        return $this->hasOne(Category::class);
     }
 
     public function files() {

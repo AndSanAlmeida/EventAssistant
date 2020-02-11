@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Event;
+use Validator;
 use Auth;
 use Carbon\Carbon;
 
@@ -122,7 +123,7 @@ class EventController extends Controller
 
         if (Auth::user()->id == $event->user_id) {
 
-            $data = request()->validate([
+            $data = Validator::make($request->all(), [
                 'name' => ['required', 'string', 'min:6', 'max:30'],
                 'date' => ['required', 'date'],
                 'hour' => ['required', 'date_format:H:i'],
@@ -137,11 +138,19 @@ class EventController extends Controller
                 return redirect()->back()->withInput()->with('error', 'You cannot insert an older date! Try again.');
             } else {
 
-                auth()->user()->events()->update($data);
+                // Slug
+                $slug = str_slug(request('name'), '-') . '-' . Str::random(48); 
+                
+                $event->fill(array_merge(
+                    $request->all(),
+                    ['slug' => $slug]
+                ));
+                
+                $event->update();
 
                 return redirect()->route('public.dashboard')->with('success', 'Event was updated with success!');
-
             } 
+
         } else {
             return redirect()->back()->with('warning', 'You have no permissions! Try Again.');
         }
